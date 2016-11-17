@@ -2,3 +2,6 @@
 thinkgame.sql
 node_modules
 /nbproject/private/
+/tkfull/Public
+/tkfull/Application/Home
+/tkfull/Application/Runtime
