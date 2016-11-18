@@ -11,12 +11,10 @@ angular.module('testApp')
                     alert('暂未开发');
                     $state.go('app.home');
                 };
-                $scope.devs();
+                //$scope.devs();
             }])
-        .controller('aboutListController', ['$scope', 'localStorage', 'userInfoService', '$state', function ($scope, localStorage, userInfoService, $state) {
-                userInfoService.getUsers(function (data) {
-                    $scope.usersinfo = data;
-                });
+        .controller('aboutDescController', ['$scope', 'localStorage', 'userInfoService', '$state', function ($scope, localStorage, userInfoService, $state) {
+                
             }])
 
         ;
