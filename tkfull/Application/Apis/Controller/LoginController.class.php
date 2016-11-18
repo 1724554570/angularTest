@@ -4,9 +4,9 @@ namespace Apis\Controller;
 
 class LoginController extends AllController {
 
-    public function index(){
-        $data = array('code'=>404,message=>"找不到页面！！");
-        $this->assign('err',$data);
+    public function index() {
+        $data = array('code' => 404, message => "找不到页面！！");
+        $this->assign('err', $data);
         $this->display('err:index');
     }
 

@@ -9,9 +9,9 @@ class ProductController extends AllController {
     const TABLENAME = "tk_pro";
     const USERTABLE = "tk_user";
 
-    public function index(){
-        $data = array('code'=>404,message=>"找不到页面！！");
-        $this->assign('err',$data);
+    public function index() {
+        $data = array('code' => 404, message => "找不到页面！！");
+        $this->assign('err', $data);
         $this->display('err:index');
     }
 

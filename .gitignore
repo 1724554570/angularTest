@@ -1,8 +1,10 @@
 .tmp
 thinkgame.sql
 node_modules
+/onethink
+/wwwroot
+/nbproject
 /nbproject/private/
-/tkfull/Public
 /tkfull/Application/Home
 /tkfull/Application/Runtime
 /ueditor
