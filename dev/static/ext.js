@@ -1,29 +1,38 @@
 //解决IE9 console.log 报错
-window.console = window.console || (function() {
+window.console = window.console || (function () {
     var c = {};
-    c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function() {
+    c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function () {
     };
     return c;
 })();
-var ext = (function() {
+var ext = (function () {
+    //数组去空
     function skipEmptyElementForArray(arr) {
         var a = [], str = '';
-        $.each(arr, function(i, v) {
+        $.each(arr, function (i, v) {
             var data = $.trim(v);//$.trim()函数来自jQuery  
             if ('' !== data) {
                 a.push(data);
                 str += '/' + data;
             }
         });
-        return {a: a, str: str};
+        return { a: a, str: str };
     }
 
-    var cfg = {action: '/tkfull/index.php/', ctrl: '/static/tpl/ctrls/', view: '/static/tpl/view/'};
-
+    //适配url路径
     function getPaths() {
         var jxUrl = window.location.pathname;
         var _url = skipEmptyElementForArray(jxUrl.split("/"));
-        var data = {action: cfg.action, ctrl: cfg.ctrl, view: cfg.view};
+        var cfg;
+        if (_url.str && _url.str != '/') {
+            cfg = {
+                action: '/tkfull/index.php/',
+                ctrl: _url.str + '/static/tpl/ctrls/',
+                view: _url.str + '/static/tpl/view/'
+            };
+
+        }
+        var data = { action: cfg.action, ctrl: cfg.ctrl, view: cfg.view };
         data.domain = _url.str;
         data.extend = "";
         var uLen = _url.a;
@@ -50,6 +59,6 @@ var ext = (function() {
 var base = ext.getPath();
 var actionUrl = base.action;
 console.log(base);
-var token = {token: 'login'};
+var token = { token: 'login' };
 angular.module('testApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
 

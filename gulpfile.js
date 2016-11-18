@@ -13,14 +13,20 @@ var setConfig = function() {
     this._static = this._default + "static/";
     this._model = this._default + "static/model/";
     this.minjs = this._static + "**/*.js";
+
     this.ext = this._static + "ext.js";
     this.run = this._static + "run.js";
     this.app = this._static + "app.js";
     this.tpl = this._static + "tpl/**/*.js";
+    this.model = this._static + "model/**/*.js";
+
     this.mincss = this._static + "**/*.css";
+
     this.minhtml = this._static + "**/*.html";
+
     this.dist = 'publish/static';
     this.distjs = 'publish/static/tpl/';
+    this.distmodel = 'publish/static/model/';
 };
 var getConfig = new setConfig();
 
@@ -28,7 +34,7 @@ var getConfig = new setConfig();
 gulp.task('minify_js', function() {
     gulp.src([getConfig.ext, getConfig.app]).pipe(uglify()).pipe(gulp.dest(getConfig.dist));
     gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
-    gulp.src([getConfig.tpl]).pipe(uglify()).pipe(gulp.dest(getConfig.distjs));
+    gulp.src([getConfig.model]).pipe(uglify()).pipe(gulp.dest(getConfig.distmodel));
 });
 
 
@@ -50,7 +56,7 @@ gulp.task("clean", function() {
 // 多任务执行
 gulp.task('default', [
     //'clean',
-    'minify_css',
+    //'minify_css',
     'minify_js',
-    'minify_html'
+    //'minify_html'
 ]);
