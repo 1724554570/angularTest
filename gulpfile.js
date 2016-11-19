@@ -58,5 +58,5 @@ gulp.task('default', [
     //'clean',
     //'minify_css',
     'minify_js',
-    'minify_html'
+    //'minify_html'
 ]);

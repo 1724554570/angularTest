@@ -8,6 +8,14 @@ angular.module('testApp').factory('userInfoService', ['$http', 'localStorage', '
         setUsers: actionUrl + "Apis/Login/ajaxreg",
         getForget: actionUrl + "Apis/Login/ajaxForget",
     };
+    var getServerData = function(http, callbacks){
+        var promise = $http(http).then(function (resp) {
+            callbacks(resp);
+        }, function (resp) {
+            console.log(resp);
+        });
+    };
+    
     users.getUsers = function (callbacks) {
         var promise = $http({ method: 'post', url: configs.getuserinfo, data: { 'token': token.token } }).then(function (resp) {
             var userinfo = resp.data.users;
