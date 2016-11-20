@@ -25,7 +25,9 @@ class LoginController extends Controller {
             $User = new UsersApi;
             $uid = $User->login($username, $password);
             if (0 < $uid) { //UC登录成功
-                $this->ajaxReturn(array('status' => 1, 'users' => $uid));
+                session('login.user', $uid);
+                $this->success('登录成功！', U('Index/index'));
+                //$this->ajaxReturn(array('status' => 1, 'users' => $uid));
             } else { //登录失败
                 switch ($uid) {
                     case -1: $error = '用户不存在或被禁用！';
