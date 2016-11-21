@@ -74,4 +74,21 @@ class UsersModel extends Model {
         }
     }
 
+    /**
+     * 分页查询数据
+     * @param type $s 开始数
+     * @param type $e 结束数
+     */
+    public function lists($s, $e) {
+        $total = $this->count();
+        $limit = '0,10';
+        if (empty($s) || empty($e) || !$s || !$e) {
+            
+        } else {
+            $limit = (($s - 1) * 10) . ',10';
+        }
+        $lists = $this->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
+        return array('total='=>$total, 'users'=>$lists);
+    }
+
 }

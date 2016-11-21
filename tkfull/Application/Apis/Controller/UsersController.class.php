@@ -3,6 +3,7 @@
 namespace Apis\Controller;
 
 use Think\Model;
+use User\Api\UsersApi;
 
 class UsersController extends AllController {
 
@@ -31,6 +32,16 @@ class UsersController extends AllController {
         } else {
             $this->ajaxReturn(array('status' => 0, 'users' => $rows, 'pros' => $rows2));
         }
+    }
+
+    public function lists($s = null, $e = null) {
+        $User = new UsersApi;
+        if (empty($s) && empty($e)) {
+            $s = 1;
+            $e = 10;
+        }
+        $list = $User->lists($s, $e);
+        $this->ajaxReturn(array('status' => 1, 'total' => $list['total'], 'users' => $list['users']));
     }
 
 }

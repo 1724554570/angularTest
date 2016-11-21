@@ -47,4 +47,14 @@ class UsersApi extends Api {
         return $this->model->info($uid, $is_username);
     }
 
+    /**
+     * 用户分页数据
+     * @param type $s
+     * @param type $e
+     * @return type
+     */
+    public function lists($s, $e) {
+        return $this->model->lists($s, $e);
+    }
+
 }

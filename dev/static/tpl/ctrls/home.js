@@ -28,8 +28,8 @@ angular.module('testApp')
                     return new Date(rtime).toLocaleString().substr(0, 10);
                 };
 
-                userInfoService.getUsers(function (data) {
-                    $scope.usersinfo = data;
+                userInfoService.getUsers({}, function (resp) {
+                    $scope.usersinfo = resp.data.users;
                 });
             }])
 

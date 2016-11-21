@@ -33,7 +33,8 @@ var getConfig = new setConfig();
 // 压缩js文件
 gulp.task('minify_js', function() {
     gulp.src([getConfig.ext, getConfig.app]).pipe(uglify()).pipe(gulp.dest(getConfig.dist));
-    gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
+    //gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
+    gulp.src([getConfig.tpl]).pipe(uglify()).pipe(gulp.dest(getConfig.distjs));
     gulp.src([getConfig.model]).pipe(uglify()).pipe(gulp.dest(getConfig.distmodel));
 });
 

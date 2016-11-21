@@ -7,4 +7,5 @@ node_modules
 /nbproject/private/
 /tkfull/Application/Home
 /tkfull/Application/Runtime
+/ tkfull/Public/cloudJs
 /ueditor

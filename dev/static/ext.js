@@ -57,7 +57,6 @@ var ext = (function () {
     };
 })();
 var base = ext.getPath();
-var actionUrl = base.action;
 console.log(base);
 var token = { token: 'login' };
 angular.module('testApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
