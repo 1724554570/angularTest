@@ -28,8 +28,8 @@ angular.module('testApp')
                     return new Date(rtime).toLocaleString().substr(0, 10);
                 };
 
-                productService.getProduct(function (data) {
-                    $scope.product = data;
+                productService.getProduct({}, function (resp) {
+                    $scope.product = resp.data.pro;
                 });
 
                 $scope.showSimple = function (product) {
@@ -52,8 +52,8 @@ angular.module('testApp')
                     }
                     var data = {pro_id: productId};
                     productService.getProductById(data, function (resp) {
-                        $scope.product = resp;
-                        $scope.product._csrf = resp.id;
+                        $scope.product = resp.data.article;
+                        $scope.product._csrf = resp.data.article.id;
                     });
                 };
                 $scope.getProductInfo();
@@ -104,8 +104,8 @@ angular.module('testApp')
                         propower: $scope.product.propower,
                         token: "saveArticle"
                     };
-                    productService.saveProduct(datas, function (callbacks) {
-                        if (callbacks.pro) {
+                    productService.saveProduct(datas, function (resp) {
+                        if (resp.data.pro) {
                             $state.go('pro.list');
                         }
                     });
@@ -153,8 +153,8 @@ angular.module('testApp')
                     }
                     var data = {pro_id: productId};
                     productService.getProductById(data, function (resp) {
-                        $scope.product = resp;
-                        $scope.product._csrf = resp.id;
+                        $scope.product = resp.data.article;
+                        $scope.product._csrf = resp.data.article.id;
                     });
                 };
 

@@ -7,7 +7,7 @@ use Think\Model;
 /**
  * 会员模型
  */
-class UsersModel extends Model {
+class ArticleModel extends Model {
 
     /**
      * 数据表前缀
@@ -21,74 +21,30 @@ class UsersModel extends Model {
      */
     protected $connection = UC_DB_DSN;
 
-    public function login($username, $password, $type = 1) {
-        $map = array();
-        switch ($type) {
-            case 1:
-                $map['username'] = $username;
-                break;
-            case 2:
-                $map['email'] = $username;
-                break;
-            case 3:
-                $map['mobile'] = $username;
-                break;
-            case 4:
-                $map['id'] = $username;
-                break;
-            default:
-                return 0; //参数错误
-        }
-        /* 获取用户数据 */
-        $user = $this->where($map)->find();
-        if (is_array($user) && $user['state']) {
-            if (MD5($password) === $user['userpass']) {
-                return $user;
-            } else {
-                return -2; //密码错误
-            }
-        } else {
-            return -1; //用户不存在或被禁用
-        }
-    }
-
     /**
-     * 获取用户信息
-     * @param  string  $uid         用户ID或用户名
-     * @param  boolean $is_username 是否使用用户名查询
-     * @return array                用户信息
+     * 查询用户所拥有的文章 
+     * @param type $s
+     * @param type $e
      */
-    public function info($uid, $is_username = false) {
-        $map = array();
-        if ($is_username) { //通过用户名获取
-            $map['username'] = $uid;
-        } else {
-            $map['id'] = $uid;
-        }
-
-        $user = $this->where($map)->field('id,username,email,mobile,status')->find();
-        if (is_array($user) && $user['status'] = 1) {
-            return array($user['id'], $user['username'], $user['email'], $user['mobile']);
-        } else {
-            return -1; //用户不存在或被禁用
-        }
-    }
-
-    /**
-     * 分页查询数据
-     * @param type $s 开始数
-     * @param type $e 结束数
-     */
-    public function lists($s, $e) {
-        $total = $this->count();
+    public function getUsersArticle($s, $e, $uid) {
         $limit = '0,10';
         if (empty($s) || empty($e) || !$s || !$e) {
             
         } else {
             $limit = (($s - 1) * 10) . ',10';
         }
-        $lists = $this->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
-        return array('total='=>$total, 'users'=>$lists);
+        $total = $this->where("foruser={$uid}")->count();
+        $lists = $this->where("foruser={$uid}")->field('id,productname,proctime')->select();
+        return array('total' => $total, 'lists' => $lists);
+    }
+
+    /**
+     * 分页数据
+     * @param type $s
+     * @param type $e
+     */
+    public function lists($s, $e) {
+        
     }
 
 }

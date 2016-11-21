@@ -2,8 +2,8 @@
 
 namespace Apis\Controller;
 
-use Think\Model;
 use User\Api\UsersApi;
+use User\Api\ArticleApi;
 
 class UsersController extends AllController {
 
@@ -11,16 +11,6 @@ class UsersController extends AllController {
         $data = array('code' => 404, message => "找不到页面！！");
         $this->assign('err', $data);
         $this->display('err:index');
-    }
-
-    public function getUserinfo() {
-        $model = new Model();
-        $rows = $model->query("select id as uid,username,imgurl,ctime from tk_user");
-        if ($rows) {
-            $this->ajaxReturn(array('status' => 1, 'users' => $rows));
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'users' => $rows));
-        }
     }
 
     public function getArtById() {
@@ -34,14 +24,40 @@ class UsersController extends AllController {
         }
     }
 
-    public function lists($s = null, $e = null) {
+    /**
+     * 用户拥有文章
+     * @param int $s
+     * @param int $e
+     * @param type $uid
+     */
+    public function ulists($s = null, $e = null, $uid = null) {
+        if (empty($uid)) {
+            $this->ajaxReturn(array('status' => 0, 'users' => null, 'totals' => 0, 'article' => null));
+        }
+        $UA = new ArticleApi();
         $User = new UsersApi;
         if (empty($s) && empty($e)) {
             $s = 1;
             $e = 10;
         }
+        $list = $UA->ualists($s, $e, $uid);
+        $info = $User->info($uid);
+        $this->ajaxReturn(array('status' => 1, 'users' => $info, 'totals' => $list['total'], 'article' => $list['lists']));
+    }
+
+    /**
+     * 分页用户信息
+     * @param int $s
+     * @param int $e
+     */
+    public function lists($s = null, $e = null) {
+        if (empty($s) && empty($e)) {
+            $s = 1;
+            $e = 10;
+        }
+        $User = new UsersApi;
         $list = $User->lists($s, $e);
-        $this->ajaxReturn(array('status' => 1, 'total' => $list['total'], 'users' => $list['users']));
+        $this->ajaxReturn(array('status' => 1, 'totals' => $list['total'], 'users' => $list['users']));
     }
 
 }

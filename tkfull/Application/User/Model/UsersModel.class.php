@@ -66,9 +66,9 @@ class UsersModel extends Model {
             $map['id'] = $uid;
         }
 
-        $user = $this->where($map)->field('id,username,email,mobile,status')->find();
-        if (is_array($user) && $user['status'] = 1) {
-            return array($user['id'], $user['username'], $user['email'], $user['mobile']);
+        $user = $this->where($map)->field('id as uid,username,imgurl,ctime,state')->find();
+        if (is_array($user) && $user['state'] = 1) {
+            return $user;
         } else {
             return -1; //用户不存在或被禁用
         }
@@ -80,15 +80,15 @@ class UsersModel extends Model {
      * @param type $e 结束数
      */
     public function lists($s, $e) {
-        $total = $this->count();
         $limit = '0,10';
         if (empty($s) || empty($e) || !$s || !$e) {
             
         } else {
             $limit = (($s - 1) * 10) . ',10';
         }
+        $total = $this->count();
         $lists = $this->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
-        return array('total='=>$total, 'users'=>$lists);
+        return array('total'=>$total, 'users'=>$lists);
     }
 
 }

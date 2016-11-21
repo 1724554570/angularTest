@@ -1,13 +1,13 @@
 // 服务 用户
 angular.module('testApp').factory('userInfoService', ['$http', 'localStorage', '$state', '$rootScope', function ($http, localStorage, $state, $rootScope) {
-        var actionUrl = base.action;
+        var actions = '/tkfull/index.php/';
         var users = {};
         var configs = {
-            getLists: actionUrl + "apis/users/lists",
-            getLogin: actionUrl + "apis/login/ajaxlogin",
-            findById: actionUrl + "apis/users/getArtById",
-            setUsers: actionUrl + "apis/login/ajaxreg",
-            getForget: actionUrl + "apis/login/ajaxForget",
+            getLists: actions + "apis/users/lists",
+            findById: actions + "apis/users/getArtById",
+            getLogin: actions + "apis/login/ajaxlogin",
+            setUsers: actions + "apis/login/ajaxreg",
+            getForget: actions + "apis/login/ajaxForget"
         };
         var getServerData = function (http, callbacks) {
             callbacks = callbacks || function () {};
@@ -36,12 +36,12 @@ angular.module('testApp').factory('userInfoService', ['$http', 'localStorage', '
     }]);
 // 服务 产品
 angular.module('testApp').factory('productService', ['$http', 'localStorage', '$state', '$rootScope', function ($http, localStorage, $state, $rootScope) {
-        var actionUrl = base.action;
+        var actions = '/tkfull/index.php/';
         var product = {};
         var configs = {
-            getLists: actionUrl + "apis/Product/getProduct",
-            getById: actionUrl + "apis/Product/getProductById",
-            savaPro: actionUrl + "apis/Product/saveProduct",
+            getLists: actions + "apis/Product/getProduct",
+            getById: actions + "apis/Product/getProductById",
+            savaPro: actions + "apis/Product/saveProduct",
         };
         var getServerData = function (http, callbacks) {
             callbacks = callbacks || function () {};
@@ -51,34 +51,18 @@ angular.module('testApp').factory('productService', ['$http', 'localStorage', '$
                 console.log(resp);
             });
         };
-        product.getProduct = function (callbacks) {
-            var promise = $http({method: 'post', url: configs.getLists, data: {'token': token.token}}).then(function (resp) {
-                var userinfo = resp.data.pro;
-                callbacks(userinfo);
-            }, function (resp) {
-                console.log(resp);
-            });
-            //$http.post(configs.getLists, {'token': token.token}).success(Scallbacks).error(Ecallbacks);
+        product.getProduct = function (data, callbacks) {
+            getServerData({method: 'post', url: configs.getLists, data: data}, callbacks);
         };
         product.getProductById = function (data, callbacks) {
-            var promise = $http({method: 'post', url: configs.getById, data: data}).then(function (resp) {
-                var userinfo = resp.data.pro;
-                callbacks(userinfo);
-            }, function (resp) {
-                console.log(resp);
-            });
+            getServerData({method: 'post', url: configs.getById, data: data}, callbacks);
         };
         product.saveProduct = function (datas, callbacks) {
             var sendUrl = configs.savaPro;
             if (datas._csrf != "") {
                 sendUrl = configs.savaPro;
             }
-            var promise = $http({method: 'post', url: sendUrl, data: datas}).then(function (resp) {
-                var userinfo = resp.data;
-                callbacks(userinfo);
-            }, function (resp) {
-                console.log(resp);
-            });
+            getServerData({method: 'post', url: sendUrl, data: datas}, callbacks);
         };
 
         return product;
@@ -87,7 +71,7 @@ angular.module('testApp').factory('productService', ['$http', 'localStorage', '$
 angular.module('testApp').factory('AboutService', ['$http', 'localStorage', '$state', '$rootScope', function ($http, localStorage, $state, $rootScope) {
         var about = {};
         var configs = {
-            getAboutDesc: actionUrl + "apis/about/detail",
+            getAboutDesc: actions + "apis/about/detail",
         };
         about.getProduct = function (callbacks) {
             var promise = $http({method: 'post', url: configs.getLists, data: {'token': token.token}}).then(function (resp) {
