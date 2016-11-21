@@ -22,19 +22,13 @@ class UsersModel extends Model {
     protected $connection = UC_DB_DSN;
 
     public function login($username, $password, $type = 1) {
+        //if (!check_verify($verify)) {
+        //    return -3; //验证码错误
+        //}
         $map = array();
         switch ($type) {
             case 1:
                 $map['username'] = $username;
-                break;
-            case 2:
-                $map['email'] = $username;
-                break;
-            case 3:
-                $map['mobile'] = $username;
-                break;
-            case 4:
-                $map['id'] = $username;
                 break;
             default:
                 return 0; //参数错误
@@ -88,7 +82,19 @@ class UsersModel extends Model {
         }
         $total = $this->count();
         $lists = $this->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
-        return array('total'=>$total, 'users'=>$lists);
+        return array('total' => $total, 'users' => $lists);
+    }
+
+    /**
+     * 注册用户验证
+     * @param type $name
+     * @param type $pwd
+     * @param type $valid
+     */
+    public function register($name, $pwd, $valid) {
+        if (empty($name) || empty($pwd) || empty($valid)) {
+            return -3; // 参数错误
+        }
     }
 
 }

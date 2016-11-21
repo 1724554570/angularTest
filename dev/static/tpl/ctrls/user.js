@@ -3,22 +3,25 @@
  * @type type
  */
 angular.module('testApp')
-        .controller('loginController', ['$scope', '$http', '$sce', '$state', '$document', 'cookie', function($scope, $http, $sce, $state, $document, cookie) {
+        .controller('loginController', ['$scope', 'cookie', function($scope, cookie) {
                 $scope.titles = "用户管理";
                 var loginUsers = angular.fromJson(window.localStorage.getItem('login.users'));
                 $scope.isLogin = loginUsers || angular.fromJson(cookie.get('login.users.name')) || "";
+                // 刷新验证码
+                $scope.verify = function() {
+                    var verifyimg = $(".verifyimg").attr("src");
+                    if (verifyimg.indexOf('?') > 0) {
+                        $(".verifyimg").attr("src", verifyimg + '&random=' + Math.random());
+                    } else {
+                        $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/, '') + '?' + Math.random());
+                    }
+                };
             }])
         //登录控制器
-        .controller('loginIndexController', ['$scope', '$http', '$timeout', '$state', 'cookie', 'loginService', 'localStorage', '$interval', 'deviceService', 'userInfoService',
-            function($scope, $http, $timeout, $state, cookie, loginService, localStorage, $interval, deviceService, userInfoService) {
+        .controller('loginIndexController', ['$scope', 'cookie', 'loginService', 'localStorage', 'deviceService', 'userInfoService',
+            function($scope, cookie, loginService, localStorage, deviceService, userInfoService) {
                 $scope.reg = /^1[0-9]{10}$/;
-                $scope.login = {};
-                $scope.login.mobile_no = '';
-                $scope.login.password = '';
-                $scope.login.passwordInit = '%&@(!^$)';
-                //记住密码
-                $scope.rememberPassword = true;
-                $scope.isFirstLogin = false;
+                $scope.login = {mobile_no: '', password: '', passwordInit: '%&@(!^$)', verify: '', rememberPassword: true, isFirstLogin: false};
                 //回到顶部
                 $scope.gototop = function() {
                     $('body,html').scrollTop(0);
@@ -32,7 +35,8 @@ angular.module('testApp')
                     }
                     if ($scope.login.rememberPassword) {
                         $scope.isFirstLogin = false;
-                        $scope.login.password = $scope.login.passwordInit;
+                        $scope.login.password = window.localStorage.getItem('password');
+                        $scope.login.mobile_no = window.localStorage.getItem('mobile_no');
                     } else {
                         $scope.isFirstLogin = true;
                     }
@@ -70,7 +74,8 @@ angular.module('testApp')
                     userInfoService.getLogin(data, function(resp) {
                         if (resp.data.status === 1) {
                             if ($scope.rememberPassword === true || $scope.rememberPassword === 'true') {
-                                window.localStorage.setItem('password', resp.data.users.userpass);
+                                window.localStorage.setItem('password', loginPassword);
+                                window.localStorage.setItem('mobile_no', resp.data.users.username);
                             } else {
                                 window.localStorage.removeItem('password');
                             }
@@ -90,8 +95,8 @@ angular.module('testApp')
                 $scope.login.mobile_no = username ? username : '';
             }])
         //注册控制器
-        .controller('registerController', ['$scope', '$http', '$timeout', '$state', 'cookie', 'loginService', 'localStorage', '$interval', 'userInfoService',
-            function($scope, $http, $timeout, $state, cookie, loginService, localStorage, $interval, userInfoService) {
+        .controller('registerController', ['$scope', '$state', 'loginService', 'userInfoService',
+            function($scope, $state, loginService, userInfoService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.register = {};
                 $scope.register.mobile_no = '';
@@ -142,8 +147,8 @@ angular.module('testApp')
                 };
             }])
         //忘记密码控制器
-        .controller('forgetPasswordController', ['$scope', '$http', '$interval', '$state', 'cookie', 'localStorage', 'loginService', 'userInfoService',
-            function($scope, $http, $interval, $state, cookie, localStorage, loginService, userInfoService) {
+        .controller('forgetPasswordController', ['$scope', 'cookie', 'userInfoService',
+            function($scope, cookie, userInfoService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.resetPassword = {};
                 $scope.resetPassword.mobile_no = '';

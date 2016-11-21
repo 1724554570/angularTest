@@ -31,13 +31,22 @@
                         <label class="control-label" for="name">用户名</label>
 
                         <div class="controls">
-                            <input class="input-xlarge" id="name" name="name" size="30" type="text" ng-model="register.mobile_no">
+                            <input class="input-xlarge" id="name" placeholder="请填写用户名" name="name" size="30" type="text" ng-model="login.mobile_no">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="pass">密码</label>
                         <div class="controls">
-                            <input class="input-xlarge" id="pass" name="pass" size="30" type="password" ng-model="register.password">
+                            <input class="input-xlarge" id="pass" placeholder="请填写密码" name="pass" size="30" type="password" ng-model="login.password">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="ver">验证码</label>
+                        <div class="controls">
+                            <input class="input-xlarge" id="pass" placeholder="请填写验证码" name="verify" size="30" type="text" ng-model="login.verify">
+                        </div>
+                        <div class="controls" style="margin-top: 20px;">
+                            <img class="verifyimg reloadverify" alt="点击切换" src="/tkfull/index.php/apis/public/verify" ng-click="verify()">
                         </div>
                     </div>
                     <input type="hidden" name="_csrf" value="YBCZRc0m-qX6VFcdd8EstDzmhlGPtb3dmTIY">

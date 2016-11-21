@@ -1,6 +1,8 @@
 .tmp
 thinkgame.sql
 node_modules
+/dev/plugins
+/dev/public
 /onethink
 /wwwroot
 /nbproject
