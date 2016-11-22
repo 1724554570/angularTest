@@ -20,8 +20,8 @@ class ArticleApi extends Api {
      * @param type $e
      * @return type
      */
-    public function lists($s, $e) {
-        return $this->model->lists($s, $e);
+    public function lists($key, $type, $s, $e) {
+        return $this->model->lists($key, $type, $s, $e);
     }
 
     /**
@@ -33,6 +33,25 @@ class ArticleApi extends Api {
      */
     public function ualists($s, $e, $uid) {
         return $this->model->getUsersArticle($s, $e, $uid);
+    }
+
+    /**
+     * 修改发布文章状态
+     * @param type $id
+     * @param type $state
+     * @return type
+     */
+    public function editstate($id, $state) {
+        return $this->model->editstate($id, $state);
+    }
+
+    /**
+     * 查看文章详情
+     * @param type $id
+     * @return type
+     */
+    public function detail($id) {
+        return $this->model->detail($id);
     }
 
 }

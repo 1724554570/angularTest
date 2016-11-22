@@ -73,15 +73,23 @@ class UsersModel extends Model {
      * @param type $s 开始数
      * @param type $e 结束数
      */
-    public function lists($s, $e) {
+    public function lists($key, $s, $e) {
         $limit = '0,10';
         if (empty($s) || empty($e) || !$s || !$e) {
             
         } else {
             $limit = (($s - 1) * 10) . ',10';
         }
-        $total = $this->count();
-        $lists = $this->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
+        $where = array();
+        if (!empty($key)) {
+            $where [] = "username like '%" . $key . "%'";
+        }
+        $total = $this->where($where)->count();
+        $lists = $this->where($where)->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
+        $len = count($lists);
+        while ($len--) {
+            $lists[$len]['ctime'] = date('Y-m-d H:i:s', $lists[$len]['ctime']);
+        }
         return array('total' => $total, 'users' => $lists);
     }
 

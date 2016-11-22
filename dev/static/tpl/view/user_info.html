@@ -12,9 +12,9 @@
             </div>
             <a class="dark">{{user.username}}</a>
             <div class="user_profile">
-                <span class="big">{{pros.length}}</span> 个分享
+                <span class="big" ng-if="pros">{{pros.length}}</span><span class="big" ng-if="!pros">0</span> 个分享
             </div>
-            <p class="col_fade">注册时间 {{times(user.ctime)}}</p>
+            <p class="col_fade">注册时间 {{user.ctime|FormatStrDate}}</p>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
                 <span class="count_of_visits" title="点击数">0</span>
             </span>
             <span class="last_time pull-right">
-                <span class="last_active_time">{{times(pro.proctime)}}</span>
+                <span class="last_active_time">{{pro.proctime|FormatStrDate}}</span>
             </span>
             <div class="topic_title_wrapper">
                 <span class="put_top">{{info1}}</span>

@@ -4,7 +4,7 @@ namespace Apis\Controller;
 
 use Think\Controller;
 
-class PublicController extends Controller {
+class PublicsController extends Controller {
 
     public function index() {
         

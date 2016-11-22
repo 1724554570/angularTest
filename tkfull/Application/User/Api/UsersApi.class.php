@@ -53,8 +53,8 @@ class UsersApi extends Api {
      * @param type $e
      * @return type
      */
-    public function lists($s, $e) {
-        return $this->model->lists($s, $e);
+    public function lists($key, $s, $e) {
+        return $this->model->lists($key, $s, $e);
     }
 
 }

@@ -50,7 +50,7 @@
                         <span class="count_of_visits" title='点击数'>0</span>
                     </span>
                     <b class='last_time pull-right'>
-                        <span class="last_active_time">{{times(pro.proctime)}}</span>
+                        <span class="last_active_time">{{pro.proctime|FormatStrDate}}</span>
                     </b>
                     <div class="topic_title_wrapper">
                         <span class='put_top'>{{info1}}</span>
@@ -62,20 +62,20 @@
         <!--分页器-->
 
         <script>
-            $(document).ready(function() {
-                var $nav = $('.pagination');
-                var current_page = $nav.attr('current_page');
-                if (current_page) {
-                    $nav.find('li').each(function() {
-                        var $li = $(this);
-                        var $a = $li.find('a');
-                        if ($a.html() == current_page) {
-                            $li.addClass('active');
-                            $a.removeAttr('href');
+                    $(document).ready(function () {
+                        var $nav = $('.pagination');
+                        var current_page = $nav.attr('current_page');
+                        if (current_page) {
+                            $nav.find('li').each(function () {
+                                var $li = $(this);
+                                var $a = $li.find('a');
+                                if ($a.html() == current_page) {
+                                    $li.addClass('active');
+                                    $a.removeAttr('href');
+                                }
+                            });
                         }
                     });
-                }
-            });
         </script>
     </div>
 </div>

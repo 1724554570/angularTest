@@ -3,8 +3,8 @@
  * @type type
  */
 angular.module('testApp')
-        .controller('appController', ['$scope', 'localStorage', 'userInfoService', 'cookie', '$state',
-            function ($scope, localStorage, userInfoService, cookie, $state) {
+        .controller('appController', ['$scope', 'cookie', '$state',
+            function ($scope, cookie, $state) {
                 $scope.nav = {all: true, pro: false, qas: false, abo: false};
                 $scope.info1 = "用户";
                 if (cookie.get('isLogined')) {
@@ -14,23 +14,16 @@ angular.module('testApp')
 
                 }
             }])
-        .controller('apphomeController', ['$scope', 'localStorage', 'userInfoService', '$state', 'vaulesFactory',
-            function ($scope, localStorage, userInfoService, $state, vaulesFactory) {
+        .controller('apphomeController', ['$scope', 'userInfoService',
+            function ($scope, userInfoService) {
 
-                $scope.showSimple = function (product) {
-                    //vaulesFactory.setter(product);
-                    //alert("正在开发中");
-                    //$state.go('info.id');
+                $scope.lists = function () {
+                    userInfoService.getUsers({}, function (resp) {
+                        $scope.usersinfo = resp.data.users;
+                    });
                 };
 
-                $scope.times = function (times) {
-                    var rtime = parseInt(times) * 1000;
-                    return new Date(rtime).toLocaleString().substr(0, 10);
-                };
-
-                userInfoService.getUsers({}, function (resp) {
-                    $scope.usersinfo = resp.data.users;
-                });
+                $scope.lists();
             }])
 
         ;

@@ -46,7 +46,7 @@
                         <img ng-if="!user.imgurl" src="public/images/default_img.png">
                     </a>
                     <span class='last_time pull-right'>
-                        <span class="last_active_time">{{times(user.ctime)}}</span>
+                        <span class="last_active_time">{{user.ctime|FormatStrDate}}</span>
                     </span>
                     <div class="topic_title_wrapper userwrap">
                         <span class='put_top'>{{info1}}</span>

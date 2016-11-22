@@ -7,6 +7,8 @@ return array(
         '__ADDONS__' => __ROOT__ . '/Public/' . MODULE_NAME . '/Addons',
         '__IMG__' => __ROOT__ . '/Public/' . MODULE_NAME . '/images',
         '__CSS__' => __ROOT__ . '/Public/' . MODULE_NAME . '/css',
-        '__JS__' => __ROOT__ . '/Public/' . MODULE_NAME . '/js'
+        '__JS__' => __ROOT__ . '/Public/' . MODULE_NAME . '/js',        
+        '__CLOUDJS__' => __ROOT__ . '/Public/cloudJs',            
+        '__CLOUDJSAPI__' => __ROOT__ . '/Public/cloudJs/api'
     )
 );

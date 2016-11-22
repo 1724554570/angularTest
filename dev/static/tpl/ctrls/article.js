@@ -4,8 +4,8 @@
  */
 angular.module('testApp')
         // 导航控制器
-        .controller('proController', ['$scope', '$state', 'productService', 'cookie', 'localStorage',
-            function ($scope, $state, productService, cookie, localStorage) {
+        .controller('proController', ['$scope', '$state', 'cookie',
+            function ($scope, $state, cookie) {
                 $scope.nav = {all: false, pro: true, qas: false, abo: false};
                 $scope.info1 = "项目";
                 if (cookie.get('isLogined')) {
@@ -16,30 +16,23 @@ angular.module('testApp')
                 }
             }])
         // 
-        .controller('proListController', ['$scope', '$state', 'productService', 'vaulesFactory', 'localStorage',
-            function ($scope, $state, productService, vaulesFactory, localStorage) {
+        .controller('proListController', ['$scope', '$state', 'productService', 'localStorage',
+            function ($scope, $state, productService, localStorage) {
 
                 localStorage.setValue('_csrf', "");
 
-                $scope.times = function (times) {
-                    var rtime = parseInt(times) * 1000;
-                    //return new Date(rtime).toLocaleString().replace(/:\d{1,2}$/, ' ');
-                    //return new Date(rtime).toLocaleString().substr(0, 17);
-                    return new Date(rtime).toLocaleString().substr(0, 10);
+                $scope.artLists = function () {
+                    productService.getProduct({}, function (resp) {
+                        $scope.product = resp.data.pro;
+                    });
                 };
 
-                productService.getProduct({}, function (resp) {
-                    $scope.product = resp.data.pro;
-                });
-
-                $scope.showSimple = function (product) {
-                    vaulesFactory.setter(product);
-                    $state.go('pro.artdetail');
-                };
+                $scope.artLists();
 
             }])
         //
-        .controller('proArtDescController', ['$scope', '$state', 'productService', '$stateParams', function ($scope, $state, productService, $stateParams) {
+        .controller('proArtDescController', ['$scope', '$state', 'productService', '$stateParams',
+            function ($scope, $state, productService, $stateParams) {
                 $scope.times = function (times) {
                     var rtime = parseInt(times) * 1000;
                     return new Date(rtime).toLocaleString().substr(0, 10);
