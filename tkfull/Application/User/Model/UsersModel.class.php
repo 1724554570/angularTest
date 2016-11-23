@@ -75,9 +75,7 @@ class UsersModel extends Model {
      */
     public function lists($key, $s, $e) {
         $limit = '0,10';
-        if (empty($s) || empty($e) || !$s || !$e) {
-            
-        } else {
+        if (!empty($s)) {
             $limit = (($s - 1) * 10) . ',10';
         }
         $where = array();
@@ -86,6 +84,7 @@ class UsersModel extends Model {
         }
         $total = $this->where($where)->count();
         $lists = $this->where($where)->field('id as uid,username,imgurl,ctime')->limit($limit)->select();
+        //var_dump($this->getLastSql());
         $len = count($lists);
         while ($len--) {
             $lists[$len]['ctime'] = date('Y-m-d H:i:s', $lists[$len]['ctime']);

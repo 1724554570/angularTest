@@ -8,7 +8,15 @@ var rename = require('gulp-rename'); // 重命名
 var rev = require('gulp-rev'); // 
 var revCollector = require('gulp-rev-collector'); //- 路径替换
 
-var setConfig = function() {
+var
+        less = require('gulp-less'),
+        LessPluginCleanCSS = require('less-plugin-clean-css'),
+        LessPluginAutoPrefix = require('less-plugin-autoprefix'),
+        cleancss = new LessPluginCleanCSS({advanced: true}),
+        livereload = require('gulp-livereload'),
+        autoprefix = new LessPluginAutoPrefix({browsers: ["last 2 versions"]})
+        ;
+var setConfig = function () {
     this._default = "dev/";
     this._static = this._default + "static/";
     this._model = this._default + "static/model/";
@@ -31,33 +39,51 @@ var setConfig = function() {
 var getConfig = new setConfig();
 
 // 压缩js文件
-gulp.task('minify_js', function() {
+gulp.task('minify_js', function () {
     gulp.src([getConfig.ext, getConfig.app]).pipe(uglify()).pipe(gulp.dest(getConfig.dist));
     //gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
     gulp.src([getConfig.tpl]).pipe(uglify()).pipe(gulp.dest(getConfig.distjs));
     gulp.src([getConfig.model]).pipe(uglify()).pipe(gulp.dest(getConfig.distmodel));
 });
 
-
 // 压缩css文件
-gulp.task('minify_css', function() {
+gulp.task('minify_css', function () {
     gulp.src([getConfig.mincss]).pipe(minifyCss()).pipe(gulp.dest(getConfig.dist));
 });
 
 // html 文件
-gulp.task('minify_html', function() {
+gulp.task('minify_html', function () {
     gulp.src([getConfig.minhtml]).pipe(minifyHtml()).pipe(gulp.dest(getConfig.dist));
 });
 
-gulp.task("clean", function() {
+gulp.task("clean", function () {
     return gulp.src('./publish/static').pipe(clean());
 });
 
+var path = {
+    src: './devSea/static',
+    dist: './devSea/static'
+};
+
+gulp.task('less', function () {
+    var timestamp = +new Date();
+    return gulp.src(path.src + '/less/**/*.less')
+            .pipe(less({
+                plugins: [autoprefix, cleancss]
+            }))
+            .pipe(concat('backend.css'))
+            //.pipe(minifyCss())
+            //.pipe(rev())
+            .pipe(gulp.dest(path.dist + '/css'));
+    //.pipe(rev.manifest())
+    //.pipe(gulp.dest(path.src + '/rev/css'));
+});
 
 // 多任务执行
 gulp.task('default', [
-    //'clean',
-    //'minify_css',
-    'minify_js',
-    'minify_html'
+    'less',
+            //'clean',
+            //'minify_css',
+            //'minify_js',
+            //'minify_html'
 ]);

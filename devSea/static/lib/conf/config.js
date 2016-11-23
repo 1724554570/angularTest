@@ -52,11 +52,15 @@ var ext = (function () {
     };
 })();
 var base = ext.getPath();
+console.log(base);
 var baseSource = base.domain;
+baseSource = '/devSea/static/'
 var baseModel = baseSource + '/static/';
+baseModel = baseSource;
 var baseLib = base.ctrl;
+baseLib = baseSource + 'lib/';
 var baseView = base.view;
-
+baseView = baseSource + 'lib/';
 
 var marketingId = '10000';
 var cacheComId = '0';
@@ -64,11 +68,8 @@ var comId = -1;
 var _Ver = "0.0.1";
 var jquerypath = baseModel + '/lib/jquery/jquery.min';
 if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/7./i) == "7.") {
-    //jquerypath = 'lib/jquery/jquery-1.12.4.min';
 } else if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/8./i) == "8.") {
-    //jquerypath = 'lib/jquery/jquery-1.12.4.min';
 } else if (navigator.appName == "Microsoft Internet Explorer") {
-    //jquerypath = 'lib/jquery/jquery-1.12.4.min';
 }
 seajs.config({
     base: baseLib,
@@ -76,14 +77,17 @@ seajs.config({
         'jquery': jquerypath,
         'layer': baseLib + 'layer/layer',
         'template': baseLib + 'template-debug',
+        'templatenative': baseLib + 'template-native-debug',
         'request': baseLib + 'comm/request',
         'common': baseLib + 'comm/common',
         'valid': baseLib + 'comm/valid',
         'utils': baseLib + 'comm/utils',
+        'operation': baseLib + 'comm/operation',
         'interface': baseLib + 'conf/interface',
         'validTip': baseLib + 'conf/validTip',
         'lazyload': baseLib + 'weight/jquery.lazyload.min',
-        'iealert': baseLib + 'weight/iealert'
+        'iealert': baseLib + 'weight/iealert',
+        'seajsText': baseLib + 'sea/seajs-text'
     },
     preload: baseModel + 'lib/jquery/jquery.min',
     map: [

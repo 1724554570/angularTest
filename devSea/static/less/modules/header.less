@@ -1,0 +1,77 @@
+@import  "variable.less";
+.header .nav-tabs>li>a{
+  margin-top:7px;
+  font-weight:bold;
+  color:@headerFontColor;
+}
+.header .login_info{
+  position:absolute;
+  right:20px;
+  top:4px;
+  height:80px;
+}
+.header .login_info img{
+  width:40px;
+  height:40px;
+  float:left;
+}
+.header .login_info .name{
+  float:left;
+  line-height:40px;
+  padding-left:6px;
+  overflow:hidden;
+  color:#fff;
+}
+.header .login_info a{
+  padding:0;
+  margin:0 !important;
+  border:none !important;
+}
+.header .login_info a:hover{
+  border:none !important;
+}
+.header .exit_login{
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  position: absolute;
+  top: 44px;
+  right: 0;
+  z-index: 3000;
+  text-align: center;
+  padding: 0;
+  width: 100px;
+  display:none;
+}
+.header .exit_login li{
+  height:30px;
+  line-height:30px;
+}
+.header{
+  background: @headerBgColor;
+  //height:50px;
+}
+.header>.custom_nav{
+  padding:0;
+  margin:0;
+}
+
+.header>.custom_nav>li{
+  display:inline-block;
+  //height:100%;
+  color:#fff;
+}
+.header>.custom_nav>.logo{
+  padding:10px;
+  min-width:60px;
+}
+.header>.custom_nav>.custom_nav_item{
+  height: 50px;
+  padding: 0 10px;
+  position: relative;
+  vertical-align: middle;
+  line-height: 50px;
+}
+.header>.custom_nav>.custom_nav_item:hover{
+  background: #3978C0;
+  cursor:pointer;
+}

@@ -1,0 +1,124 @@
+@import  "modules/variable.less";
+.main>.g_sidebar_nav {
+  width:60px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  background:@menuBgColor;
+}
+.main>.g_sidebar_nav>.menu_item{
+  width:60px;
+  height:70px;
+  position:relative;
+  cursor:pointer;
+}
+.main>.g_content,.main>.g_sidebar_nav i {
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  overflow: auto;
+}
+.main>.g_sidebar_nav>.menu_item:hover{
+  background:#3978C0;
+}
+.main>.g_sidebar_nav>.menu_item:hover>i{
+  -webkit-animation:jump 1.5s linear infinite;
+  -moz-animation:jump 1.5s linear infinite;
+}
+.main>.g_sidebar_nav>#stool:hover>i{
+  background:#3978C0;
+  -webkit-animation:change 2s linear infinite;
+  -moz-animation:change 2s linear infinite;
+}
+.main>.g_sidebar_nav i {
+  //display:inline-block;
+  width:26px;
+  height:26px;
+  left:0;
+  margin:14px auto auto;
+  font-size:22px;
+  color:@menuIconColor;
+  text-align:center;
+  line-height: 26px;
+}
+.main>.g_content {
+  padding: 20px;
+  left:60px;
+  background:#fff;
+  overflow:auto;
+}
+.main>.g_sidebar_nav>.select{
+  background:#3978C0
+}
+.main>.g_sidebar_nav .menu_text {
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
+}
+
+@-webkit-keyframes change {
+  0% {-webkit-transform:rotate(0deg);}
+  50% {-webkit-transform:rotate(180deg);}
+  100% {-webkit-transform:rotate(360deg);}
+}
+@keyframes change {
+  0% {-webkit-transform:rotate(0deg);}
+  50% {-webkit-transform:rotate(180deg);}
+  100% {-webkit-transform:rotate(360deg);}
+}
+@-moz-keyframes change {
+  0% {-webkit-transform:rotate(0deg);}
+  50% {-webkit-transform:rotate(180deg);}
+  100% {-webkit-transform:rotate(360deg);}
+}
+@-ms-keyframes change {
+  0% {-webkit-transform:rotate(0deg);}
+  50% {-webkit-transform:rotate(180deg);}
+  100% {-webkit-transform:rotate(360deg);}
+}
+
+@-webkit-keyframes jump {
+  20% {transform: translateY(-6px);}
+  50%, 100% {transform: translateY(0);}
+  80% {transform: translateY(4px);}
+}
+@keyframes jump {
+  20% {transform: translateY(-6px);}
+  50%, 100% {transform: translateY(0);}
+  80% {transform: translateY(4px);}
+}
+@-moz-keyframes jump {
+  20% {transform: translateY(-6px);}
+  50%, 100% {transform: translateY(0);}
+  80% {transform: translateY(4px);}
+}
+@-ms-keyframes jump {
+  20% {transform: translateY(-6px);}
+  50%, 100% {transform: translateY(0);}
+  80% {transform: translateY(4px);}
+}
+
+.navlist{
+    width: 100%;
+    height: auto;
+    color: #fff;
+}
+.navlist .df{
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    color: #fff;
+}
+.navlist a{
+    display: block;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+.navlist a.isOn{
+  background:#3978C0;
+}

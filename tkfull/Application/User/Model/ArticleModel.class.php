@@ -35,9 +35,7 @@ class ArticleModel extends Model {
 
     public function getUsersArticle($s, $e, $uid) {
         $limit = '0,10';
-        if (empty($s) || empty($e) || !$s || !$e) {
-            
-        } else {
+        if (!empty($s)) {
             $limit = (($s - 1) * 10) . ',10';
         }
         $total = $this->where("foruser={$uid}")->count();
@@ -65,7 +63,6 @@ class ArticleModel extends Model {
         }
         $count = $this->where($map)->count();
         $lists = $this->where($map)->field('id,productname,proctime,foruser,prostate')->limit($s)->select();
-        var_dump($this->getLastSql());
         $User = new UsersModel();
         foreach ($lists as $key => $value) {
             $lists[$key]['users'] = $User->info($value['foruser']);

@@ -6,7 +6,8 @@
  * @returns {undefined}
  */
 define(function (require, exports, module) {
-    var action = "/tkfull/index.php/";
+    var action = "http://127.0.0.1/tkfull/index.php/";
+    action = "/tkfull/index.php/";
     var _interface = {
         merber: {
             getLogin: action + "apis/login/ajaxlogin",
@@ -16,7 +17,7 @@ define(function (require, exports, module) {
             lists: action + 'apis/users/lists'
         },
         article: {
-            list: '',
+            lists: action + 'apis/article/getLists',
             detail: '',
             create: '',
             edit: ''
