@@ -4,9 +4,9 @@
     {{each defs as def i}}
     <li class="df">
         {{if def.ck == nhref }}
-        <a href="{{def.href}}" class="isOn">{{def.text}}----{{nhref}}</a>
+        <a href="{{def.href}}" event-id="{{def.tpl}}" data-href="{{def.dhref}}" data-ck="{{def.ck}}" class="isOn">{{def.text}}</a>
         {{else}}
-        <a href="{{def.href}}" class="">{{def.text}}</a>
+        <a href="{{def.href}}" event-id="{{def.tpl}}" data-href="{{def.dhref}}" data-ck="{{def.ck}}" class="">{{def.text}}</a>
         {{/if}}
     </li>
     {{/each}}

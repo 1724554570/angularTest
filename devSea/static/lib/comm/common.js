@@ -18,6 +18,11 @@ define(function (require, exports, module) {
         var params = $(this).prev().serialize();
         cloudjs('#g_content').table('setData', {params: params, pageNum: 1});
     });
+    
+    
+    $("#closeFloat").click(function () {
+        $("#float,.children").hide();
+    });
 
     seajs.use(baseModel + '/module/defaults', function (Def) {
         var def = new Def();

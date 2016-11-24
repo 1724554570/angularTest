@@ -30,6 +30,8 @@ define(function (require, exports, module) {
             //var ret = {"status": 1, "total": null, "users": [{"uid": "1", "username": "1724554570@qq.com", "imgurl": "public\/images\/1935767.jpg", "ctime": "1479115386"}, {"uid": "2", "username": "mms", "imgurl": null, "ctime": "1479365289"}, {"uid": "3", "username": "mms3", "imgurl": null, "ctime": "1479365289"}, {"uid": "4", "username": "mms4", "imgurl": null, "ctime": "1479365289"}, {"uid": "5", "username": "mms5", "imgurl": null, "ctime": "1479365289"}, {"uid": "6", "username": "mms6", "imgurl": "public\/images\/4067115.jpg", "ctime": "1479365289"}, {"uid": "7", "username": "mms7", "imgurl": null, "ctime": "1479365289"}, {"uid": "8", "username": "mms8", "imgurl": null, "ctime": "1479365289"}, {"uid": "9", "username": "mms9", "imgurl": null, "ctime": "1479365289"}, {"uid": "10", "username": "mms10", "imgurl": null, "ctime": "1479365289"}]};
             //document.getElementById('topic_list').innerHTML = _Temp('template', ret);
             //_Req(_Iface.merber.lists, {}, 'post', function (ret) {
+            //document.getElementById('topic_list').innerHTML = _Temp('template', ret);
+            //});
             var tpl = require("../tpl/list.tpl");
             document.getElementById('g_content').innerHTML = tpl;
             cloudjs('#topic_list').table({
@@ -65,8 +67,31 @@ define(function (require, exports, module) {
                     });
                 }
             });
-            //document.getElementById('topic_list').innerHTML = _Temp('template', ret);
-            //});
+        },
+        findDatea: function (opt) {
+            _Req(opt.url, {}, 'post', function (ret) {
+                document.getElementById('g_content').innerHTML = opt.tpl;
+                document.getElementById('topic_list').innerHTML = _Temp(opt.temp, ret);
+            });
+        },
+        ckData: function (self) {
+            var url = $(self).attr('data-href');
+            navList.nhref = $(self).attr('data-ck');
+            return {url: url};
+        },
+        ckHref: function (self) {
+            var o = this.ckData(self);
+            var tpl = require('../tpl/list.tpl');
+            o.tpl = tpl;
+            o.temp = 'template';
+            this.findDatea(o);
+        },
+        article: function (self) {
+            var o = this.ckData(self);
+            var tpl = require('../tpl/{article}.tpl');
+            o.tpl = tpl;
+            o.temp = 'articletemplate';
+            this.findDatea(o);
         }
     };
 

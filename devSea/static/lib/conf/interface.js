@@ -21,6 +21,10 @@ define(function (require, exports, module) {
             detail: '',
             create: '',
             edit: ''
+        },
+        tpl: {
+            user: "../tpl/list.tpl",
+            article: "../tpl/article.tpl"
         }
     };
     module.exports = _interface;
