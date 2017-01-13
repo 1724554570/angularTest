@@ -6,24 +6,21 @@ window.console = window.console || (function () {
     return c;
 })();
 function _getPaths() {
-    var searchParms = "devSea|dev";
+    var searchParms = "devSea|dev|publish";
     var _url = location.href;
     var _search = _url.match(searchParms);
-    console.log(_search);
-    var settings = {
-        action: "/tkfull/index.php/",
-        ctrl: "/dev/static/tpl/ctrls/",
-        domain: "/dev",
-        extend: "",
-        view: "/dev/static/tpl/view/"
-    };
-    if (!_search) {
-        settings.action = "../tkfull/index.php/";
-        settings.ctrl = "static/tpl/ctrls/";
-        settings.action = "static/tpl/view/";
-        settings.domain = "/";
-        settings.extend = "";
+    var _PROJECT = "/", _ACT = "../";
+    if (_search) {
+        _PROJECT = "/" + _search[0] + "/";
+        _ACT = "";
     }
+    var settings = {};
+    settings.action = _ACT + "tkfull/index.php/";
+    settings.ctrl = _PROJECT + "static/tpl/ctrls/";
+    settings.view = _PROJECT + "static/tpl/view/";
+    settings.domain = "/";
+    settings.extend = "";
+    console.log(_search, settings);
     return settings;
 }
 var token = {token: 'login'};
