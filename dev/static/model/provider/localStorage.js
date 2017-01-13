@@ -60,7 +60,7 @@ angular.module('testApp').filter('FormatStrDate', function () {
                 res = tostrins.numToString(input);
             }
         }
-        console.log(input, res);
+        //console.log(input, res);
         return res;
     };
 });

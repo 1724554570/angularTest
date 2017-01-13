@@ -45,7 +45,7 @@ angular.module('testApp').factory('productService', ['$http', 'localStorage', '$
         };
         var getServerData = function (http, callbacks) {
             callbacks = callbacks || function () {};
-            var promise = $http(http).then(function (resp) {
+            var promise = $http(http).then(function (resp) {console.log(resp);
                 callbacks(resp);
             }, function (resp) {
                 console.log(resp);
@@ -54,7 +54,7 @@ angular.module('testApp').factory('productService', ['$http', 'localStorage', '$
         product.getProduct = function (data, callbacks) {
             getServerData({method: 'post', url: configs.getLists, data: data}, callbacks);
         };
-        product.getProductById = function (data, callbacks) {
+        product.getProductById = function (data, callbacks) { console.log(data);
             getServerData({method: 'post', url: configs.getById, data: data}, callbacks);
         };
         product.saveProduct = function (datas, callbacks) {
@@ -69,6 +69,7 @@ angular.module('testApp').factory('productService', ['$http', 'localStorage', '$
     }]);
 // 关于
 angular.module('testApp').factory('AboutService', ['$http', 'localStorage', '$state', '$rootScope', function ($http, localStorage, $state, $rootScope) {
+        var actions = '/tkfull/index.php/';
         var about = {};
         var configs = {
             getAboutDesc: actions + "apis/about/detail",
@@ -80,6 +81,5 @@ angular.module('testApp').factory('AboutService', ['$http', 'localStorage', '$st
                 console.log(resp);
             });
         };
-
         return about;
     }]);

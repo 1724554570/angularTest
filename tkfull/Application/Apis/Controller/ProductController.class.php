@@ -4,10 +4,13 @@ namespace Apis\Controller;
 
 use Think\Model;
 
+/**
+ * onethink_article
+ */
 class ProductController extends AllController {
 
-    const TABLENAME = "tk_pro";
-    const USERTABLE = "tk_user";
+    const TABLENAME = "onethink_article";
+    const USERTABLE = "onethink_users";
 
     public function index() {
         $data = array('code' => 404, message => "找不到页面！！");
@@ -15,27 +18,47 @@ class ProductController extends AllController {
         $this->display('err:index');
     }
 
-    public function getProduct() {
-        $model = new Model();
+    /**
+     * column parameter
+     * @param type $flag
+     * @return type
+     */
+    public function setParms($flag = false, $id = "") {
         $tab_pro = self::TABLENAME;
         $tab_user = self::USERTABLE;
-        $rows = $model->query("select p.id,p.productname,p.proctime,p.proctime,u.id as uid,u.username,u.imgurl from {$tab_pro} as p left join {$tab_user} as u on u.id=p.foruser order by p.proctime desc limit 0,30");
+        $article = "p.id,p.productname,p.proctime,p.proutime,";
+        $user = "u.id as uid,u.username,u.imgurl";
+        $sql = "select {$article}{$user} from {$tab_pro} as p left join {$tab_user} as u on u.id=p.foruser order by p.proctime desc limit 0,5";
+        if ($flag && $id !== "") {
+            $article .= "p.productdesc,";
+            $sql = "select {$article}{$user} from {$tab_pro} as p , {$tab_user} as u where u.id=p.foruser and p.id = {$id}";
+        }
+        //var_dump($sql);
+        //return $data = array("article" => $article, "user" => $user);
+        return $sql;
+    }
+
+    public function getProduct() {
+        $model = new Model();
+        $parms = $this->setParms();
+        $rows = $model->query($parms);
         if ($rows) {
             $this->ajaxReturn(array('status' => 1, 'pro' => $rows));
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
         }
+        $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
     }
 
     public function getProductById() {
         $id = I('pro_id');
-        $rows = M('pro')->where("id = {$id}")->find();
-        if ($rows) {
+        $model = new Model();
+        $parms = $this->setParms(true, $id);
+        if ($id) {
+            $row = $model->query($parms);
+            $rows = $row[0];
             $rows['productdesc'] = htmlspecialchars_decode($rows['productdesc']);
-            $this->ajaxReturn(array('status' => 1, 'pro' => $rows));
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
+            $this->ajaxReturn(array('status' => 1, 'article' => $rows));
         }
+        $this->ajaxReturn(array('status' => 0, 'article' => $rows));
     }
 
     public function saveProduct() {
@@ -56,9 +79,8 @@ class ProductController extends AllController {
                 $rows = D('pro')->add($data);
             }
             $this->ajaxReturn(array('status' => 1, 'pro' => $rows));
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
         }
+        $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
     }
 
 }

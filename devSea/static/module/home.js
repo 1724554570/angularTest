@@ -74,6 +74,9 @@ define(function (require, exports, module) {
                 document.getElementById('topic_list').innerHTML = _Temp(opt.temp, ret);
             });
         },
+        staticData: function (opt) {
+            document.getElementById('g_content').innerHTML = opt.tpl;
+        },
         ckData: function (self) {
             var url = $(self).attr('data-href');
             navList.nhref = $(self).attr('data-ck');

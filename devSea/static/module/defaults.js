@@ -17,6 +17,7 @@ define(function (require, exports, module) {
             {'href': './', ck: './', dhref: _Iface.merber.lists, text: '首页'},
             {'href': '#', ck: 'user', dhref: _Iface.merber.lists, tpl: 'ckHref', text: '用户'},
             {'href': '#', ck: 'article', dhref: _Iface.article.lists, tpl: 'article', text: '文章'},
+            {'href': '#', ck: 'cuthtml', dhref: '', tpl: 'cuthtml', text: 'html截图'},
         ]};
     navList.nhref = './';
 
