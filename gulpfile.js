@@ -5,8 +5,29 @@ var minifyCss = require("gulp-minify-css"); // 压缩css
 var minifyHtml = require("gulp-minify-html"); // 压缩html
 var concat = require("gulp-concat"); // 合并文件
 var rename = require('gulp-rename'); // 重命名
+var runSequence = require('run-sequence');
+/*
+ * 打开 node_modules\gulp-rev\index.js
+ * 第144行 manifest[originalFile] = revisionedFile; 
+ * 更新为: manifest[originalFile] = originalFile + '?v=' + file.revHash;
+ * @type {Module gulp-rev|Module gulp-rev}
+ */
 var rev = require('gulp-rev'); // 
+/*
+ * 打开 nodemodules\gulp-rev\nodemodules\rev-path\index.js
+ * 10行 return filename + '-' + hash + ext; 
+ * 更新为: return filename + ext;
+ * @type {Module gulp-less|Module gulp-less}
+ */
+
+/**
+ * 打开 node_modules\gulp-rev-collector\index.js
+ * 31行 if ( path.basename(json[key]).replace(new RegExp( opts.revSuffix ), '' ) !== path.basename(key) ) { 
+ * 更新为: if ( path.basename(json[key]).split('?')[0] !== path.basename(key) ) {
+ * @type {Module gulp-rev-collector|Module gulp-rev-collector}
+ */
 var revCollector = require('gulp-rev-collector'); //- 路径替换
+
 
 var
         less = require('gulp-less'),
@@ -40,10 +61,35 @@ var getConfig = new setConfig();
 
 // 压缩js文件
 gulp.task('minify_js', function () {
-    gulp.src([getConfig.ext, getConfig.app]).pipe(uglify()).pipe(gulp.dest(getConfig.dist));
+    gulp.src([getConfig.ext, getConfig.app])
+            .pipe(uglify())
+            .pipe(gulp.dest(getConfig.dist))
+            ;
     //gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
-    gulp.src([getConfig.tpl]).pipe(uglify()).pipe(gulp.dest(getConfig.distjs));
-    gulp.src([getConfig.model]).pipe(uglify()).pipe(gulp.dest(getConfig.distmodel));
+    gulp.src([getConfig.tpl])
+            .pipe(uglify())
+            .pipe(gulp.dest(getConfig.distjs))
+            ;
+    gulp.src([getConfig.model])
+            .pipe(uglify())
+            .pipe(rev())
+            .pipe(gulp.dest(getConfig.distmodel))
+            .pipe(rev.manifest())
+            .pipe(gulp.dest('adist/rev/js'))
+            ;
+});
+var setPath = {
+    root: ".",
+    dist: "./publish/",
+    src: ".",
+    dev: "dev"
+};
+
+// 替换路径
+gulp.task('revJs', function () {
+    return gulp.src([setPath.src + '/rev/**/*.json', setPath.dev + '/static/**/*.js'])
+            .pipe(revCollector())
+            .pipe(gulp.dest(setPath.dist + '/static'));
 });
 
 // 压缩css文件
@@ -56,6 +102,7 @@ gulp.task('minify_html', function () {
     gulp.src([getConfig.minhtml]).pipe(minifyHtml()).pipe(gulp.dest(getConfig.dist));
 });
 
+// 清除缓存文件
 gulp.task("clean", function () {
     return gulp.src('./publish/static').pipe(clean());
 });
@@ -79,11 +126,20 @@ gulp.task('less', function () {
     //.pipe(gulp.dest(path.src + '/rev/css'));
 });
 
+//正式构建
+gulp.task('build', function (done) {
+    runSequence(
+            ['minify_js', 'revJs'],
+            done);
+});
+
+
 // 多任务执行
-gulp.task('default', [
-    'less',
-            //'clean',
-            //'minify_css',
-            //'minify_js',
-            //'minify_html'
-]);
+//gulp.task('default', [
+//    'clean',
+//    'less',
+//    'minify_css',
+//    'minify_js',
+//    'minify_html'
+//]);
+gulp.task('default', ['build']);

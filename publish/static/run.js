@@ -1,1 +1,0 @@
-angular.module('testApp').run(function($rootScope,$state){$rootScope.goto=function(){$state.go('app.home');};$rootScope.goto();});
