@@ -3,7 +3,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
         $httpProvider.interceptors.push('httpInterceptor');
         var paths = _getPaths();
         console.log(paths);
-        var base_templateUrl = paths.view + "app.html";
+        var base_templateUrl = paths.view + "app.tpl";
         $stateProvider
                 .state("login", {
                     url: "/login",
@@ -17,7 +17,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state("login.loginindex", {
                     url: "/loginindex",
-                    templateUrl: paths.view + "user_login.html",
+                    templateUrl: paths.view + "user_login.tpl",
                     controller: 'loginIndexController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
@@ -27,7 +27,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state("login.register", {
                     url: "/register",
-                    templateUrl: paths.view + "user_register.html",
+                    templateUrl: paths.view + "user_register.tpl",
                     controller: 'registerController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
@@ -48,7 +48,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state('app.home', {
                     url: '/home',
-                    templateUrl: paths.view + "app_index.html",
+                    templateUrl: paths.view + "app_index.tpl",
                     controller: 'apphomeController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
@@ -69,7 +69,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state('info.user', {
                     url: '/user/:id',
-                    templateUrl: paths.view + "user_info.html",
+                    templateUrl: paths.view + "user_info.tpl",
                     controller: 'infoController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
@@ -90,7 +90,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state('pro.list', {
                     url: '/list',
-                    templateUrl: paths.view + "article_list.html",
+                    templateUrl: paths.view + "article_list.tpl",
                     controller: 'proListController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
@@ -100,7 +100,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 })
                 .state('pro.article', {
                     url: '/article',
-                    templateUrl: paths.view + "article.html",
+                    templateUrl: paths.view + "article.tpl",
                     controller: 'proArticleController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([

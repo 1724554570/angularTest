@@ -67,7 +67,7 @@ var _cfg = (function () {
     return _sf;
 })();
 
-console.log(_cfg.ext);
+console.log(_cfg.allFile_JS);
 
 var setPath = {
     root: ".",
@@ -86,35 +86,19 @@ gulp.task('minify_js', function () {
             .pipe(rev.manifest("allFile_JS.json"))
             .pipe(gulp.dest('adist/rev/js'))
             ;
-    gulp.src([_cfg.allFile_RUN])
-            .pipe(rev())
-            .pipe(gulp.dest(_cfg.dist))
-            .pipe(rev.manifest("run.json"))
-            .pipe(gulp.dest('adist/rev/js'))
-            ;
-
-//    gulp.src([_cfg.ext, _cfg.app])
-//            .pipe(uglify())
-//            .pipe(rev())
-//            .pipe(gulp.dest(_cfg.dist))
-//            .pipe(rev.manifest("extapp.json"))
-//            .pipe(gulp.dest('adist/rev/js'))
-//            ;
-//    gulp.src([_cfg.run])
+    //gulp.src([_cfg.allFile_RUN]).pipe(gulp.dest(_cfg.dist));
+//    gulp.src([_cfg.allFile_RUN])
 //            .pipe(rev())
 //            .pipe(gulp.dest(_cfg.dist))
 //            .pipe(rev.manifest("run.json"))
 //            .pipe(gulp.dest('adist/rev/js'))
 //            ;
-//    gulp.src([_cfg.tpl]).pipe(uglify()).pipe(gulp.dest(_cfg.distjs));
-//    gulp.src([_cfg.model])
-//            .pipe(uglify())
-//            .pipe(rev())
-//            .pipe(gulp.dest(_cfg.distmodel))
-//            .pipe(rev.manifest("model.json"))
-//            .pipe(gulp.dest('adist/rev/js'))
-//            ;
 });
+
+gulp.task('minrun', function () {
+    gulp.src([_cfg.allFile_RUN]).pipe(gulp.dest(_cfg.dist));
+});
+
 
 // 替换路径
 gulp.task('revJs', function () {
@@ -160,17 +144,11 @@ gulp.task('less', function () {
 //正式构建
 gulp.task('build', function (done) {
     runSequence(
-            ['minify_js', 'revJs'],
+            ['minify_js', 'revJs', 'minrun'], ['minify_html'],
             done);
 });
 
 
 // 多任务执行
-//gulp.task('default', [
-//    'clean',
-//    'less',
-//    'minify_css',
-//    'minify_js',
-//    'minify_html'
-//]);
-gulp.task('default', ['build']);
+gulp.task('default', ['minify_js', 'revJs', 'minrun', 'minify_html']);
+//gulp.task('default', ['build']);
