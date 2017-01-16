@@ -1,6 +1,0 @@
-{
-  "factory/factory.js": "factory/factory.js?v=c61aca5d4b",
-  "provider/localStorage.js": "provider/localStorage.js?v=e2de7da202",
-  "service/interfaceService.js": "service/interfaceService.js?v=21da3376f3",
-  "service/service.js": "service/service.js?v=c168347f27"
-}

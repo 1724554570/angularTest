@@ -37,74 +37,105 @@ var
         livereload = require('gulp-livereload'),
         autoprefix = new LessPluginAutoPrefix({browsers: ["last 2 versions"]})
         ;
-var setConfig = function () {
-    this._default = "dev/";
-    this._static = this._default + "static/";
-    this._model = this._default + "static/model/";
-    this.minjs = this._static + "**/*.js";
+var _cfg = (function () {
+    var _sf = this;
+    _sf._dev = "dev/";
+    _sf._def = _sf._dev + "static/";
+    _sf._model = _sf._def + "model/";
+    // 压缩具体文件
+    _sf.allFile_JS = _sf._def + "**/*.js";
+    _sf.allFile_RUN = _sf._def + "run.js";
+    //
+    _sf.allFile_CSS = _sf._def + "**/*.css";
+    _sf.allFile_TPL = _sf._def + "**/*.tpl";
+    _sf.allFile_HTML = _sf._def + "**/*.html";
 
-    this.ext = this._static + "ext.js";
-    this.run = this._static + "run.js";
-    this.app = this._static + "app.js";
-    this.tpl = this._static + "tpl/**/*.js";
-    this.model = this._static + "model/**/*.js";
+    _sf.ext = _sf._def + "ext.js";
+    _sf.run = _sf._def + "run.js";
+    _sf.app = _sf._def + "app.js";
+    _sf.tpl = _sf._def + "tpl/**/*.js";
+    _sf.model = _sf._def + "model/**/*.js";
+    // 压缩路径
+    _sf.minjs = _sf._def + "**/*.js";
+    _sf.mincss = _sf._def + "**/*.css";
+    _sf.minhtml = _sf._def + "**/*.html";
+    _sf.minTpl = _sf._def + "**/*.tpl";
+    // 发布路径
+    _sf.dist = 'dist/static';
+    _sf.distjs = _sf.dist + '/tpl/';
+    _sf.distmodel = _sf.dist + '/model/';
+    return _sf;
+})();
 
-    this.mincss = this._static + "**/*.css";
+console.log(_cfg.ext);
 
-    this.minhtml = this._static + "**/*.html";
-
-    this.dist = 'publish/static';
-    this.distjs = 'publish/static/tpl/';
-    this.distmodel = 'publish/static/model/';
-};
-var getConfig = new setConfig();
-
-// 压缩js文件
-gulp.task('minify_js', function () {
-    gulp.src([getConfig.ext, getConfig.app])
-            .pipe(uglify())
-            .pipe(gulp.dest(getConfig.dist))
-            ;
-    //gulp.src([getConfig.run]).pipe(gulp.dest(getConfig.dist));
-    gulp.src([getConfig.tpl])
-            .pipe(uglify())
-            .pipe(gulp.dest(getConfig.distjs))
-            ;
-    gulp.src([getConfig.model])
-            .pipe(uglify())
-            .pipe(rev())
-            .pipe(gulp.dest(getConfig.distmodel))
-            .pipe(rev.manifest())
-            .pipe(gulp.dest('adist/rev/js'))
-            ;
-});
 var setPath = {
     root: ".",
     dist: "./publish/",
-    src: ".",
-    dev: "dev"
+    dist1: ".",
+    src: "./adist",
+    dev: "./dev"
 };
+
+// 压缩js文件
+gulp.task('minify_js', function () {
+    gulp.src([_cfg.allFile_JS])
+            .pipe(uglify())
+            .pipe(rev())
+            .pipe(gulp.dest(_cfg.dist))
+            .pipe(rev.manifest("allFile_JS.json"))
+            .pipe(gulp.dest('adist/rev/js'))
+            ;
+    gulp.src([_cfg.allFile_RUN])
+            .pipe(rev())
+            .pipe(gulp.dest(_cfg.dist))
+            .pipe(rev.manifest("run.json"))
+            .pipe(gulp.dest('adist/rev/js'))
+            ;
+
+//    gulp.src([_cfg.ext, _cfg.app])
+//            .pipe(uglify())
+//            .pipe(rev())
+//            .pipe(gulp.dest(_cfg.dist))
+//            .pipe(rev.manifest("extapp.json"))
+//            .pipe(gulp.dest('adist/rev/js'))
+//            ;
+//    gulp.src([_cfg.run])
+//            .pipe(rev())
+//            .pipe(gulp.dest(_cfg.dist))
+//            .pipe(rev.manifest("run.json"))
+//            .pipe(gulp.dest('adist/rev/js'))
+//            ;
+//    gulp.src([_cfg.tpl]).pipe(uglify()).pipe(gulp.dest(_cfg.distjs));
+//    gulp.src([_cfg.model])
+//            .pipe(uglify())
+//            .pipe(rev())
+//            .pipe(gulp.dest(_cfg.distmodel))
+//            .pipe(rev.manifest("model.json"))
+//            .pipe(gulp.dest('adist/rev/js'))
+//            ;
+});
 
 // 替换路径
 gulp.task('revJs', function () {
-    return gulp.src([setPath.src + '/rev/**/*.json', setPath.dev + '/static/**/*.js'])
-            .pipe(revCollector())
-            .pipe(gulp.dest(setPath.dist + '/static'));
+    gulp.src([setPath.src + '/rev/**/*.json', setPath.dev + '/index.html'])
+            .pipe(revCollector({replaceReved: true}))
+            .pipe(gulp.dest(setPath.dist));
 });
 
 // 压缩css文件
 gulp.task('minify_css', function () {
-    gulp.src([getConfig.mincss]).pipe(minifyCss()).pipe(gulp.dest(getConfig.dist));
+    gulp.src([_cfg.mincss]).pipe(minifyCss()).pipe(gulp.dest(_cfg.dist));
 });
 
 // html 文件
 gulp.task('minify_html', function () {
-    gulp.src([getConfig.minhtml]).pipe(minifyHtml()).pipe(gulp.dest(getConfig.dist));
+    gulp.src([_cfg.minhtml, _cfg.minTpl]).pipe(minifyHtml()).pipe(gulp.dest(_cfg.dist));
 });
 
 // 清除缓存文件
 gulp.task("clean", function () {
-    return gulp.src('./publish/static').pipe(clean());
+    gulp.src('./adist').pipe(clean());
 });
 
 var path = {
