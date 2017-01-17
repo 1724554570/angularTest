@@ -11,4 +11,9 @@ node_modules
 /ueditor
 /publish
 /adist
+adist/
 /dist
+dist/
+/rev
+rev/
+dev/index.html

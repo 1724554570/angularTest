@@ -2,7 +2,11 @@
 
 namespace Apis\Controller;
 
+use User\Api\UsersApi;
+
 class LoginController extends AllController {
+
+    const USER_TABLE = "onethink_users";
 
     public function index() {
         $data = array('code' => 404, message => "找不到页面！！");
@@ -13,14 +17,20 @@ class LoginController extends AllController {
     public function ajaxlogin() {
         $username = I('mobile_no');
         $userpass = I('password');
-        $md5pass = MD5($userpass);
-        if ($username && $userpass) {
-            $where = "username='{$username}' and userpass='{$md5pass}'";
-            $row = M('user')->where($where)->field('id as uid,username,userpass,imgurl,ctime')->find();
-            $this->ajaxReturn(array('status' => 1, 'users' => $row));
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'users' => ''));
+        $User = new UsersApi;
+        $row = $User->login($username, $userpass);
+        if (0 < $row) {
+            $this->ajaxReturn(array('status' => 1, 'massage' => "查询成功！", 'users' => $row));
         }
+        switch ($row) {
+            case -1: $error = '用户不存在或被禁用！';
+                break; //系统级别禁用
+            case -2: $error = '密码错误！';
+                break;
+            default: $error = '未知错误！';
+                break; // 0-接口参数错误（调试阶段使用）
+        }
+        $this->ajaxReturn(array('status' => 0, 'massage' => $error, 'users' => $row));
     }
 
     public function ajaxreg() {
@@ -28,9 +38,10 @@ class LoginController extends AllController {
         $userpass = I('password');
         $md5pass = MD5($userpass);
         $device = I('device');
+        $model = D(self::USER_TABLE);
         if ($username && $userpass) {
             $where = "username='{$username}'";
-            $row = D('user')->where($where)->find();
+            $row = $model->where($where)->find();
             if ($row) {
                 $this->ajaxReturn(array('status' => 3, 'users' => $row));
             } else {
@@ -39,12 +50,11 @@ class LoginController extends AllController {
                 $data['device'] = $device;
                 $data['ctime'] = time();
                 $data['utime'] = $data['ctime'];
-                $row = D('user')->add($data);
+                $row = $model->add($data);
                 $this->ajaxReturn(array('status' => 1, 'users' => $row));
             }
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'users' => $row));
         }
+        $this->ajaxReturn(array('status' => 0, 'users' => $row));
     }
 
     public function ajaxForget() {

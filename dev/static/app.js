@@ -2,7 +2,6 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
         //注册拦截器
         $httpProvider.interceptors.push('httpInterceptor');
         var paths = _getPaths();
-        console.log(paths);
         var base_templateUrl = paths.view + "app.tpl";
         $stateProvider
                 .state("login", {
@@ -78,8 +77,8 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                             }]}
                 })
                 // 
-                .state('pro', {
-                    url: '/pro',
+                .state('article', {
+                    url: '/article',
                     templateUrl: base_templateUrl,
                     controller: 'proController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -88,7 +87,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                                 ]);
                             }]}
                 })
-                .state('pro.list', {
+                .state('article.list', {
                     url: '/list',
                     templateUrl: paths.view + "article_list.tpl",
                     controller: 'proListController',
@@ -98,8 +97,8 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                                 ]);
                             }]}
                 })
-                .state('pro.article', {
-                    url: '/article',
+                .state('article.add', {
+                    url: '/add',
                     templateUrl: paths.view + "article.tpl",
                     controller: 'proArticleController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -108,7 +107,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                                 ]);
                             }]}
                 })
-                .state('pro.artdetail', {
+                .state('article.detail', {
                     url: '/detail/:id',
                     templateUrl: paths.view + "article_detail.tpl",
                     controller: 'proArtDescController',
@@ -119,7 +118,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                             }]}
                 })
                 //
-                .state('qas', {
+                .state('issue', {
                     url: '/qas',
                     //templateUrl: base_templateUrl,
                     controller: 'dynamicController',
@@ -129,7 +128,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                                 ]);
                             }]}
                 })
-                .state('qas.home', {
+                .state('issue.home', {
                     url: '/home',
                     //templateUrl: base_templateUrl,
                     controller: 'dynamicController',
@@ -140,8 +139,8 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                             }]}
                 })
                 // 
-                .state('abo', {
-                    url: '/abo',
+                .state('about', {
+                    url: '/about',
                     //templateUrl: base_templateUrl,
                     controller: 'aboutController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -150,7 +149,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                                 ]);
                             }]}
                 })
-                .state('abo.home', {
+                .state('about.home', {
                     url: '/home',
                     //templateUrl: base_templateUrl,
                     controller: 'aboutListController',

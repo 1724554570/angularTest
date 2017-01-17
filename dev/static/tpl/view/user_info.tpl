@@ -38,7 +38,7 @@
             </span>
             <div class="topic_title_wrapper">
                 <span class="put_top">{{info1}}</span>
-                <a class="topic_title" ui-sref="pro.artdetail({id: pro.id})">{{pro.productname}}</a>
+                <a class="topic_title" ui-sref="article.detail({id: pro.id})">{{pro.productname}}</a>
             </div>
         </div>
 

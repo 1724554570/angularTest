@@ -5,9 +5,9 @@
             <a class='brand' ui-sref='app.home'><img src="public/images/logo.png" alt="" /></a>
             <ul class='nav pull-right'>
                 <li><a ui-sref="app.home">首页</a></li>
-                <li><a ui-sref="pro.list">项目</a></li>
-                <li><a ui-sref="qas.home">问答</a></li>
-                <li><a ui-sref="abo.home">关于</a></li>
+                <li><a ui-sref="article.list">项目</a></li>
+                <li><a ui-sref="issue.home">问答</a></li>
+                <li><a ui-sref="about.home">关于</a></li>
                 <li ng-if="!isLogin"><a ui-sref="login.register">注册</a></li>
                 <li ng-if="!isLogin"><a ui-sref="login.loginindex">登录</a></li>
             </ul>

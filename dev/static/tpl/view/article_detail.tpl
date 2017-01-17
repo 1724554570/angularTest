@@ -28,7 +28,7 @@
     </div>
     <div class="panel" ng-if="isLogin">
         <div class="inner">
-            <a ui-sref="pro.article" id="create_topic_btn">
+            <a ui-sref="article.article" id="create_topic_btn">
                 <span class="span-success">发布话题</span>
             </a>
         </div>

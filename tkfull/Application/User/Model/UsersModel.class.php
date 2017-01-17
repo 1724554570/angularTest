@@ -22,6 +22,9 @@ class UsersModel extends Model {
     protected $connection = UC_DB_DSN;
 
     public function login($username, $password, $type = 1) {
+        if (empty($username) || empty($password)) {
+            return -4; //未知错误！
+        }
         //if (!check_verify($verify)) {
         //    return -3; //验证码错误
         //}
