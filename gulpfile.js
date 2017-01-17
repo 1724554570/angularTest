@@ -49,6 +49,7 @@ var _cfg = (function () {
     _sf.allFile_CSS = _sf._def + "**/*.css";
     _sf.allFile_TPL = _sf._def + "**/*.tpl";
     _sf.allFile_HTML = _sf._def + "**/*.html";
+    _sf.allFile_XHTML = _sf._def + "**/*.xhtml";
     // 图片
     _sf.allFile_JPG = _sf._dev + "**/*.jpg";
     _sf.allFile_PNG = _sf._dev + "**/*.png";
@@ -79,7 +80,7 @@ gulp.task('revJs', function () {
 // 压缩css文件 html 文件
 gulp.task('minify_css_html', function () {
     gulp.src([_cfg.allFile_CSS]).pipe(minifyCss()).pipe(gulp.dest(_cfg.dist));
-    gulp.src([_cfg.allFile_TPL, _cfg.allFile_HTML]).pipe(minifyHtml()).pipe(gulp.dest(_cfg.dist));
+    gulp.src([_cfg.allFile_TPL, _cfg.allFile_HTML, _sfg.allFile_XHTML]).pipe(minifyHtml()).pipe(gulp.dest(_cfg.dist));
 });
 
 // 压缩图片

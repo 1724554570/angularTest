@@ -1,7 +1,7 @@
 //var AppModeule = angular.module('testApp');
-angular.module('testApp').factory('cookie', [function() {
+angular.module('testApp').factory('cookie', [function () {
         function getAllCookie() {
-            return document.cookie.split(';')
+            return document.cookie.split(';');
         }
         function delCookie(item) {//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间
             var name = item.split('=')[0];
@@ -10,7 +10,7 @@ angular.module('testApp').factory('cookie', [function() {
             document.cookie = name + "=a; expires=" + date.toGMTString();
         }
         return {
-            get: function(key) {
+            get: function (key) {
                 var rt = null;
                 var arr, reg = new RegExp("(^| )" + key + "=([^;]*)(;|$)");
                 if (arr = document.cookie.match(reg)) {
@@ -18,58 +18,60 @@ angular.module('testApp').factory('cookie', [function() {
                 }
                 return rt;
             },
-            set: function(key, value, second, thisPath) {
+            set: function (key, value, second, thisPath) {
                 if (!second) {
                     second = 30 * 24 * 3600;
                 }
                 var exp = new Date();
                 exp.setTime(exp.getTime() + second * 1000);
-
                 var path = ';path=/';
                 if (typeof thisPath != 'undefined' && thisPath == true) {
                     path = '';
                 }
                 document.cookie = key + "=" + decodeURIComponent(value) + ";expires=" + exp.toGMTString() + path;
             },
-            removeAll: function() {
-                var cookies = getAllCookie;
+            removeId: function (name) {
+                delCookie(name);
+            },
+            removeAll: function () {
+                var cookies = getAllCookie();
                 cookies.forEach(delCookie);
             }
         };
     }]);
 // httpInterceptor
-angular.module('testApp').factory('httpInterceptor', ['$q', '$injector', function($q, $injector) {
+angular.module('testApp').factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
         var httpInterceptor = {
-            response: function(response) {
+            response: function (response) {
                 return response;
             },
-            responseError: function(response) {
+            responseError: function (response) {
                 var getToken = $injector.get('getToken');
                 return $q.reject(response);
             },
-            request: function(config) {
+            request: function (config) {
                 return config;
             },
-            requestError: function(config) {
+            requestError: function (config) {
                 return $q.reject(config);
             }
         };
         return httpInterceptor;
     }
 ]);
-angular.module('testApp').factory('vaulesFactory', function() {
+angular.module('testApp').factory('vaulesFactory', function () {
     var testObject = {};
     testObject = [];
 
-    var _setter = function(data) {
+    var _setter = function (data) {
         testObject.push(data);
     };
 
-    var _getter = function() {
+    var _getter = function () {
         return testObject[0];
     };
 
-    var _clear = function() {
+    var _clear = function () {
         testObject = [];
     };
 
@@ -79,4 +81,3 @@ angular.module('testApp').factory('vaulesFactory', function() {
         clear: _clear
     };
 });
-

@@ -1,10 +1,10 @@
+// 封装所有请求
 angular.module('testApp').factory('Servic', ['$http', function ($http) {
         var ACT = '/tkfull/index.php/';
         var servic = {};
         servic.servers = function (http, callbacks) {
             callbacks = callbacks || function () {};
             var _url = ACT + http.url;
-            console.log(http, _url);
             var https = {method: 'post', url: _url, data: http.data};
             var promise = $http(https).then(function (resp) {
                 callbacks(resp);
@@ -14,7 +14,18 @@ angular.module('testApp').factory('Servic', ['$http', function ($http) {
         };
         return servic;
     }]);
-
+// 检测登录
+angular.module('testApp').factory('AccessToken', ['cookie', function (cookie) {
+        return {
+            loginState: function () {
+                var _msg = "";
+                if (cookie.get('isLogined')) {
+                    _msg = angular.fromJson(window.localStorage.getItem('login.users')) || angular.fromJson(cookie.get('login.users.name'));
+                }
+                return _msg;
+            }
+        };
+    }]);
 // 服务 用户
 angular.module('testApp').factory('userInfoService', ['Servic', function (Servic) {
         var users = {};
@@ -23,7 +34,8 @@ angular.module('testApp').factory('userInfoService', ['Servic', function (Servic
             findById: "apis/users/getArtById",
             getLogin: "apis/login/ajaxlogin",
             setUsers: "apis/login/ajaxreg",
-            getForget: "apis/login/ajaxForget"
+            getForget: "apis/login/ajaxForget",
+            loginout: "apis/login/loginout"
         };
         users.getUsers = function (data, callbacks) {
             Servic.servers({url: configs.getLists, data: data}, callbacks);
@@ -40,10 +52,13 @@ angular.module('testApp').factory('userInfoService', ['Servic', function (Servic
         users.findById = function (data, callbacks) {
             Servic.servers({url: configs.findById, data: data}, callbacks);
         };
+        users.loginOut = function (callbacks) {
+            Servic.servers({url: configs.loginout, data: {}}, callbacks);
+        };
         return users;
     }]);
 // 服务 产品
-angular.module('testApp').factory('productService', ['Servic', function (Servic) {
+angular.module('testApp').factory('articleService', ['Servic', function (Servic) {
         var product = {};
         var configs = {
             getLists: "apis/Product/getProduct",

@@ -4,25 +4,18 @@
  */
 angular.module('testApp')
         // 导航控制器
-        .controller('proController', ['$scope', '$state', 'cookie',
-            function ($scope, $state, cookie) {
+        .controller('proController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.nav = {all: false, pro: true, qas: false, abo: false};
                 $scope.info1 = "项目";
-                if (cookie.get('isLogined')) {
-                    var loginUsers = angular.fromJson(window.localStorage.getItem('login.users'));
-                    $scope.isLogin = loginUsers || angular.fromJson(cookie.get('login.users.name')) || "";
-                } else {
-
-                }
+                $scope.isLogin = AccessToken.loginState();
             }])
         // 
-        .controller('proListController', ['$scope', '$state', 'productService', 'localStorage',
-            function ($scope, $state, productService, localStorage) {
+        .controller('proListController', ['$scope', 'articleService', 'localStorage', function ($scope, articleService, localStorage) {
 
                 localStorage.setValue('_csrf', "");
 
                 $scope.artLists = function () {
-                    productService.getProduct({}, function (resp) {
+                    articleService.getProduct({}, function (resp) {
                         $scope.product = resp.data.pro;
                     });
                 };
@@ -31,8 +24,7 @@ angular.module('testApp')
 
             }])
         //
-        .controller('proArtDescController', ['$scope', '$state', 'productService', '$stateParams',
-            function ($scope, $state, productService, $stateParams) {
+        .controller('proArtDescController', ['$scope', '$state', 'articleService', '$stateParams', function ($scope, $state, articleService, $stateParams) {
                 $scope.times = function (times) {
                     var rtime = parseInt(times) * 1000;
                     return new Date(rtime).toLocaleString().substr(0, 10);
@@ -44,7 +36,7 @@ angular.module('testApp')
                         $state.go('pro.list');
                     }
                     var data = {pro_id: productId};
-                    productService.getProductById(data, function (resp) {
+                    articleService.getProductById(data, function (resp) {
                         $scope.product = resp.data.article;
                         $scope.product._csrf = resp.data.article.id;
                     });
@@ -52,8 +44,7 @@ angular.module('testApp')
                 $scope.getProductInfo();
             }])
         // 
-        .controller('proArticleController', ['$scope', '$state', 'productService',
-            function ($scope, $state, productService) {
+        .controller('proArticleController', ['$scope', '$state', 'articleService', function ($scope, $state, articleService) {
                 if (!$scope.isLogin) {
                     $state.go('pro.list');
                 }
@@ -97,7 +88,7 @@ angular.module('testApp')
                         propower: $scope.product.propower,
                         token: "saveArticle"
                     };
-                    productService.saveProduct(datas, function (resp) {
+                    articleService.saveProduct(datas, function (resp) {
                         if (resp.data.pro) {
                             $state.go('pro.list');
                         }
@@ -106,8 +97,7 @@ angular.module('testApp')
 
             }])
         //
-        .controller('proArticleEidtController', ['$scope', '$state', 'productService', '$stateParams', 'vaulesFactory', 'localStorage',
-            function ($scope, $state, productService, $stateParams, vaulesFactory, localStorage) {
+        .controller('proArticleEidtController', ['$scope', '$state', 'articleService', 'vaulesFactory', 'localStorage', function ($scope, $state, articleService, vaulesFactory, localStorage) {
 
                 $scope.product = {};
                 $scope.product.productname = "";
@@ -145,7 +135,7 @@ angular.module('testApp')
                         productId = localStorage.getValue('_csrf');
                     }
                     var data = {pro_id: productId};
-                    productService.getProductById(data, function (resp) {
+                    articleService.getProductById(data, function (resp) {
                         $scope.product = resp.data.article;
                         $scope.product._csrf = resp.data.article.id;
                     });
@@ -165,7 +155,7 @@ angular.module('testApp')
                         propower: $scope.product.propower,
                         token: token.token
                     };
-                    productService.saveProduct(datas, function (callbacks) {
+                    articleService.saveProduct(datas, function (callbacks) {
                         if (callbacks.pro) {
                             $state.go('pro.list');
                         } else if (callbacks.status === 0 && !callbacks.pro) {

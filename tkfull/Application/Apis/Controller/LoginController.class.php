@@ -61,8 +61,9 @@ class LoginController extends AllController {
         $this->ajaxReturn(array('status' => 1, 'message' => '未开发'));
     }
 
-    public function ajaxloginout() {
-        
+    public function loginout() {
+        cookie('isLogined', null);
+        $this->ajaxReturn(array('status' => 1, 'message' => '退出登录！'));
     }
 
 }

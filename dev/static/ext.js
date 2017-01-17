@@ -5,7 +5,8 @@ window.console = window.console || (function () {
     };
     return c;
 })();
-function _getPaths() {
+var _cfgs = (function (){
+    var self = this;
     var searchParms = "devSea|dev|publish";
     var _url = location.href;
     var _search = _url.match(searchParms);
@@ -14,15 +15,17 @@ function _getPaths() {
         _PROJECT = "/" + _search[0] + "/";
         _ACT = "";
     }
-    var settings = {};
-    settings.action = _ACT + "tkfull/index.php/";
-    settings.ctrl = _PROJECT + "static/tpl/ctrls/";
-    settings.view = _PROJECT + "static/tpl/view/";
-    settings.domain = "/";
-    settings.extend = "";
-    console.log(_search, settings);
-    return settings;
-}
+    var setting={};
+    setting.action = _ACT + "tkfull/index.php/";
+    setting.ctrl = _PROJECT + "static/tpl/ctrls/";
+    setting.view = _PROJECT + "static/tpl/view/";
+    setting.domain = "/";
+    setting.extend = "";
+    setting._PROJECT = _PROJECT;
+    self.settings = setting;
+    return self;
+})();
+console.log(_cfgs.settings);
 var token = {token: 'login'};
 angular.module('testApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
 
