@@ -98,12 +98,8 @@ angular.module('testApp')
             }])
         //
         .controller('proArticleEidtController', ['$scope', '$state', 'articleService', 'vaulesFactory', 'localStorage', function ($scope, $state, articleService, vaulesFactory, localStorage) {
-
-                $scope.product = {};
-                $scope.product.productname = "";
-                $scope.product.productdesc = "";
-                $scope.product.propower = "";
-                $scope.product._csrf = "";
+                var column = {productname: '', productdesc: '', propower: '', _csrf: ''};
+                $scope.product = column;
 
                 $scope._simpleConfig = {
                     toolbar: [

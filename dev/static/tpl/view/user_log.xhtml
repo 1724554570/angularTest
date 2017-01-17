@@ -2,7 +2,7 @@
     <div class='inner'>
         <p>Angular Demo</p>
         <div>
-            您可以<a ui-sref="login.loginindex">登录</a>或<a ui-sref="login.register">注册</a>, 也可以
+            您可以<a ui-sref="login.loginindex">登录</a>或<a ui-sref="login.register">注册</a>
             <!--<a href="/auth/github"><span class="span-info">通过 GitHub 登录</span></a>-->
         </div>
     </div>

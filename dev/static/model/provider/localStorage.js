@@ -1,4 +1,5 @@
-angular.module('testApp').provider('localStorage', function () {
+var moduleApp = angular.module('testApp');
+moduleApp.provider('localStorage', function () {
     this.$get = function () {
         var result = {};
         result.setValue = function (key, value) {
@@ -22,7 +23,7 @@ angular.module('testApp').provider('localStorage', function () {
     };
 
 });
-angular.module('testApp').directive('stringHtml', function () {
+moduleApp.directive('stringHtml', function () {
     return function (scope, el, attr) {
         if (attr.stringHtml) {
             scope.$watch(attr.stringHtml, function (html) {
@@ -31,7 +32,7 @@ angular.module('testApp').directive('stringHtml', function () {
         }
     };
 });
-angular.module('testApp').filter('FormatStrDate', function () {
+moduleApp.filter('FormatStrDate', function () {
     var _self = function () {
         this.tosubstr = function (v) {
             return (v).substr(0, 10);
