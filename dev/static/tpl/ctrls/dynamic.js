@@ -2,7 +2,7 @@
  * 问答
  * @type type
  */
-angular.module('testApp')
+angular.module('anApp')
         .controller('dynamicController', ['$scope', 'localStorage', 'cookie', '$state', function($scope, localStorage, cookie, $state) {
                 $scope.nav = {all: false, pro: false, qas: true, abo: false};
                 var loginUsers = angular.fromJson(window.localStorage.getItem('login.users'));

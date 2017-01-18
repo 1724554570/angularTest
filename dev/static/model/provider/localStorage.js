@@ -1,4 +1,4 @@
-var moduleApp = angular.module('testApp');
+var moduleApp = angular.module('anApp');
 moduleApp.provider('localStorage', function () {
     this.$get = function () {
         var result = {};

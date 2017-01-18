@@ -2,7 +2,7 @@
  * 关于
  * @type type
  */
-angular.module('testApp')
+angular.module('anApp')
         .controller('aboutController', ['$scope', 'AccessToken', '$state', function ($scope, AccessToken, $state) {
                 $scope.nav = {all: false, pro: false, qas: false, abo: true};
                 $scope.isLogin = AccessToken.loginState();

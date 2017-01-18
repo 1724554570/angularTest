@@ -2,7 +2,7 @@
  * 文章
  * @type type
  */
-angular.module('testApp')
+angular.module('anApp')
         // 导航控制器
         .controller('proController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.nav = {all: false, pro: true, qas: false, abo: false};

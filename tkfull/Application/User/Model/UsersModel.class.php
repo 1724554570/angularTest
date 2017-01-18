@@ -23,7 +23,7 @@ class UsersModel extends Model {
 
     public function login($username, $password, $type = 1) {
         if (empty($username) || empty($password)) {
-            return -4; //未知错误！
+            return -6; //未知错误！
         }
         //if (!check_verify($verify)) {
         //    return -3; //验证码错误
@@ -42,7 +42,7 @@ class UsersModel extends Model {
             if (MD5($password) === $user['userpass']) {
                 return $user;
             } else {
-                return -2; //密码错误
+                return -10; //密码错误
             }
         } else {
             return -1; //用户不存在或被禁用
@@ -101,9 +101,16 @@ class UsersModel extends Model {
      * @param type $pwd
      * @param type $valid
      */
-    public function register($name, $pwd, $valid) {
-        if (empty($name) || empty($pwd) || empty($valid)) {
-            return -3; // 参数错误
+    public function register($data = '') {
+        if (empty($data) || empty($data['username']) || empty($data['userpass']) || empty($data['device'])) {
+            return -6;
+        }
+        $row = $this->info($data['username'], true);
+        if (0 < $row) {
+            return -1;
+        } else {
+            $this->add($data);
+            return 11;
         }
     }
 

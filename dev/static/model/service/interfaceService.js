@@ -1,5 +1,5 @@
 // 封装所有请求
-angular.module('testApp').factory('Servic', ['$http', function ($http) {
+angular.module('anApp').factory('Servic', ['$http', function ($http) {
         var ACT = '/tkfull/index.php/';
         var servic = {};
         servic.servers = function (http, callbacks) {
@@ -7,19 +7,47 @@ angular.module('testApp').factory('Servic', ['$http', function ($http) {
             var _url = ACT + http.url;
             var https = {method: 'post', url: _url, data: http.data};
             var promise = $http(https).then(function (resp) {
-                callbacks(resp);
+                callbacks(resp, resp.data);
             }, function (resp) {
                 console.log(resp);
             });
         };
         return servic;
     }]);
+// 工具类
+angular.module('anApp').factory('Tools', ['cookie', function (cookie) {
+        return {
+            ueditor: function () {
+                return {toolbar: [
+                        'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+                        'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize',
+                        '| justifyleft justifycenter justifyright justifyjustify |',
+                        'link unlink | emotion image video  | map',
+                        '| horizontal print preview fullscreen', 'drafts', 'formula'
+                    ],
+                    initialFrameWidth: '100%', initialFrameHeight: 400,
+                    //focus时自动清空初始化时的内容
+                    autoClearinitialContent: true,
+                    //关闭字数统计
+                    wordCount: false,
+                    //关闭elementPath
+                    elementPathEnabled: false, autoFloatEnabled: false
+                };
+            }
+        };
+    }]);
 // 检测登录
-angular.module('testApp').factory('AccessToken', ['cookie', function (cookie) {
+angular.module('anApp').factory('AccessToken', ['$state', '$window', 'cookie', function ($state, $window, cookie) {
         return {
             loginState: function () {
                 var _msg = "";
                 if (cookie.get('isLogined')) {
+                    var _url = location.href;
+                    var _mac = _url.match('loginindex|register');
+                    if (_mac) {
+                        $window.history.back();
+                        return;
+                    }
                     _msg = angular.fromJson(window.localStorage.getItem('login.users')) || angular.fromJson(cookie.get('login.users.name'));
                 }
                 return _msg;
@@ -27,13 +55,13 @@ angular.module('testApp').factory('AccessToken', ['cookie', function (cookie) {
         };
     }]);
 // 服务 用户
-angular.module('testApp').factory('userInfoService', ['Servic', function (Servic) {
+angular.module('anApp').factory('userInfoService', ['Servic', function (Servic) {
         var users = {};
         var configs = {
             getLists: "apis/users/lists",
             findById: "apis/users/getArtById",
             getLogin: "apis/login/ajaxlogin",
-            setUsers: "apis/login/ajaxreg",
+            setUsers: "apis/login/register",
             getForget: "apis/login/ajaxForget",
             loginout: "apis/login/loginout"
         };
@@ -58,7 +86,7 @@ angular.module('testApp').factory('userInfoService', ['Servic', function (Servic
         return users;
     }]);
 // 服务 产品
-angular.module('testApp').factory('articleService', ['Servic', function (Servic) {
+angular.module('anApp').factory('articleService', ['Servic', function (Servic) {
         var product = {};
         var configs = {
             getLists: "apis/Product/getProduct",
@@ -82,7 +110,7 @@ angular.module('testApp').factory('articleService', ['Servic', function (Servic)
         return product;
     }]);
 // 关于
-angular.module('testApp').factory('AboutService', ['Servic', function (Servic) {
+angular.module('anApp').factory('AboutService', ['Servic', function (Servic) {
         var about = {};
         var configs = {
             getAboutDesc: "apis/about/detail",

@@ -1,4 +1,4 @@
-angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
+angular.module('anApp').config(['$stateProvider', '$httpProvider', function ($stateProvider, $httpProvider) {
         //注册拦截器
         $httpProvider.interceptors.push('httpInterceptor');
         var paths = _cfgs.settings;
@@ -10,7 +10,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'loginController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'user.js'
+                                    //paths.ctrl + 'user.js'
                                 ]);
                             }]}
                 })
@@ -20,7 +20,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'loginIndexController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'user.js'
+                                    //paths.ctrl + 'user.js'
                                 ]);
                             }]}
                 })
@@ -30,7 +30,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'registerController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'user.js'
+                                    //paths.ctrl + 'user.js'
                                 ]);
                             }]}
                 })
@@ -39,7 +39,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'loginoutCtrl',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'user.js'
+                                    //paths.ctrl + 'user.js'
                                 ]);
                             }]}
                 })
@@ -52,7 +52,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'appController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'home.js'
+                                    //paths.ctrl + 'home.js'
                                 ]);
                             }]}
                 })
@@ -62,7 +62,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'apphomeController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'home.js'
+                                    //paths.ctrl + 'home.js'
                                 ]);
                             }]}
                 })
@@ -73,7 +73,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'myselfController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'home.js'
+                                    //paths.ctrl + 'home.js'
                                 ]);
                             }]}
                 })
@@ -83,7 +83,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'infoController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'member.js'
+                                    //paths.ctrl + 'member.js'
                                 ]);
                             }]}
                 })
@@ -91,40 +91,40 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                 .state('article', {
                     url: '/article',
                     templateUrl: base_templateUrl,
-                    controller: 'proController',
+                    controller: 'artCtrl',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'article.js'
-                                ]);
-                            }]}
-                })
-                .state('article.list', {
-                    url: '/list',
-                    templateUrl: paths.view + "article_list.xhtml",
-                    controller: 'proListController',
-                    resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                return $ocLazyLoad.load([
-                                    paths.ctrl + 'article.js'
+                                    //paths.ctrl + 'article.js'
                                 ]);
                             }]}
                 })
                 .state('article.add', {
                     url: '/add',
                     templateUrl: paths.view + "article.xhtml",
-                    controller: 'proArticleController',
+                    controller: 'artCtrl_add',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'article.js'
+                                    //paths.ctrl + 'article.js'
+                                ]);
+                            }]}
+                })
+                .state('article.list', {
+                    url: '/list',
+                    templateUrl: paths.view + "article_list.xhtml",
+                    controller: 'artCtrl_list',
+                    resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    //paths.ctrl + 'article.js'
                                 ]);
                             }]}
                 })
                 .state('article.detail', {
                     url: '/detail/:id',
                     templateUrl: paths.view + "article_detail.xhtml",
-                    controller: 'proArtDescController',
+                    controller: 'artCtrl_desc',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'article.js'
+                                    //paths.ctrl + 'article.js'
                                 ]);
                             }]}
                 })
@@ -135,7 +135,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'dynamicController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'dynamic.js'
+                                    //paths.ctrl + 'dynamic.js'
                                 ]);
                             }]}
                 })
@@ -145,7 +145,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'dynamicController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'dynamic.js'
+                                    //paths.ctrl + 'dynamic.js'
                                 ]);
                             }]}
                 })
@@ -156,7 +156,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'aboutController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'about.js'
+                                    //paths.ctrl + 'about.js'
                                 ]);
                             }]}
                 })
@@ -166,7 +166,7 @@ angular.module('testApp').config(['$stateProvider', '$httpProvider', function ($
                     controller: 'aboutListController',
                     resolve: {deps: ['$ocLazyLoad', function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    paths.ctrl + 'about.js'
+                                    //paths.ctrl + 'about.js'
                                 ]);
                             }]}
                 })

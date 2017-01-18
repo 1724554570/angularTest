@@ -12,7 +12,7 @@
             </div>
             <a class="dark">{{user.username}}</a>
             <div class="user_profile">
-                <span class="big" ng-if="pros">{{pros.length}}</span><span class="big" ng-if="!pros">0</span> 个分享
+                <span class="big" ng-if="article">{{article.length}}</span><span class="big" ng-if="!article">0</span> 个分享
             </div>
             <p class="col_fade">注册时间 {{user.ctime|FormatStrDate}}</p>
         </div>
@@ -23,7 +23,7 @@
             <span class="col_fade">最近创建</span>
         </div>
 
-        <div class="cell" ng-repeat="pro in pros">
+        <div class="cell" ng-repeat="pro in article">
             <a class="user_avatar pull-left" ui-sref="info.user({id: user.uid})">
                 <img ng-if="user.imgurl" ng-src="{{user.imgurl}}" title="{{user.username}}">
                 <img ng-if="!user.imgurl" src="public/images/default_img.png">

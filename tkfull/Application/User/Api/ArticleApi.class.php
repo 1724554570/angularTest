@@ -5,6 +5,9 @@ namespace User\Api;
 use User\Api\Api;
 use User\Model\ArticleModel;
 
+/**
+ * 文章模型
+ */
 class ArticleApi extends Api {
 
     /**

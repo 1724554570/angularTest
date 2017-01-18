@@ -2,7 +2,7 @@
  * 首页
  * @type type
  */
-angular.module('testApp')
+angular.module('anApp')
         .controller('appController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.nav = {all: true, pro: false, qas: false, abo: false};
                 $scope.info1 = "用户";

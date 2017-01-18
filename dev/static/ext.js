@@ -25,7 +25,7 @@ var _cfgs = (function (){
     self.settings = setting;
     return self;
 })();
-console.log(_cfgs.settings);
+
 var token = {token: 'login'};
-angular.module('testApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
+angular.module('anApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
 

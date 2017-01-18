@@ -85,9 +85,7 @@ gulp.task('minify_css_html', function () {
 
 // 压缩图片
 gulp.task('imgs', function () {
-    gulp.src([_cfg.allFile_JPG, _cfg.allFile_JPEG, _cfg.allFile_PNG, _cfg.allFile_GIF])
-            .pipe(imagemin({progressive: true}))
-            .pipe(gulp.dest(_cfg.root))
+    gulp.src([_cfg.allFile_JPG, _cfg.allFile_JPEG, _cfg.allFile_PNG, _cfg.allFile_GIF]).pipe(imagemin({progressive: true})).pipe(gulp.dest(_cfg.root))
             //.pipe(notify({message: 'img task ok'}))
             ;
 });
@@ -116,6 +114,9 @@ gulp.task('less', function () {
             ;
 });
 
+gulp.task('concatJS', function () {
+    gulp.src([_cfg._def + 'tpl/ctrls/*.js']).pipe(concat('alls.js')).pipe(gulp.dest(_cfg._def + 'tpl/ctrls'));
+});
 gulp.task('devJS', function () {
     gulp.src([_cfg.all_JS, '!run.js']).pipe(rev()).pipe(rev.manifest("allFile_JS.json")).pipe(gulp.dest('./rev/js'));
 });

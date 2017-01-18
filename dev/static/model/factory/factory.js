@@ -1,5 +1,5 @@
-//var AppModeule = angular.module('testApp');
-angular.module('testApp').factory('cookie', [function () {
+//var AppModeule = angular.module('anApp');
+angular.module('anApp').factory('cookie', [function () {
         function getAllCookie() {
             return document.cookie.split(';');
         }
@@ -40,7 +40,7 @@ angular.module('testApp').factory('cookie', [function () {
         };
     }]);
 // httpInterceptor
-angular.module('testApp').factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
+angular.module('anApp').factory('httpInterceptor', ['$q', '$injector', function ($q, $injector) {
         var httpInterceptor = {
             response: function (response) {
                 return response;
@@ -59,7 +59,7 @@ angular.module('testApp').factory('httpInterceptor', ['$q', '$injector', functio
         return httpInterceptor;
     }
 ]);
-angular.module('testApp').factory('vaulesFactory', function () {
+angular.module('anApp').factory('vaulesFactory', function () {
     var testObject = {};
     testObject = [];
 

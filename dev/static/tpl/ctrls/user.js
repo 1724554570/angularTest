@@ -2,7 +2,7 @@
  * 用户操作
  * @type type
  */
-angular.module('testApp')
+angular.module('anApp')
         .controller('loginController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.titles = "用户管理";
                 $scope.isLogin = AccessToken.loginState();
@@ -188,7 +188,7 @@ angular.module('testApp')
             }])
         ;
 
-angular.module('testApp').factory('loginService', function () {
+angular.module('anApp').factory('loginService', function () {
     var global = {}
     global.isIE = function () {
         if (navigator.userAgent.indexOf("MSIE") > 0) {

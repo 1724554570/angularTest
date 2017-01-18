@@ -8,36 +8,44 @@ class LoginController extends AllController {
 
     const USER_TABLE = "onethink_users";
 
+    private $userApi;
+
+    public function _initialize() {
+        $this->userApi = new UsersApi();
+    }
+
     public function index() {
         $data = array('code' => 404, message => "找不到页面！！");
         $this->assign('err', $data);
         $this->display('err:index');
     }
 
+    public function response($row = '') {
+        if (0 < $row) {
+            $this->ajaxReturn(array('status' => 1, 'message' => "查询成功！", 'users' => $row));
+        }
+        $error = ERROR_CODE($row, '');
+        $this->ajaxReturn(array('status' => 0, 'message' => $error, 'users' => $row));
+    }
+
     public function ajaxlogin() {
         $username = I('mobile_no');
         $userpass = I('password');
-        $User = new UsersApi;
-        $row = $User->login($username, $userpass);
-        if (0 < $row) {
-            $this->ajaxReturn(array('status' => 1, 'massage' => "查询成功！", 'users' => $row));
-        }
-        switch ($row) {
-            case -1: $error = '用户不存在或被禁用！';
-                break; //系统级别禁用
-            case -2: $error = '密码错误！';
-                break;
-            default: $error = '未知错误！';
-                break; // 0-接口参数错误（调试阶段使用）
-        }
-        $this->ajaxReturn(array('status' => 0, 'massage' => $error, 'users' => $row));
+        $row = $this->userApi->login($username, $userpass);
+        $this->response($row);
     }
 
-    public function ajaxreg() {
-        $username = I('mobile_no');
+    public function register() {
         $userpass = I('password');
         $md5pass = MD5($userpass);
-        $device = I('device');
+        $data['username'] = I('mobile_no');
+        $data['userpass'] = $md5pass;
+        $data['device'] = I('device');
+        $data['ctime'] = time();
+        $data['utime'] = $data['ctime'];
+        $row = $this->userApi->register($data);
+        $this->response($row);
+        return;
         $model = D(self::USER_TABLE);
         if ($username && $userpass) {
             $where = "username='{$username}'";
