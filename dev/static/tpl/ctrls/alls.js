@@ -1,3 +1,8 @@
+var MODULE_app = angular.module('anApp');
+MODULE_app.controller('tokenCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        $scope.isLogin = AccessToken.loginState();
+    }]);
+
 /**
  * 关于
  * @type type
@@ -22,13 +27,11 @@ angular.module('anApp')
  * @type type
  */
 angular.module('anApp')
-        // 导航控制器
         .controller('artCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.nav = {all: false, pro: true, qas: false, abo: false};
                 $scope.info1 = "项目";
                 $scope.isLogin = AccessToken.loginState();
             }])
-        // 
         .controller('artCtrl_list', ['$scope', 'articleService', 'localStorage', function ($scope, articleService, localStorage) {
 
                 localStorage.setValue('_csrf', "");
@@ -42,7 +45,6 @@ angular.module('anApp')
                 $scope.artLists();
 
             }])
-        //
         .controller('artCtrl_desc', ['$scope', '$state', 'articleService', '$stateParams', function ($scope, $state, articleService, $stateParams) {
                 $scope.times = function (times) {
                     var rtime = parseInt(times) * 1000;
@@ -62,13 +64,12 @@ angular.module('anApp')
                 };
                 $scope.getProductInfo();
             }])
-        // 
         .controller('artCtrl_add', ['$scope', '$state', 'Tools', 'articleService', function ($scope, $state, Tools, articleService) {
                 if (!$scope.isLogin) {
                     $state.go('pro.list');
                 }
                 $scope._simpleConfig = Tools.ueditor();
-                $scope.content2 = "";
+                //$scope.content2 = "";
 
                 $scope.product = {};
                 $scope.product.users = $scope.isLogin.uid;
@@ -98,7 +99,6 @@ angular.module('anApp')
                 };
 
             }])
-        //
         .controller('proArticleEidtController', ['$scope', '$state', 'Tools', 'articleService', 'vaulesFactory', 'localStorage', function ($scope, $state, Tools, articleService, vaulesFactory, localStorage) {
                 var column = {productname: '', productdesc: '', propower: '', _csrf: ''};
                 $scope.product = column;
@@ -198,17 +198,11 @@ angular.module('anApp')
  * @type type
  */
 angular.module('anApp')
-        .controller('myselfController', ['$scope', function ($scope) {
-                $scope.nav = {all: true, pro: false, qas: false, abo: false};
-                $scope.info1 = "项目";
+        .controller('myselfController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+                $scope.isLogin = AccessToken.loginState();
             }])
-        .controller('infoController', ['$scope', 'localStorage', 'userInfoService', '$state', '$stateParams',
-            function ($scope, localStorage, userInfoService, $state, $stateParams) {
+        .controller('infoController', ['$scope', 'localStorage', 'userInfoService', '$stateParams', function ($scope, localStorage, userInfoService, $stateParams) {
                 localStorage.setValue('_csrf', "");
-
-                $scope.showSimple = function (product) {
-                    $state.go('pro.artdetail', {id: product.id});
-                };
 
                 $scope.getInfoById = function () {
                     var data = {id: $stateParams.id};

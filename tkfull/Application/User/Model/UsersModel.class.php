@@ -37,9 +37,10 @@ class UsersModel extends Model {
                 return 0; //参数错误
         }
         /* 获取用户数据 */
-        $user = $this->where($map)->find();
+        $user = $this->where($map)->field('id as uid,username,userpass,imgurl,ctime,state')->find();
         if (is_array($user) && $user['state']) {
             if (MD5($password) === $user['userpass']) {
+                unset($user['userpass']);
                 return $user;
             } else {
                 return -10; //密码错误

@@ -6,7 +6,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
- */.badge,.label,sub,sup {
+ */
+.badge,.label,sub,sup {
     vertical-align: baseline
 }
 
@@ -5152,6 +5153,9 @@ body {
 }
 
 #sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 290px;
     font-size: 14px;
     float: right;
