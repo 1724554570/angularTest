@@ -23,8 +23,8 @@ class ArticleApi extends Api {
      * @param type $e
      * @return type
      */
-    public function lists($key, $type, $s, $e) {
-        return $this->model->lists($key, $type, $s, $e);
+    public function lists($key, $type, $s) {
+        return $this->model->lists($key, $type, $s);
     }
 
     /**
@@ -55,6 +55,10 @@ class ArticleApi extends Api {
      */
     public function detail($id) {
         return $this->model->detail($id);
+    }
+
+    public function add($param, $id = false) {
+        return $this->model->add($param, $id);
     }
 
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2016-11-18 18:05:48
+Date: 2017-01-19 14:35:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,6 +99,76 @@ INSERT INTO `onethink_addons` VALUES ('4', 'SystemInfo', '系统环境信息', '
 INSERT INTO `onethink_addons` VALUES ('5', 'Editor', '前台编辑器', '用于增强整站长文本的输入和显示', '1', '{\"editor_type\":\"2\",\"editor_wysiwyg\":\"1\",\"editor_height\":\"300px\",\"editor_resize_type\":\"1\"}', 'thinkphp', '0.1', '1379830910', '0');
 INSERT INTO `onethink_addons` VALUES ('6', 'Attachment', '附件', '用于文档模型上传附件', '1', 'null', 'thinkphp', '0.1', '1379842319', '1');
 INSERT INTO `onethink_addons` VALUES ('9', 'SocialComment', '通用社交化评论', '集成了各种社交化评论插件，轻松集成到系统中。', '1', '{\"comment_type\":\"1\",\"comment_uid_youyan\":\"\",\"comment_short_name_duoshuo\":\"\",\"comment_data_list_duoshuo\":\"\"}', 'thinkphp', '0.1', '1380273962', '0');
+
+-- ----------------------------
+-- Table structure for `onethink_article`
+-- ----------------------------
+DROP TABLE IF EXISTS `onethink_article`;
+CREATE TABLE `onethink_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productname` varchar(50) DEFAULT NULL,
+  `productdesc` text,
+  `proctime` varchar(20) DEFAULT NULL,
+  `proutime` varchar(20) DEFAULT NULL,
+  `foruser` varchar(30) DEFAULT NULL,
+  `prostate` tinyint(4) DEFAULT '1',
+  `propower` tinyint(4) DEFAULT '1' COMMENT '1：全部 2：注册用户',
+  `exadmin` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of onethink_article
+-- ----------------------------
+INSERT INTO `onethink_article` VALUES ('1', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '2', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('2', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '2', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('3', '测试改版。333', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '3', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('4', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '4', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('5', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '5', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('6', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '6', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('7', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '7', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('8', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '8', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('9', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '9', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('10', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '10', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('11', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '11', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('12', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '12', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('13', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '13', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('14', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '14', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('15', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '15', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('16', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '16', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('17', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '17', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('18', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '18', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('19', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '19', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('20', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '20', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('21', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '21', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('22', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '22', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('23', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '23', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('24', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '24', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('25', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '25', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('26', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '26', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('27', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '27', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('28', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '28', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('29', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '29', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('30', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '30', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('31', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '31', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('32', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '32', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('33', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '33', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('34', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '34', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('35', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '35', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('36', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '36', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('37', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '37', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('38', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '38', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('39', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '39', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('40', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '40', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('41', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '41', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('42', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '42', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('43', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '43', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('44', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '44', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('45', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '45', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('46', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '46', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('47', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '47', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('48', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '48', '1', '1', null);
+INSERT INTO `onethink_article` VALUES ('49', '测试改版。', '&lt;p&gt;&lt;img src=&quot;/ueditor/php/upload/image/20161117/1479365528114395.jpg&quot; title=&quot;1479365528114395.jpg&quot; alt=&quot;page12-1.jpg&quot;/&gt;&lt;/p&gt;', '1479365899', '1479365899', '49', '1', '1', null);
 
 -- ----------------------------
 -- Table structure for `onethink_attachment`
@@ -1062,6 +1132,76 @@ CREATE TABLE `onethink_userdata` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `onethink_users`
+-- ----------------------------
+DROP TABLE IF EXISTS `onethink_users`;
+CREATE TABLE `onethink_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `userpass` varchar(50) DEFAULT NULL,
+  `imgurl` varchar(200) DEFAULT NULL,
+  `device` varchar(10) DEFAULT NULL,
+  `ctime` varchar(20) DEFAULT NULL,
+  `utime` varchar(20) DEFAULT NULL,
+  `state` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of onethink_users
+-- ----------------------------
+INSERT INTO `onethink_users` VALUES ('1', '1724554570@qq.com', 'e10adc3949ba59abbe56e057f20f883e', 'public/images/1935767.jpg', '', '1479115386', '1479115386', '1');
+INSERT INTO `onethink_users` VALUES ('2', 'mms', 'DEBBA13E73DAC39CD4191C1B61C62ED05C13DBBD', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('3', 'mms3', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('4', 'mms4', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('5', 'mms5', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('6', 'mms6', 'e10adc3949ba59abbe56e057f20f883e', 'public/images/4067115.jpg', '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('7', 'mms7', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('8', 'mms8', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('9', 'mms9', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('10', 'mms10', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('11', 'mms11', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('12', 'mms12', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('13', 'mms13', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('14', 'mms14', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('15', 'mms15', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('16', 'mms16', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('17', 'mms17', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('18', 'mms18', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('19', 'mms19', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('20', 'mms20', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('21', 'mms21', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('22', 'mms22', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('23', 'mms23', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('24', 'mms24', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('25', 'mms25', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('26', 'mms26', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('27', 'mms27', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('28', 'mms28', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('29', 'mms29', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('30', 'mms30', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('31', 'mms31', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('32', 'mms32', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('33', 'mms33', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('34', 'mms34', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('35', 'mms35', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('36', 'mms36', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('37', 'mms37', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('38', 'mms38', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('39', 'mms39', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('40', 'mms40', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('41', 'mms41', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('42', 'mms42', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('43', 'mms43', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('44', 'mms44', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('45', 'mms45', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('46', 'mms46', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('47', 'mms47', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('48', 'mms48', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('49', 'mms49', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+INSERT INTO `onethink_users` VALUES ('50', '122122', 'e10adc3949ba59abbe56e057f20f883e', null, 'pc', '1484728799', '1484728799', '1');
+
+-- ----------------------------
 -- Table structure for `tk_about`
 -- ----------------------------
 DROP TABLE IF EXISTS `tk_about`;
@@ -1141,3 +1281,20 @@ CREATE TABLE `tk_user` (
 -- ----------------------------
 INSERT INTO `tk_user` VALUES ('1', '1724554570@qq.com', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479115386', '1479115386', '1');
 INSERT INTO `tk_user` VALUES ('2', 'mms', 'e10adc3949ba59abbe56e057f20f883e', null, '', '1479365289', '1479365289', '1');
+
+-- ----------------------------
+-- Table structure for `user_t`
+-- ----------------------------
+DROP TABLE IF EXISTS `user_t`;
+CREATE TABLE `user_t` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `age` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_t
+-- ----------------------------
+INSERT INTO `user_t` VALUES ('1', '测试111', 'sfasgfaf', '24');

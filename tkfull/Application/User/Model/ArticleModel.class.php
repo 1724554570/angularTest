@@ -48,7 +48,7 @@ class ArticleModel extends Model {
      * @param type $s
      * @param type $e
      */
-    public function lists($key, $type, $s, $e) {
+    public function lists($key, $type, $s) {
         $map = array();
         if ($key) {
             $map['productname'] = $key;
@@ -108,6 +108,17 @@ class ArticleModel extends Model {
         $map['id'] = $id;
         $res = $this->where($map)->find();
         return $res;
+    }
+
+    public function add($param, $id = false) {
+        if (empty($param)) {
+            return -6;
+        }
+        if ($id) {
+            
+        }else{
+            
+        }
     }
 
 }
