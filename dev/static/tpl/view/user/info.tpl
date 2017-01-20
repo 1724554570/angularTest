@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="cell more" ng-if="pros.length > 119">
+    <div class="cell more" ng-if="article.length > 119">
         <a class="dark" href="/user/Samurais/topics">查看更多»</a>
     </div>
 
@@ -53,30 +53,9 @@
     </div>
 
     <div class="cell">
-        <a class="user_avatar pull-left" href="javascript:void(0);">
-            <img src="https://avatars.githubusercontent.com/u/3538629?v=3&amp;s=120" title="Samurais">
-        </a>
-        <span class="reply_count pull-left">
-            <span class="count_of_replies" title="回复数">
-                13
-            </span>
-            <span class="count_seperator">/</span>
-            <span class="count_of_visits" title="点击数">
-                1296
-            </span>
-        </span>
-        <a class="last_time pull-right" href="/topic/580eb6fbb37ee8fb339787b0#5817e8871a9a7d9909531323">
-            <img class="user_small_avatar" src="https://avatars.githubusercontent.com/u/3538629?v=3&amp;s=120">
-            <span class="last_active_time">9 小时前</span>
-        </a>
-        <div class="topic_title_wrapper">
-            <span class="put_top">置顶</span>
-            <a class="topic_title" href="/topic/580eb6fbb37ee8fb339787b0" title="［ 北京］11月6日 NodeParty@科技寺，报名从速 !">
-                ［ 北京］11月6日 NodeParty@科技寺，报名从速 !
-            </a>
-        </div>
+        
     </div>
-
+    
     <div class="cell more">
         <a class="dark" href="/user/Samurais/replies">查看更多»</a>
     </div>
