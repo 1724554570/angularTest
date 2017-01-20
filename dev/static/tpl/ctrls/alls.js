@@ -221,7 +221,7 @@ angular.module('anApp')
  * @type type
  */
 angular.module('anApp')
-        .controller('loginController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('userCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
                 $scope.titles = "用户管理";
                 $scope.isLogin = AccessToken.loginState();
                 // 刷新验证码
@@ -235,7 +235,7 @@ angular.module('anApp')
                 };
             }])
         //登录控制器
-        .controller('loginIndexController', ['$scope', 'cookie', 'loginService', 'localStorage', 'deviceService', 'userInfoService',
+        .controller('loginCtrl', ['$scope', 'cookie', 'loginService', 'localStorage', 'deviceService', 'userInfoService',
             function ($scope, cookie, loginService, localStorage, deviceService, userInfoService) {
                 var urlSet = _cfgs.settings;
                 $scope.reg = /^1[0-9]{10}$/;
@@ -314,7 +314,7 @@ angular.module('anApp')
                 $scope.login.mobile_no = username ? username : '';
             }])
         //注册控制器
-        .controller('registerController', ['$scope', '$state', 'deviceService', 'loginService', 'userInfoService', function ($scope, $state, deviceService, loginService, userInfoService) {
+        .controller('registerCtrl', ['$scope', '$state', 'deviceService', 'loginService', 'userInfoService', function ($scope, $state, deviceService, loginService, userInfoService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.login = {
                     mobile_no: '',
@@ -366,7 +366,7 @@ angular.module('anApp')
                 };
             }])
         //忘记密码控制器
-        .controller('forgetPasswordController', ['$scope', 'cookie', 'userInfoService', function ($scope, cookie, userInfoService) {
+        .controller('forPwdCtrl', ['$scope', 'cookie', 'userInfoService', function ($scope, cookie, userInfoService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.resetPassword = {};
                 $scope.resetPassword.mobile_no = '';

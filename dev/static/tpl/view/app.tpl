@@ -8,8 +8,8 @@
                 <li><a ui-sref="article.list">项目</a></li>
                 <li><a ui-sref="issue.home">问答</a></li>
                 <li><a ui-sref="about.home">关于</a></li>
-                <li ng-if="!isLogin"><a ui-sref="login.register">注册</a></li>
-                <li ng-if="!isLogin"><a ui-sref="login.loginindex">登录</a></li>
+                <li ng-if="!isLogin"><a ui-sref="user.register">注册</a></li>
+                <li ng-if="!isLogin"><a ui-sref="user.loginindex">登录</a></li>
                 <li ng-if="isLogin"><a ui-sref="loginout">退出登录</a></li>
             </ul>
             <a class="btn btn-navbar" id="responsive-sidebar-trigger">

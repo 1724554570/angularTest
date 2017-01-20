@@ -2,7 +2,7 @@
     <div class='inner'>
         <p>Angular Demo</p>
         <div>
-            您可以<a ui-sref="login.loginindex">登录</a>或<a ui-sref="login.register">注册</a>
+            您可以<a ui-sref="user.loginindex">登录</a>或<a ui-sref="user.register">注册</a>
             <!--<a href="/auth/github"><span class="span-info">通过 GitHub 登录</span></a>-->
         </div>
     </div>
@@ -27,7 +27,7 @@
 </div>
 <div class="panel" ng-if="isLogin">
     <div class="inner">
-        <a ui-sref="pro.article" id="create_topic_btn">
+        <a ui-sref="article.add" id="create_topic_btn">
             <span class="span-success">发布话题</span>
         </a>
     </div>
