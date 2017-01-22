@@ -1,5 +1,8 @@
 var moduleApp = angular.module('anApp');
-moduleApp.provider('localStorage', function () {
+/**
+ * 本地存储数据
+ */
+moduleApp.provider('llStorage', function () {
     this.$get = function () {
         var result = {};
         result.setValue = function (key, value) {
@@ -21,8 +24,11 @@ moduleApp.provider('localStorage', function () {
         };
         return result;
     };
-
 });
+
+/**
+ * 格式化文章
+ */
 moduleApp.directive('stringHtml', function () {
     return function (scope, el, attr) {
         if (attr.stringHtml) {
@@ -32,6 +38,10 @@ moduleApp.directive('stringHtml', function () {
         }
     };
 });
+
+/**
+ * 格式化时间格式
+ */
 moduleApp.filter('FormatStrDate', function () {
     var _self = function () {
         this.tosubstr = function (v) {
@@ -61,7 +71,6 @@ moduleApp.filter('FormatStrDate', function () {
                 res = tostrins.numToString(input);
             }
         }
-        //console.log(input, res);
         return res;
     };
 });

@@ -27,4 +27,20 @@ class ReplyModel extends Model {
      */
     protected $connection = UC_DB_DSN;
 
+    /**
+     * 问题列表
+     * @param type $s
+     * @return type
+     */
+    public function reply_list($id = '', $s = '') {
+        if (empty($id)) {
+            return -6;
+        }
+        $map = array();
+        $map['state'] = 1;
+        $map['article_id'] = $id;
+        $list = $this->where($map)->select();
+        return $list;
+    }
+
 }

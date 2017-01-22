@@ -9,12 +9,22 @@
 namespace User\Api;
 
 use User\Api\Api;
-use User\Model\ArticleModel;
+use User\Model\ReplyModel;
 
 class ReplysApi extends Api {
 
     protected function _init() {
-        $this->model = new ArticleModel();
+        $this->model = new ReplyModel();
+    }
+
+    /**
+     * 列表
+     * @param type $id
+     * @param type $s
+     * @return type
+     */
+    public function lists($id = '', $s = '') {
+        return $this->model->reply_list($id, $s);
     }
 
 }

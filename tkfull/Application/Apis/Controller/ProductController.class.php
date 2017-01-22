@@ -3,6 +3,7 @@
 namespace Apis\Controller;
 
 use Think\Model;
+use User\Api\ReplysApi;
 
 /**
  * onethink_article
@@ -11,6 +12,12 @@ class ProductController extends AllController {
 
     const TABLENAME = "onethink_article";
     const USERTABLE = "onethink_users";
+
+    private $replyApi;
+
+    public function _initialize() {
+        $this->replyApi = new ReplysApi();
+    }
 
     public function index() {
         $data = array('code' => 404, message => "找不到页面！！");
@@ -33,8 +40,6 @@ class ProductController extends AllController {
             $article .= "p.productdesc,";
             $sql = "select {$article}{$user} from {$tab_pro} as p , {$tab_user} as u where u.id=p.foruser and p.id = {$id}";
         }
-        //var_dump($sql);
-        //return $data = array("article" => $article, "user" => $user);
         return $sql;
     }
 
@@ -48,6 +53,9 @@ class ProductController extends AllController {
         $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
     }
 
+    /**
+     * 根据ID查询分享文章
+     */
     public function getProductById() {
         $id = I('pro_id');
         $model = new Model();
@@ -56,7 +64,8 @@ class ProductController extends AllController {
             $row = $model->query($parms);
             $rows = $row[0];
             $rows['productdesc'] = htmlspecialchars_decode($rows['productdesc']);
-            $this->ajaxReturn(array('status' => 1, 'article' => $rows));
+            $reply = $this->replyApi->lists($id);
+            $this->ajaxReturn(array('status' => 1, 'article' => $rows, 'replys' => $reply));
         }
         $this->ajaxReturn(array('status' => 0, 'article' => $rows));
     }

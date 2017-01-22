@@ -1694,13 +1694,13 @@ table {
     margin-top: 1px;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url(/public/img/glyphicons-halflings.73aebe0a.hashed.png);
+    background-image: url(../../public/img/glyphicons-halflings.73aebe0a.hashed.png);
     background-position: 14px 14px;
     background-repeat: no-repeat
 }
 
 .dropdown-menu>.active>a>[class*=" icon-"],.dropdown-menu>.active>a>[class^=icon-],.dropdown-menu>li>a:focus>[class*=" icon-"],.dropdown-menu>li>a:focus>[class^=icon-],.dropdown-menu>li>a:hover>[class*=" icon-"],.dropdown-menu>li>a:hover>[class^=icon-],.dropdown-submenu:focus>a>[class*=" icon-"],.dropdown-submenu:focus>a>[class^=icon-],.dropdown-submenu:hover>a>[class*=" icon-"],.dropdown-submenu:hover>a>[class^=icon-],.icon-white,.nav-list>.active>a>[class*=" icon-"],.nav-list>.active>a>[class^=icon-],.nav-pills>.active>a>[class*=" icon-"],.nav-pills>.active>a>[class^=icon-],.navbar-inverse .nav>.active>a>[class*=" icon-"],.navbar-inverse .nav>.active>a>[class^=icon-] {
-    background-image: url(/public/img/glyphicons-halflings-white.f56470fd.hashed.png)
+    background-image: url(../../public/img/glyphicons-halflings-white.f56470fd.hashed.png)
 }
 
 .icon-glass {
@@ -5879,7 +5879,7 @@ textarea#productdesc {
 .navbar .search-query {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    background: url(/public/images/search.e53b380a.hashed.png) 4px 4px no-repeat #888;
+    background: url(../../public/images/search.e53b380a.hashed.png) 4px 4px no-repeat #888;
     padding: 3px 5px 3px 22px;
     color: #666;
     border: 0;
@@ -6538,7 +6538,7 @@ textarea.editor {
 }
 
 @font-face {
-    font-family:icomoon;src:url(/public/libs/editor/fonts/icomoon.3993053b.hashed.eot);src:url(/public/libs/editor/fonts/icomoon.3993053b.hashed.eot?#iefix) format('embedded-opentype'),url(/public/libs/editor/fonts/icomoon.24b1ddc9.hashed.woff) format('woff'),url(/public/libs/editor/fonts/icomoon.5b3bb2a8.hashed.ttf) format('truetype'),url(/public/libs/editor/fonts/icomoon.6af13284.hashed.svg#icomoon) format('svg');font-weight:400;font-style:normal
+    font-family:icomoon;src:url(../../public/libs/editor/fonts/icomoon.3993053b.hashed.eot);src:url(../../public/libs/editor/fonts/icomoon.3993053b.hashed.eot?#iefix) format('embedded-opentype'),url(../../public/libs/editor/fonts/icomoon.24b1ddc9.hashed.woff) format('woff'),url(../../public/libs/editor/fonts/icomoon.5b3bb2a8.hashed.ttf) format('truetype'),url(../../public/libs/editor/fonts/icomoon.6af13284.hashed.svg#icomoon) format('svg');font-weight:400;font-style:normal
 }[data-icon]:before {
     font-family: icomoon;
     content: attr(data-icon);
@@ -7207,7 +7207,7 @@ li.L1,li.L3,li.L5,li.L7,li.L9 {
 }
 
 @font-face {
-    font-family:FontAwesome;src:url(/public/libs/font-awesome/fonts/fontawesome-webfont.8588dcfa.hashed.eot?v=4.2.0);src:url(/public/libs/font-awesome/fonts/fontawesome-webfont.8588dcfa.hashed.eot?#iefix&v=4.2.0) format('embedded-opentype'),url(/public/libs/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0) format('woff'),url(/public/libs/font-awesome/fonts/fontawesome-webfont.ttf?v=4.2.0) format('truetype'),url(/public/libs/font-awesome/fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular) format('svg');font-weight:400;font-style:normal
+    font-family:FontAwesome;src:url(../../public/libs/font-awesome/fonts/fontawesome-webfont.8588dcfa.hashed.eot?v=4.2.0);src:url(../../public/libs/font-awesome/fonts/fontawesome-webfont.8588dcfa.hashed.eot?#iefix&v=4.2.0) format('embedded-opentype'),url(../../public/libs/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0) format('woff'),url(../../public/libs/font-awesome/fonts/fontawesome-webfont.ttf?v=4.2.0) format('truetype'),url(../../public/libs/font-awesome/fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular) format('svg');font-weight:400;font-style:normal
 }
 
 .fa {

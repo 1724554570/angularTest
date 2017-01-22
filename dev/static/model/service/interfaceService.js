@@ -1,10 +1,10 @@
 // 封装所有请求
 angular.module('anApp').factory('Servic', ['$http', function ($http) {
-        var ACT = '/tkfull/index.php/';
+        var _acts = '/tkfull/index.php/';
         var servic = {};
         servic.servers = function (http, callbacks) {
             callbacks = callbacks || function () {};
-            var _url = ACT + http.url;
+            var _url = _acts + http.url;
             var https = {method: 'post', url: _url, data: http.data};
             var promise = $http(https).then(function (resp) {
                 callbacks(resp, resp.data);
@@ -17,6 +17,17 @@ angular.module('anApp').factory('Servic', ['$http', function ($http) {
 // 工具类
 angular.module('anApp').factory('Tools', ['cookie', function (cookie) {
         return {
+            /**
+             * 回到顶部
+             * @returns {undefined}
+             */
+            goTop: function () {
+                $('body,html').scrollTop(0);
+            },
+            /**
+             * 百度编辑器配置
+             * @returns {interfaceServiceL#18.interfaceServiceAnonym$2.ueditor.interfaceServiceAnonym$3}
+             */
             ueditor: function () {
                 return {toolbar: [
                         'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
@@ -33,12 +44,29 @@ angular.module('anApp').factory('Tools', ['cookie', function (cookie) {
                     //关闭elementPath
                     elementPathEnabled: false, autoFloatEnabled: false
                 };
+            },
+            /**
+             * 错误信息提示
+             * @param {type} message
+             * @param {type} flag
+             * @returns {undefined}
+             */
+            getErrorMsg: function (message, flag) {
+                if (typeof message === 'string' || flag) {
+                    alert(message);
+                    return;
+                }
+                console.log(message);
             }
         };
     }]);
 // 检测登录
 angular.module('anApp').factory('AccessToken', ['$state', '$window', 'cookie', function ($state, $window, cookie) {
         return {
+            /**
+             * 登录状态
+             * @returns {undefined|String|Array|Number|Object}
+             */
             loginState: function () {
                 var _msg = "";
                 if (cookie.get('isLogined')) {
@@ -55,7 +83,7 @@ angular.module('anApp').factory('AccessToken', ['$state', '$window', 'cookie', f
         };
     }]);
 // 服务 用户
-angular.module('anApp').factory('userInfoService', ['Servic', function (Servic) {
+angular.module('anApp').factory('userService', ['Servic', function (Servic) {
         var users = {};
         var configs = {
             getLists: "apis/users/lists",

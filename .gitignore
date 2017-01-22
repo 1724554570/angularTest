@@ -19,3 +19,5 @@ rev/
 dev/index.html
 /tkfull/nbproject
 /tkfull/nbproject/private/
+.vscode/
+/.vscode

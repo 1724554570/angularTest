@@ -1,5 +1,5 @@
 //判断是电脑还是手机
-angular.module('anApp').service('deviceService', function() {
+angular.module('anApp').service('DEVICES', function() {
     var service = {};
     function browserRedirect() {
         var sUserAgent = navigator.userAgent.toLowerCase();
