@@ -43,14 +43,12 @@ class UsersController extends AllController {
         if (empty($uid)) {
             $this->ajaxReturn(array('status' => 0, 'users' => null, 'totals' => 0, 'article' => null));
         }
-        $UA = new ArticleApi();
-        $User = new UsersApi;
         if (empty($s) && empty($e)) {
             $s = 1;
             $e = 10;
         }
-        $list = $UA->ualists($s, $e, $uid);
-        $info = $User->info($uid);
+        $list = $this->articleApi->ualists($s, $e, $uid);
+        $info = $this->userApi->info($uid);
         $this->ajaxReturn(array('status' => 1, 'users' => $info, 'total' => $list['total'], 'article' => $list['lists']));
     }
 
@@ -64,8 +62,7 @@ class UsersController extends AllController {
             $pageNum = 1;
             $e = 10;
         }
-        $User = new UsersApi;
-        $list = $User->lists($key, $pageNum, $e);
+        $list = $this->userApi->lists($key, $pageNum, $e);
         $this->ajaxReturn(array('status' => 1, 'total' => $list['total'], 'users' => $list['users']));
     }
 

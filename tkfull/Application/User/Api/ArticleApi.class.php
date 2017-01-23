@@ -57,8 +57,14 @@ class ArticleApi extends Api {
         return $this->model->detail($id);
     }
 
-    public function add($param, $id = false) {
-        return $this->model->add($param, $id);
+    /**
+     * 添加、修改文章
+     * @param type $param
+     * @param type $id
+     * @return type
+     */
+    public function addArticle($param, $id = false) {
+        return $this->model->add_Article($param, $id);
     }
 
 }

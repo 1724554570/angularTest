@@ -9,6 +9,9 @@
 function ERROR_CODE($number = 0, $msg = '') {
     $code = '查询/请求成功！';
     switch ($number) {
+        case 12:
+            $code = '保存失败！';
+            break;
         case 11:
             $code = '注册成功！';
             break;

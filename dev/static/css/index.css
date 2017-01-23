@@ -5265,7 +5265,28 @@ body {
 }
 
 .header .col_fade {
-    color: #444
+    color: #444;
+    padding: 3px 0;
+}
+
+.col_upbut{
+    position: absolute;
+    right: 10px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    background-color: #80bd01;
+    color: #ababab;
+    display: none;
+    cursor: pointer;
+}
+
+.col_upbut_show{
+    display: block;
+}
+
+.header .col_upbut {
+    top: 7px;
+    color: #fff;
 }
 
 a.dark,a.dark:active,a.dark:link,a.dark:visited {
@@ -5300,6 +5321,7 @@ a.light:hover {
 }
 
 .panel .header {
+    position: relative;
     padding: 10px;
     background-color: #f6f6f6;
     border-radius: 3px 3px 0 0
@@ -5698,6 +5720,7 @@ a.user_avatar:hover {
 }
 
 a.topic_title {
+    width: 70%;
     max-width: 70%;
     -o-text-overflow: ellipsis;
     white-space: nowrap;
@@ -5719,7 +5742,7 @@ a.topic_title {
     white-space: nowrap
 }
 
-.put_good,.put_top {
+.put_good,.put_top,.upbut {
     background: #80bd01;
     padding: 2px 4px;
     border-radius: 3px;
@@ -5728,6 +5751,14 @@ a.topic_title {
     -o-border-radius: 3px;
     color: #fff;
     font-size: 12px
+}
+
+.upbut{
+    display: none;
+}
+
+.upbut_show{
+    display: inline-block;
 }
 
 img.unread {

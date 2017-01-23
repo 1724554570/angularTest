@@ -71,7 +71,7 @@ class ArticleModel extends Model {
     }
 
     /**
-     * 修改发布文章状态
+     * 管理员 修改发布文章状态
      * @param type $id
      * @param type $state
      */
@@ -110,15 +110,27 @@ class ArticleModel extends Model {
         return $res;
     }
 
-    public function add($param, $id = false) {
+    /**
+     * 添加、修改文章
+     * @param type $param
+     * @param type $id
+     * @return int
+     */
+    public function add_Article($param, $id = false) {
         if (empty($param)) {
             return -6;
         }
         if ($id) {
-            
-        }else{
-            
+            $param['proutime'] = time();
+            $row = $this->where("id = {$id}")->save($param);
+            return $row;
+        } else {
+            $param['proctime'] = time();
+            $param['proutime'] = $param['proctime'];
+            $row = $this->add($param);
+            return $row;
         }
+        return 12;
     }
 
 }

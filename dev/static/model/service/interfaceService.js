@@ -117,9 +117,9 @@ angular.module('anApp').factory('userService', ['Servic', function (Servic) {
 angular.module('anApp').factory('articleService', ['Servic', function (Servic) {
         var product = {};
         var configs = {
-            getLists: "apis/Product/getProduct",
-            getById: "apis/Product/getProductById",
-            savaPro: "apis/Product/saveProduct",
+            getLists: "apis/product/findlist",
+            getById: "apis/product/findbyid",
+            savaPro: "apis/product/addarticles",
         };
         product.getProduct = function (data, callbacks) {
             Servic.servers({url: configs.getLists, data: data}, callbacks);

@@ -20,7 +20,6 @@
 <div class="panel">
     <div class="header">
         <span class="col_fade">最近创建</span>
-        <span class="col_upbut" ng-class="{true:'col_upbut_show',false:''}[isUser]" ng-click="showEdit()">修改</span>
     </div>
 
     <div class="cell" ng-repeat="pro in article">
@@ -39,7 +38,6 @@
         <div class="topic_title_wrapper">
             <span class="put_top">{{info1}}</span>
             <a class="topic_title" ui-sref="article.detail({id: pro.id})">{{pro.productname}}</a>
-            <span class="upbut" ng-class="{true:'upbut_show',false:''}[isSelected]"><a ui-sref="article.edit({id: pro.id})">修改</a></span>
         </div>
     </div>
 
@@ -55,9 +53,9 @@
     </div>
 
     <div class="cell">
-
+        
     </div>
-
+    
     <div class="cell more">
         <a class="dark" href="/user/Samurais/replies">查看更多»</a>
     </div>

@@ -43,6 +43,7 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider', function ($st
                 .state('article.add', {url: '/add', views: {content: {templateUrl: paths.view + 'article/add.tpl', controller: 'artCtrl_add'}, content2: {templateUrl: userTips, controller: 'tokenCtrl'}}})
                 .state('article.list', {url: '/list', views: {content: {templateUrl: paths.view + 'article/list.tpl', controller: 'artCtrl_list'}, content2: {templateUrl: userTips, controller: 'tokenCtrl'}}})
                 .state('article.detail', {url: '/detail/:id', views: {content: {templateUrl: paths.view + 'article/detail.tpl', controller: 'artCtrl_desc'}, content2: {templateUrl: userTips, controller: 'tokenCtrl'}}})
+                .state('article.edit', {url: '/edit/:id', views: {content: {templateUrl: paths.view + 'article/add.tpl', controller: 'artCtrl_edit'}, content2: {templateUrl: userTips, controller: 'tokenCtrl'}}})
                 //
                 .state('issue', {
                     url: '/issue', templateUrl: base_temp, controller: 'dynamicCtrl',

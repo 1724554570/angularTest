@@ -28,7 +28,7 @@ angular.module('anApp')
                 llStorage.setValue('_csrf', "");
                 $scope.artLists = function () {
                     articleService.getProduct({}, function (resp) {
-                        $scope.product = resp.data.pro;
+                        $scope.product = resp.data.article;
                     });
                 };
                 $scope.artLists();
@@ -59,13 +59,13 @@ angular.module('anApp')
                 }
                 $scope._simpleConfig = Tools.ueditor();
                 //$scope.content2 = "";
-
-                $scope.product = {};
-                $scope.product.users = $scope.isLogin.uid;
-                $scope.product.productname = "";
-                $scope.product.productdesc = "";
-                $scope.product.propower = "";
-                $scope.product._csrf = "";
+                $scope.product = {
+                    users: $scope.isLogin.uid,
+                    productname: '',
+                    productdesc: '',
+                    propower: '',
+                    _csrf: ''
+                };
                 $scope.submitFun = function () {
                     if ($scope.product.propower == "" || $scope.product.productname == "" || $scope.product.productdesc == "") {
                         alert('参数不足');
@@ -86,7 +86,7 @@ angular.module('anApp')
                     });
                 };
             }])
-        .controller('artCtrl_edit', ['$scope', '$state', 'Tools', 'articleService', 'vaulesFactory', 'llStorage', function ($scope, $state, Tools, articleService, vaulesFactory, llStorage) {
+        .controller('artCtrl_edit', ['$scope', '$state', 'Tools', 'articleService', 'vaulesFactory', 'llStorage', '$stateParams', function ($scope, $state, Tools, articleService, vaulesFactory, llStorage, $stateParams) {
                 var column = {productname: '', productdesc: '', propower: '', _csrf: ''};
                 $scope.product = column;
                 $scope._simpleConfig = Tools.ueditor();
@@ -100,7 +100,9 @@ angular.module('anApp')
                     if (llStorage.getValue('_csrf')) {
                         productId = llStorage.getValue('_csrf');
                     }
-                    var data = {pro_id: productId};
+                    console.log($stateParams.id);
+                    var data = {pro_id: $stateParams.id};
+                    console.log(data);
                     articleService.getProductById(data, function (resp) {
                         $scope.product = resp.data.article;
                         $scope.product._csrf = resp.data.article.id;
@@ -169,12 +171,20 @@ angular.module('anApp')
  */
 angular.module('anApp')
         .controller('myselfCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+                $scope.info1 = "项目";
                 $scope.isLogin = AccessToken.loginState();
             }])
         .controller('infoCtrl', ['$scope', 'llStorage', 'userService', '$stateParams', function ($scope, llStorage, userService, $stateParams) {
+                $scope.showEdit = function () {
+                    $scope.isSelected = true;
+                };
                 llStorage.setValue('_csrf', "");
                 $scope.getInfoById = function () {
                     var data = {id: $stateParams.id};
+                    console.log($scope.isLogin.uid, data.id);
+                    if ($scope.isLogin.uid == data.id) {
+                        $scope.isUser = true;
+                    }
                     userService.findById(data, function (resp, res) {
                         $scope.user = res.users;
                         $scope.article = res.article.lists;
