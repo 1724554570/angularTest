@@ -32,12 +32,10 @@
         </a>
     </div>
 </div>
-                <!--
-<div class="panel" ng-if="isLogin">
+<div class="panel" ng-if="isLogin" style="display: none;">
     <div class="inner">
         <a ui-sref="article.add" id="create_topic_btn">
             <span class="span-success">个人文章</span>
         </a>
     </div>
 </div>
-                -->

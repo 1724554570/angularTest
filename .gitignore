@@ -19,5 +19,12 @@ rev/
 dev/index.html
 /tkfull/nbproject
 /tkfull/nbproject/private/
+/tkfull/Uploads/
 .vscode/
 /.vscode
+dev/public/libs/layui/node_modules
+dev/public/libs/layui/node_modules/
+dev/public/libs/layui/release
+dev/public/libs/layui/release/
+dev/public/libs/layui/build
+dev/public/libs/layui/build/
