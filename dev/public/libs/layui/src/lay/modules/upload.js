@@ -71,17 +71,16 @@ layui.define('layer', function (exports) {
 
             //触发上传
             item.off('change').on('change', function () {
-                var dom = $(this);
-                that.fifter(this, dom, type);
+                that.fifter(this, type);
                 //that.action(this, type);
             });
         });
     };
 
     // 文件过滤器
-    Upload.prototype.fifter = function (_this, dom, type) {
+    Upload.prototype.fifter = function (_this, type) {
         var that = this, options = that.options;
-        var dom = $(this);
+        var dom = $(_this);
         var fileSize = dom[0].files[0].size;//文件的大小，单位为字节B
         if (options.size > fileSize) {
             that.action(_this, type);
