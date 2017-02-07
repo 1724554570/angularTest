@@ -5,7 +5,7 @@ window.console = window.console || (function () {
     };
     return c;
 })();
-var _cfgs = (function (){
+var _cfgs = (function () {
     var self = this;
     var searchParms = "devSea|dev|publish";
     var _url = location.href;
@@ -15,7 +15,7 @@ var _cfgs = (function (){
         _PROJECT = "/" + _search[0] + "/";
         _ACT = "";
     }
-    var setting={};
+    var setting = {};
     setting.action = _ACT + "tkfull/index.php/";
     setting.ctrl = _PROJECT + "static/tpl/ctrls/";
     setting.view = _PROJECT + "static/tpl/view/";
