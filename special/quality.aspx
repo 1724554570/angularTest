@@ -1,30 +1,40 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="quality.aspx.cs" Inherits="quality" EnableViewState="False"%>
+<%@ Register Src="head.ascx" TagName="head" TagPrefix="uc1" %>
+<%@ Register Src="foot.ascx" TagName="foot" TagPrefix="uc3" %>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>首页</title>
+    <head id="Head1" runat="server">
+        <title>品质家装</title>
+        <meta name="Keywords" content="" />
+        <meta name="Description" content="" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link href="./static/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="http://www.fzwxzs.com/static/input/common.css" rel="stylesheet" type="text/css"/>
-        <link href="http://www.fzwxzs.com/static/input/index.css" rel="stylesheet" type="text/css"/>
-        <link href="http://www.fzwxzs.com/static/input/re.css" rel="stylesheet" type="text/css"/>
-        <link href="./static/input/special.css" rel="stylesheet" type="text/css"/>
-        <script src="./static/dist/jquery.min.js" type="text/javascript"></script>
-        <script src="./static/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/jquery.flexslider-min.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/jquery.lightbox-0.5.pack.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/fun.index.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/fun.public.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/slider.js" type="text/javascript"></script>
-        <script src="http://www.fzwxzs.com/static/scripts/p11.js" type="text/javascript"></script>
-        <script src="./static/dist/jquery.SuperSlide.2.1.1.source.js" type="text/javascript"></script>
-        <script src="./static/scripts/special.js" type="text/javascript"></script>
+        <link href="/static/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/input/common.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/input/index.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/input/re.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/input/special.css" rel="stylesheet" type="text/css"/>
+        <script src="/static/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="/static/dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/static/scripts/jquery.flexslider-min.js" type="text/javascript"></script>
+        <script src="/static/scripts/jquery.lightbox-0.5.pack.js" type="text/javascript"></script>
+        <script src="/static/scripts/fun.index.js" type="text/javascript"></script>
+        <script src="/static/scripts/fun.public.js" type="text/javascript"></script>
+        <script src="/static/scripts/slider.js" type="text/javascript"></script>
+        <script src="/static/scripts/p11.js" type="text/javascript"></script>
+        <script src="/static/dist/jquery.SuperSlide.2.1.1.source.js" type="text/javascript"></script>
+        <script src="/static/scripts/special.js" type="text/javascript"></script>
+        <script>
+            $(function () {
+                $("#menu_quality").addClass("menu_select");
+            });
+        </script>
     </head>
     <body>
+        <uc1:head id="head" runat="server"></uc1:head>
 
-        <!--公共部分 顶部-->
-
-        <!--首页内容展示-->
+        <!--核心内容-->
         <div class="container-fluid scalewrap">
             <!-- slider -->
             <div class="row-fluid">
@@ -133,6 +143,6 @@
             </script>
         </div>
 
-        <!--公共部分 底部 -->
+        <uc3:foot id="foot1" runat="server"></uc3:foot>
     </body>
 </html>

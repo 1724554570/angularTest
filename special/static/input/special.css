@@ -1,23 +1,93 @@
 @charset "utf-8";
 /* 本例子css */
-.slideBox{ width:1160px; height:349px; /* overflow:hidden; */ position:relative;margin-bottom: 102px;}
-.slideBox .hd{overflow:hidden; position:absolute; right:5px; bottom:-115px; z-index:1;width:1160px; }
-.slideBox .hd ul{ overflow:hidden; zoom:1; float:left; padding-left: 50px; }
-.slideBox .hd ul li{ float:left; margin-right:18px;cursor:pointer;padding-bottom:5px;list-style: none;}
-.slideBox .hd ul li.on{ /* border-bottom:5px solid #e95841; */}
-.slideBox .bd{ position:relative; height:100%; z-index:0;   }
-.slideBox .bd li{ zoom:1; vertical-align:middle;width:1160px;height:349px;list-style: none;}
-.slideBox .bd img{ width:1160px; height:349px; display:block;  }
-.slideBox .bd img{ width:1160px; height:320px; display:block;  }
+.slideBox {
+    width: 1168px;
+    height: 349px;
+    /* overflow:hidden; */
+    position: relative;
+    margin-bottom: 0px;
+}
+.slideBox .hd {
+    overflow: hidden;
+    position: absolute;
+    right: 5px;
+    bottom: -115px;
+    z-index: 1;
+    width: 1168px;
+}
+.slideBox .hd ul {
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+    padding-left: 50px;
+}
+.slideBox .hd ul li {
+    float: left;
+    margin-right: 18px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    list-style: none;
+}
+.slideBox .hd ul li.on {
+    /* border-bottom:5px solid #e95841; */
+}
+.slideBox .bd {
+    position: relative;
+    height: 100%;
+    z-index: 0;
+}
+.slideBox .bd li {
+    zoom: 1;
+    vertical-align: middle;
+    width: 1168px;
+    height: 349px;
+    list-style: none;
+}
+.slideBox .bd img {
+    width: 1168px;
+    height: 349px;
+    display: block;
+}
+.slideBox .bd img {
+    width: 1168px;
+    height: 320px;
+    display: block;
+}
 
 /* 下面是前/后按钮代码，如果不需要删除即可 */
-.slideBox .prev,.slideBox .next{ position:absolute; left:1%; top:50%; margin-top:-24px; display:block; width:15px; height:48px;line-height: 48px;background:#b1b1b1 url(http://img4.525j.com.cn/files/special/20160706w/left_dec.png) no-repeat center center;text-indent: -9999px;}
-.slideBox .next{ left:auto; right:1%;background-image: url(http://img4.525j.com.cn/files/special/20160706w/right_dec.png);}
-.slideBox .prev:hover,.slideBox .next:hover{ text-decoration: none;background-color:#9c9b9b;}
-.slideBox .prev{left: 0;}
-.slideBox .next{right: 0;}
-.slideBox .prevStop{ display:none;  }
-.slideBox .nextStop{ display:none;  }
+.slideBox .prev,.slideBox .next {
+    position: absolute;
+    left: 1%;
+    top: 50%;
+    margin-top: -24px;
+    display: block;
+    width: 15px;
+    height: 48px;
+    line-height: 48px;
+    background: #b1b1b1 url(../images/left_dec.png) no-repeat center center;
+    text-indent: -9999px;
+}
+.slideBox .next {
+    left: auto;
+    right: 1%;
+    background-image: url(../images/right_dec.png);
+}
+.slideBox .prev:hover,.slideBox .next:hover {
+    text-decoration: none;
+    background-color: #9c9b9b;
+}
+.slideBox .prev {
+    left: 0;
+}
+.slideBox .next {
+    right: 0;
+}
+.slideBox .prevStop {
+    display: none;
+}
+.slideBox .nextStop {
+    display: none;
+}
 
 
 .special_con{
@@ -32,8 +102,9 @@
     left: 226px;
 }
 .SuperSlide{
-    top: 29.2%;
-    left: 14%;
+    /*top: 29.2%;*/
+    /*left: 14%;*/
+    left: 218px;
 }
 .selectCon{
     width: 1170px;
@@ -70,7 +141,7 @@
     font-size: 32px;
     line-height: 55px;
     margin-top: 47px;
-    
+
     color: #9e003a;
     border: 1px #9e003a solid;
     text-align: center;
@@ -89,7 +160,7 @@
     -moz-border-radius: 5px 5px 5px 5px;
     */
 }
-.tabb2 .de_left .Decoration_style:hover, .tabb2 .de_left .on {
+.tabb2 .de_left .Decoration_style:hover, .tabb2 .de_left .onActive {
     color: #fff;
     border: 1px #9e003a solid;
     background-color: #9e003a;
@@ -108,6 +179,39 @@
     width: 100%;
     height: 100%;
 }
+.conImg{
+    width: 100%;
+}
+.morelogo{
+    width: 1168px;
+    height: 40px;
+    background: transparent;
+    position: absolute;
+    top: 570px;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.ztlogo{
+    width: 100%;
+}
+.moreppjc{
+    width: 172px;
+    height: 32px;
+    background: transparent;
+    position: absolute;
+    bottom: 28px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+}
 
+
+@media screen and (max-width: 1500px) and (min-width: 1px){
+    .special_con{
+        /*width: 100%;*/
+    }
+}
 
 
