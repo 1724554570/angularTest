@@ -9,10 +9,8 @@ use User\Api\ArticleApi;
  */
 class ArticleController extends AllController {
 
-    private $articleApi;
-
     public function _initialize() {
-        $this->articleApi = new ArticleApi();
+        
     }
 
     /**
@@ -21,7 +19,8 @@ class ArticleController extends AllController {
      * @param type $type 搜索类型
      */
     public function getLists($key = null, $type = null, $s = null) {
-        $list = $this->articleApi->lists($key, $type, $s);
+        $articleApi = new ArticleApi();
+        $list = $articleApi->lists($key, $type, $s);
         $list['nhref'] = 'article';
         $this->ajaxReturn($list);
     }

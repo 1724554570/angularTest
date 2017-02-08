@@ -23,7 +23,7 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
                     views: {
                         content: {
                             templateUrl: paths.view + 'user/login.tpl',
-                            controller: 'loginCtrl'
+                            controller: 'userCtrl_login'
                         },
                         content2: {
                             templateUrl: paths.view + 'app_tips.tpl'
@@ -35,16 +35,16 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
                     views: {
                         content: {
                             templateUrl: paths.view + 'user/register.tpl',
-                            controller: 'registerCtrl'
+                            controller: 'userCtrl_register'
                         },
                         content2: {
                             templateUrl: paths.view + 'app_tips.tpl'
                         }
                     }
                 })
-                .state('user.loginout', {
+                .state('loginout', {
                     url: '/out',
-                    controller: 'loginoutCtrl'
+                    controller: 'userCtrl_loginOut'
                 })
                 // 
                 .state('app', {
@@ -87,7 +87,7 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
                     views: {
                         content: {
                             templateUrl: paths.view + 'user/info.tpl',
-                            controller: 'infoCtrl'
+                            controller: 'myselfCtrl_info'
                         },
                         content2: {
                             templateUrl: userTips,

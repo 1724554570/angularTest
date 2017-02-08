@@ -1,30 +1,24 @@
 var MODULE_app = angular.module('anApp');
-MODULE_app.controller('tokenCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
-        $scope.isLogin = AccessToken.loginState();
-    }]);
-/**
- * 关于
- * @type type
- */
-angular.module('anApp')
-        .controller('aboutController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+MODULE_app
+        .controller('tokenCtrl', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.isLogin = AccessToken.loginState();
             }])
-        .controller('aboutDescController', ['$scope', 'llStorage', 'userService', '$state', function ($scope, llStorage, userService, $state) {
+        .controller('aboutController', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
+                $scope.isLogin = AccessToken.loginState();
+            }])
+        .controller('aboutDescController', ['$scope', 'llStorage', 'userService', '$state',
+            function ($scope, llStorage, userService, $state) {
 
             }])
-
-        ;
-/**
- * 文章
- * @type type
- */
-angular.module('anApp')
-        .controller('artCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('artCtrl', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.info1 = "项目";
                 $scope.isLogin = AccessToken.loginState();
             }])
-        .controller('artCtrl_list', ['$scope', 'articleService', 'llStorage', function ($scope, articleService, llStorage) {
+        .controller('artCtrl_list', ['$scope', 'articleService', 'llStorage',
+            function ($scope, articleService, llStorage) {
                 llStorage.setValue('_csrf', "");
                 $scope.artLists = function () {
                     articleService.getProduct({}, function (resp) {
@@ -33,7 +27,8 @@ angular.module('anApp')
                 };
                 $scope.artLists();
             }])
-        .controller('artCtrl_desc', ['$scope', '$state', 'articleService', '$stateParams', function ($scope, $state, articleService, $stateParams) {
+        .controller('artCtrl_desc', ['$scope', '$state', 'articleService', '$stateParams',
+            function ($scope, $state, articleService, $stateParams) {
                 $scope.times = function (times) {
                     var rtime = parseInt(times) * 1000;
                     return new Date(rtime).toLocaleString().substr(0, 10);
@@ -53,7 +48,8 @@ angular.module('anApp')
                 };
                 $scope.getProductInfo();
             }])
-        .controller('artCtrl_add', ['$scope', '$state', 'Tools', 'articleService', function ($scope, $state, Tools, articleService) {
+        .controller('artCtrl_add', ['$scope', '$state', 'Tools', 'articleService',
+            function ($scope, $state, Tools, articleService) {
                 if (!$scope.isLogin) {
                     $state.go('pro.list');
                 }
@@ -86,7 +82,8 @@ angular.module('anApp')
                     });
                 };
             }])
-        .controller('artCtrl_edit', ['$scope', '$state', 'Tools', 'articleService', 'vaulesFactory', 'llStorage', '$stateParams', function ($scope, $state, Tools, articleService, vaulesFactory, llStorage, $stateParams) {
+        .controller('artCtrl_edit', ['$scope', '$state', 'Tools', 'articleService', 'vaulesFactory', 'llStorage', '$stateParams',
+            function ($scope, $state, Tools, articleService, vaulesFactory, llStorage, $stateParams) {
                 var column = {productname: '', productdesc: '', propower: '', _csrf: ''};
                 $scope.product = column;
                 $scope._simpleConfig = Tools.ueditor();
@@ -130,27 +127,16 @@ angular.module('anApp')
                     });
                 };
             }])
-
-        ;
-/**
- * 问答
- * @type type
- */
-angular.module('anApp')
-        .controller('dynamicCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('dynamicCtrl', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.isLogin = AccessToken.loginState();
             }])
-        .controller('dynamicCtrl_list', ['$scope', 'llStorage', 'userService', '$state', function ($scope, llStorage, userService, $state) {
+        .controller('dynamicCtrl_list', ['$scope', 'llStorage', 'userService', '$state',
+            function ($scope, llStorage, userService, $state) {
 
             }])
-
-        ;
-/**
- * 首页
- * @type type
- */
-angular.module('anApp')
-        .controller('appController', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('appController', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.info1 = "用户";
                 $scope.isLogin = AccessToken.loginState();
             }])
@@ -163,25 +149,23 @@ angular.module('anApp')
                 };
                 $scope.lists();
             }])
-
-        ;
-/**
- * 用户信息中心
- * @type type
- */
-angular.module('anApp')
-        .controller('myselfCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('myselfCtrl', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.info1 = "项目";
                 $scope.isLogin = AccessToken.loginState();
             }])
-        .controller('infoCtrl', ['$scope', 'llStorage', 'userService', '$stateParams', function ($scope, llStorage, userService, $stateParams) {
+        .controller('myselfCtrl_info', ['$scope', 'llStorage', 'userService', '$stateParams',
+            function ($scope, llStorage, userService, $stateParams) {
                 $scope.showEdit = function () {
                     $scope.isSelected = true;
                 };
                 llStorage.setValue('_csrf', "");
                 $scope.getInfoById = function () {
-                    var data = {id: $stateParams.id};
-                    console.log($scope.isLogin.uid, data.id);
+                    var data = {
+                        id: $stateParams.id,
+                        token: token.info,
+                        logs: ''
+                    };
                     if ($scope.isLogin.uid == data.id) {
                         $scope.isUser = true;
                     }
@@ -192,14 +176,8 @@ angular.module('anApp')
                 };
                 $scope.getInfoById();
             }])
-
-        ;
-/**
- * 用户操作
- * @type type
- */
-angular.module('anApp')
-        .controller('userCtrl', ['$scope', 'AccessToken', function ($scope, AccessToken) {
+        .controller('userCtrl', ['$scope', 'AccessToken',
+            function ($scope, AccessToken) {
                 $scope.titles = "用户管理";
                 $scope.isLogin = AccessToken.loginState();
                 // 刷新验证码
@@ -212,8 +190,8 @@ angular.module('anApp')
                     }
                 };
             }])
-        //登录控制器
-        .controller('loginCtrl', ['$scope', 'cookie', 'llStorage', 'DEVICES', 'userService', 'Tools', function ($scope, cookie, llStorage, DEVICES, userService, Tools) {
+        .controller('userCtrl_login', ['$scope', 'cookie', 'llStorage', 'DEVICES', 'userService', 'Tools',
+            function ($scope, cookie, llStorage, DEVICES, userService, Tools) {
                 var urlSet = _cfgs.settings;
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.login = {mobile_no: '', password: '', passwordInit: '%&@(!^$)', verify: '', rememberPassword: false, isFirstLogin: false};
@@ -244,9 +222,10 @@ angular.module('anApp')
                     var data = {
                         mobile_no: $scope.login.mobile_no,
                         password: loginPassword,
-                        token: 'login',
                         rememberMe: $scope.login.rememberPassword,
-                        device: DEVICES.device
+                        device: DEVICES.device,
+                        token: token.info,
+                        logs: 'login'
                     };
                     userService.getLogin(data, function (resp, datas) {
                         if (resp.data.status === 1) {
@@ -267,8 +246,8 @@ angular.module('anApp')
                     });
                 };
             }])
-        //注册控制器
-        .controller('registerCtrl', ['$scope', '$state', 'DEVICES', 'Tools', 'llStorage', 'userService', function ($scope, $state, DEVICES, Tools, llStorage, userService) {
+        .controller('userCtrl_register', ['$scope', '$state', 'DEVICES', 'Tools', 'llStorage', 'userService',
+            function ($scope, $state, DEVICES, Tools, llStorage, userService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.login = {mobile_no: '', password: '', invitation: '', invitationerror: true};
                 $scope.getVCodeAbleed = true;
@@ -282,7 +261,8 @@ angular.module('anApp')
                         mobile_no: $scope.login.mobile_no,
                         verifyCode: $scope.login.verifyCode,
                         password: $scope.login.password,
-                        token: 'register',
+                        token: token.info,
+                        logs: 'register',
                         device: DEVICES.device
                     };
                     userService.getRegister(datas, function (resp, datas) {
@@ -295,13 +275,18 @@ angular.module('anApp')
                     });
                 };
             }])
-        //忘记密码控制器
-        .controller('forPwdCtrl', ['$scope', 'cookie', 'Tools', 'userService', function ($scope, cookie, Tools, userService) {
+        .controller('userCtrl_forPwd', ['$scope', 'cookie', 'Tools', 'userService',
+            function ($scope, cookie, Tools, userService) {
                 $scope.reg = /^1[0-9]{10}$/;
                 $scope.resetPassword = {mobile_no: '', password: ''};
                 //确定提交
                 $scope.confirm = function () {
-                    var data = {mobile_no: $scope.resetPassword.mobile_no, password: $scope.resetPassword.password, token: 'forPwdCtrl'};
+                    var data = {
+                        mobile_no: $scope.resetPassword.mobile_no,
+                        password: $scope.resetPassword.password,
+                        token: token.info,
+                        logs: 'forPwdCtrl'
+                    };
                     userService.getForget(data, function (resp, datas) {
                         if (resp.data.status === 1) {
                             cookie.set('login.mobile_no', $scope.resetPassword.mobile_no, 7 * 24 * 3600, true);
@@ -311,8 +296,8 @@ angular.module('anApp')
                     });
                 };
             }])
-        //退出登录
-        .controller('loginoutCtrl', ['$scope', '$state', 'cookie', 'llStorage', 'Tools', 'userService', function ($scope, $state, cookie, llStorage, Tools, userService) {
+        .controller('userCtrl_loginOut', ['$scope', '$state', 'cookie', 'llStorage', 'Tools', 'userService',
+            function ($scope, $state, cookie, llStorage, Tools, userService) {
                 $scope.loginOut = function () {
                     userService.loginOut(function (resp, datas) {
                         if (resp.data.status === 1) {

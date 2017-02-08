@@ -10,7 +10,7 @@
                 <li><a ui-sref="about.home">关于</a></li>
                 <li ng-if="!isLogin"><a ui-sref="user.register">注册</a></li>
                 <li ng-if="!isLogin"><a ui-sref="user.loginindex">登录</a></li>
-                <li ng-if="isLogin"><a ui-sref="user.loginout">退出登录</a></li>
+                <li ng-if="isLogin"><a ui-sref="loginout">退出登录</a></li>
             </ul>
             <a class="btn btn-navbar" id="responsive-sidebar-trigger">
                 <span class="icon-bar"></span>

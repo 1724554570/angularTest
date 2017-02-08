@@ -11,7 +11,10 @@ class LoginController extends AllController {
     private $userApi;
 
     public function _initialize() {
+        unset($this->userApi);
+        var_dump($this->userApi);
         $this->userApi = new UsersApi();
+        var_dump($this->userApi);
     }
 
     public function index() {
@@ -45,24 +48,6 @@ class LoginController extends AllController {
         $data['utime'] = $data['ctime'];
         $row = $this->userApi->register($data);
         $this->response($row);
-        return;
-        $model = D(self::USER_TABLE);
-        if ($username && $userpass) {
-            $where = "username='{$username}'";
-            $row = $model->where($where)->find();
-            if ($row) {
-                $this->ajaxReturn(array('status' => 3, 'users' => $row));
-            } else {
-                $data['username'] = $username;
-                $data['userpass'] = $md5pass;
-                $data['device'] = $device;
-                $data['ctime'] = time();
-                $data['utime'] = $data['ctime'];
-                $row = $model->add($data);
-                $this->ajaxReturn(array('status' => 1, 'users' => $row));
-            }
-        }
-        $this->ajaxReturn(array('status' => 0, 'users' => $row));
     }
 
     public function ajaxForget() {

@@ -11,15 +11,11 @@ use User\Api\ArticleApi;
  */
 class ProductController extends AllController {
 
-    const TABLENAME = "onethink_article";
-    const USERTABLE = "onethink_users";
-
-    //private $replyApi;
-    //private $articleApi;
+    const ARTICLE_TABLE = "onethink_article";
+    const USER_TABLE = "onethink_users";
 
     public function _initialize() {
-        //$this->replyApi = new ReplysApi();
-        //$this->articleApi = new ArticleApi();
+        
     }
 
     public function index() {
@@ -34,14 +30,16 @@ class ProductController extends AllController {
      * @return type
      */
     public function setParms($id = "") {
-        $tab_pro = self::TABLENAME;
-        $tab_user = self::USERTABLE;
+        $tab_pro = self::ARTICLE_TABLE;
+        $tab_user = self::USER_TABLE;
         $article = "p.id,p.productname,p.proctime,p.proutime,p.propower,";
         $user = "u.id as uid,u.username,u.imgurl";
-        $sql = "select {$article}{$user} from {$tab_pro} as p left join {$tab_user} as u on u.id = p.foruser order by p.proctime desc limit 0,5";
+        $lineSQL = "select {$article}{$user} from {$tab_pro} as p";
+        $limit = 20;
+        $sql = $lineSQL . " left join {$tab_user} as u on u.id = p.foruser order by p.proctime desc limit 0,{$limit}";
         if (!empty($id)) {
             $article = "p.*,";
-            $sql = "select {$article}{$user} from {$tab_pro} as p , {$tab_user} as u where u.id = p.foruser and p.id = {$id}";
+            $sql = $lineSQL . ", {$tab_user} as u where u.id = p.foruser and p.id = {$id}";
         }
         unset($tab_pro, $tab_user, $article, $user);
         return $sql;
@@ -55,10 +53,6 @@ class ProductController extends AllController {
         $parms = $this->setParms();
         $row = $model->query($parms);
         $this->response($row);
-//        if ($rows) {
-//            $this->ajaxReturn(array('status' => 1, 'pro' => $rows));
-//        }
-//        $this->ajaxReturn(array('status' => 0, 'pro' => $rows));
     }
 
     /**

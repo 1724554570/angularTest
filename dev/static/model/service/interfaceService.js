@@ -4,7 +4,7 @@ angular.module('anApp').factory('Servic', ['$http', function ($http) {
         var servic = {};
         servic.servers = function (http, callbacks) {
             callbacks = callbacks || function () {};
-            var _url = _acts + http.url;
+            var _url = _acts + http.url;console.log(http);
             var https = {method: 'post', url: _url, data: http.data};
             var promise = $http(https).then(function (resp) {
                 callbacks(resp, resp.data);
@@ -76,6 +76,7 @@ angular.module('anApp').factory('AccessToken', ['$state', '$window', 'cookie', f
                         $window.history.back();
                         return;
                     }
+                    token.info = true;
                     _msg = angular.fromJson(window.localStorage.getItem('login.users')) || angular.fromJson(cookie.get('login.users.name'));
                 }
                 return _msg;

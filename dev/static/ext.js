@@ -26,6 +26,6 @@ var _cfgs = (function () {
     return self;
 })();
 
-var token = {token: 'login'};
+var token = {token: 'login', info: ''};
 angular.module('anApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad', "ng.ueditor"]);
 

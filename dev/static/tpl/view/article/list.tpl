@@ -2,7 +2,7 @@
     <!--列表-->
     <div class="inner no-padding">
         <div id="topic_list">
-            <div class='cell' ng-repeat="pro in product">
+            <div class='cell' ng-repeat="pro in product" ng-if="pro.propower != 1">
                 <a class="user_avatar pull-left" ui-sref="info.user({id: pro.uid})">
                     <img ng-if="pro.imgurl" ng-src="{{pro.imgurl}}" title="{{pro.productname}}">
                     <img ng-if="!pro.imgurl" src="public/images/default_img.png">
