@@ -12,9 +12,9 @@ class LoginController extends AllController {
 
     public function _initialize() {
         unset($this->userApi);
-        var_dump($this->userApi);
+        //var_dump($this->userApi);
         $this->userApi = new UsersApi();
-        var_dump($this->userApi);
+        //var_dump($this->userApi);
     }
 
     public function index() {
