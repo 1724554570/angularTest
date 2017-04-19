@@ -39,6 +39,7 @@ class ProductController extends AllController {
         $sql = $lineSQL . " left join {$tab_user} as u on u.id = p.foruser order by p.proctime desc limit 0,{$limit}";
         if (!empty($id)) {
             $article = "p.*,";
+            $lineSQL = "select {$article}{$user} from {$tab_pro} as p";
             $sql = $lineSQL . ", {$tab_user} as u where u.id = p.foruser and p.id = {$id}";
         }
         unset($tab_pro, $tab_user, $article, $user);
@@ -65,6 +66,7 @@ class ProductController extends AllController {
         if ($id) {
             $row = $model->query($parms);
             $rows = $row[0];
+            
             $rows['productdesc'] = htmlspecialchars_decode($rows['productdesc']);
             $replyApi = new ReplysApi();
             $reply = $replyApi->lists($id);
