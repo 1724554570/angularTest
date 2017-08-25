@@ -11,5 +11,10 @@ var _cfgs = (function () {
 })();
 
 angular.module('anApp', ['ui.bootstrap', 'jqueryHttp', 'ui.router', 'oc.lazyLoad']);
-angular.module('anApp').run(function ($rootScope, $state) { $rootScope.goto = function () { $state.go('app.home'); }; $rootScope.goto(); });
+angular.module('anApp').run(function ($rootScope, $state) {
+    $rootScope.goto = function () {
+        $state.go('app.home');
+    };
+    $rootScope.goto();
+});
 
