@@ -1,0 +1,66 @@
+<style>
+    .bs-example-form .col-lg-6 {
+        margin-top: 20px;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-group .form-control {
+        width: 100%;
+    }
+
+    .smsg {
+        width: 100px;
+    }
+</style>
+<div class="container">
+    <form class="bs-example bs-example-form" ng-submit="login()">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <label>用户名</label>
+                    <input type="text" class="form-control" ng-model="model.nickname" aria-label="Text input with dropdown button">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <label>密码</label>
+                    <input type="password" class="form-control" ng-model="model.password" aria-label="Text input with dropdown button">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div><label>短信验证码</label></div>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="model.token" aria-label="Text input with dropdown button">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default smsg" ng-click="sendToken();">{{codeText}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <button type="submit" class="btn btn-default">登录</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <ul>
+            <li ng-repeat="item in $ctrl.items">
+                <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ $ctrl.selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+</script>
