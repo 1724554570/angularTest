@@ -1,7 +1,8 @@
 (function () {
     'use strict';
     angular.module('com.module.users')
-        .controller('LoginCtrl', ['$scope', '$interval', '$uibModal', 'httpService', function ($scope, $interval, $uibModal, httpService) {
+        .controller('LoginCtrl', ['$scope', '$interval', '$uibModal', 'httpService', '$rootScope', function ($scope, $interval, $uibModal, httpService, $rootScope) {
+            $rootScope.styles = 'hold-transition login-page';
             var $ctrl = this;
             $ctrl.items = ['item1', 'item2', 'item3'];
             $ctrl.animationsEnabled = true;
@@ -11,15 +12,14 @@
                 token: ''
             };
             $scope.codeText = '发送短信';
-            $scope.codeNumber = 5;
             $scope.sendToken = function () {
+                $scope.codeNumber = 5;
                 $scope.codeText = $scope.codeNumber;
                 $scope.tmir = $interval(function () {
                     $scope.codeNumber--;
-                    $scope.codeText = $scope.codeNumber;
+                    $scope.codeText = '重新发送(' + $scope.codeNumber + ')';
                     if ($scope.codeNumber < 0) {
-                        $scope.codeNumber = 5;
-                        $scope.codeText = '发送短信';
+                        $scope.codeText = '重新发送(' + $scope.codeNumber + ')';
                         $interval.cancel($scope.tmir);
                     }
                 }, 1000);

@@ -1,5 +1,5 @@
 <style>
-    .bs-example-form .col-lg-6 {
+    .bs-example-form .col-lg-12 {
         margin-top: 20px;
     }
 
@@ -14,39 +14,65 @@
     .smsg {
         width: 100px;
     }
+    .getMsgToken{
+        position: absolute;
+        width: 100px;
+        right: 0;
+        top: 0;
+        height: 100%;
+        display: block;
+        line-height: 34px;
+        text-align: right;
+        padding-right: 10px;
+        cursor: pointer;
+    }
 </style>
-<div class="container">
-    <form class="bs-example bs-example-form" ng-submit="login()">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <label>用户名</label>
-                    <input type="text" class="form-control" ng-model="model.nickname" aria-label="Text input with dropdown button">
+<div class="">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form ng-submit="login()">
+                <div class="form-group has-feedback">
+                    <input type="email" class="form-control" placeholder="Email">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <label>密码</label>
-                    <input type="password" class="form-control" ng-model="model.password" aria-label="Text input with dropdown button">
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-            </div>
-            <div class="col-lg-6">
-                <div><label>短信验证码</label></div>
-                <div class="input-group">
+                <div class="form-group has-feedback">
                     <input type="text" class="form-control" ng-model="model.token" aria-label="Text input with dropdown button">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default smsg" ng-click="sendToken();">{{codeText}}</button>
+                    <span class="getMsgToken" ng-click="sendToken();">{{codeText}}</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label><input type="checkbox"> Remember Me</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                     </div>
                 </div>
+            </form>
+
+            <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a ui-sref="register" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i>注册</a>
+                <!-- <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a> -->
+                <!-- <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a> -->
             </div>
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <button type="submit" class="btn btn-default">登录</button>
-                </div>
-            </div>
+            <!-- <a href="#">I forgot my password</a><br> -->
+            <!-- <a href="register.html" class="text-center">Register a new membership</a> -->
         </div>
-    </form>
+    </div>
 </div>
+
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
         <h3 class="modal-title" id="modal-title">I'm a modal!</h3>

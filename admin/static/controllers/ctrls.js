@@ -15,6 +15,7 @@ MODULE_app
             }])
         .controller('apphomeController', ['$rootScope', '$scope',
             function ($rootScope, $scope) {
+                $rootScope.styles = 'hold-transition skin-blue sidebar-mini';
                 $rootScope.menu = 'home';
                 $scope.text = "首页";
             }])

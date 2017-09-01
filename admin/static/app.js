@@ -19,6 +19,7 @@ angular.module('anApp', [
 
 ]).run(function ($rootScope, $state) {
     $rootScope.menu = '';
+    $rootScope.styles = '';
     $rootScope.goto = function () {
         $state.go('login');
     };
