@@ -24,7 +24,6 @@ angular.module('anApp', [
         $state.go('login');
     };
     //$rootScope.goto();
-    console.log(typeof $rootScope.user, typeof $rootScope.token);
     if (!$rootScope.user && !$rootScope.token) {
         $state.go('login');
     } else {

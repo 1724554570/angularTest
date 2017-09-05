@@ -9,7 +9,7 @@ class lzModules {
         this.version = '0.0.0';
     }
     _ver() {
-        console.log(this.version);
+        //console.log(this.version);
     }
 }
 new lzModules()._ver();

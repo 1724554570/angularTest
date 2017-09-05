@@ -46,7 +46,7 @@ AppModeule.factory('cookie', [function () {
                 return response;
             },
             responseError: function (response) {
-                var getToken = $injector.get('getToken');
+                //var getToken = $injector.get('getToken');
                 return $q.reject(response);
             },
             request: function (config) {
@@ -63,6 +63,7 @@ AppModeule.factory('cookie', [function () {
         var service = {};
         service.http = function (opt, callbacks, errors) {
             callbacks = callbacks || function () { };
+            errors = errors || function () { };
             var promise = $http(opt).then(function (resp) {
                 callbacks(resp, resp.data);
             }, function (resp) {

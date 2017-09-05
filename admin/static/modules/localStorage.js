@@ -2,7 +2,7 @@ var moduleApp = angular.module('anApp');
 /**
  * 本地存储数据
  */
-moduleApp.provider('llStorage', function () {
+moduleApp.provider('lStore', function () {
     this.$get = function () {
         var result = {};
         result.setValue = function (key, value) {

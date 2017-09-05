@@ -35,31 +35,6 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
                             }]
                     }
                 })
-                
-//                .state('app.login', {
-//                    url: '/login',
-//                    views: {
-//                        content: {
-//                            templateUrl: pathsview + 'home/index.html',
-//                            controller: 'apphomeController'
-//                        }
-//                    }
-//                })
-
-                .state('app.member', {
-                    url: '/memberList',
-                    views: {
-                        content: {
-                            templateUrl: pathsview + 'member/list.html',
-                            controller: 'memberListCtrl'
-                        }
-                    },
-                    resolve: {
-                        deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                                return $ocLazyLoad.load([loaderCtrls + 'member.js']);
-                            }]
-                    }
-                })
 
                 ;
     }]);
