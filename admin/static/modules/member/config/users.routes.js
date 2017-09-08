@@ -13,22 +13,8 @@
                 template: '<register></register>',
                 controller: 'RegisterCtrl'
             })
-            // .state('app.member', {
-            //     url: '/memberList',
-            //     views: {
-            //         content: {
-            //             templateUrl: pathsview + 'member/list.html',
-            //             controller: 'memberListCtrl'
-            //         }
-            //     },
-            //     resolve: {
-            //         deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-            //                 return $ocLazyLoad.load([loaderCtrls + 'member.js']);
-            //             }]
-            //     }
-            // })
             .state('app.users', {
-                //abstract: true,
+                abstract: true,
                 url: '/users',
                 templateUrl: modelFile + 'main.html',
                 controller: 'userMainCtrl'
@@ -36,33 +22,26 @@
             .state('app.users.list', {
                 url: '/list',
                 templateUrl: modelFile + 'list.html',
-                controllerAs: 'ctrl',
-                controller: function (users) {
-                    console.log('users', users);
-                },
-                resolve: {
-                    users: function (UserService) {
-                        console.log('users');
-                    }
-                }
+                controller: 'userListCtrl'
+                // controllerAs: 'ctrl',
+                // controller: function (users) {
+                //     console.log('users', users);
+                // },
+                // resolve: {
+                //     users: function (UserService) {
+                //         console.log('users');
+                //     }
+                // }
             })
             .state('app.users.add', {
                 url: '/add',
-                templateUrl: 'modules/users/views/form.html',
-                controllerAs: 'ctrl',
-                controller: function ($state) {
-                },
-                resolve: {
-                }
+                templateUrl: modelFile + 'form.html',
+                controller: "userAddCtrl"
             })
             .state('app.users.edit', {
                 url: '/edit/:id',
-                templateUrl: 'modules/users/views/form.html',
-                controllerAs: 'ctrl',
-                controller: function ($state) {
-                },
-                resolve: {
-                }
+                templateUrl: modelFile + 'form.html',
+                controller: 'userEditCtrl'
             })
             .state('app.users.view', {
                 url: '/view/:id',

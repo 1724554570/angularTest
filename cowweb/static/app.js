@@ -10,20 +10,18 @@ angular.module('anApp', [
     'ui.bootstrap',
     'jqueryHttp',
     'ui.router',
-    'oc.lazyLoad',
-    'com.module.users'
-
+    'oc.lazyLoad'
 ]).run(function ($rootScope, $state) {
     $rootScope.menu = '';
     $rootScope.styles = '';
     $rootScope.goto = function () {
-        $state.go('login');
+        $state.go('app.home');
     };
-    //$rootScope.goto();
-    if (!$rootScope.user && !$rootScope.token) {
-        $state.go('login');
-    } else {
-        $state.go('home');
-    }
+    $rootScope.goto();
+    //if (!$rootScope.user && !$rootScope.token) {
+    //    $state.go('login');
+    //} else {
+    //    $state.go('home');
+    //}
 });
 
