@@ -7,7 +7,7 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
         $stateProvider
             .state('app', {
                 url: '/app',
-                templateUrl: pathsview + 'index.html',
+                templateUrl: pathsview + 'base.html',
                 controller: 'appController',
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -17,7 +17,7 @@ angular.module('anApp').config(['$stateProvider', '$httpProvider',
             })
             .state('app.home', {
                 url: '/home',
-                templateUrl: pathsview + 'home/index.html',
+                templateUrl: pathsview + 'home.html',
                 controller: 'apphomeController',
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {

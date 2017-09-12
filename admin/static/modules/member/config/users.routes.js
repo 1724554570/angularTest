@@ -33,6 +33,11 @@
                 //     }
                 // }
             })
+            .state('app.users.alist', {
+                url: '/alist',
+                templateUrl: modelFile + 'alist.html',
+                controller: 'useraListCtrl'
+            })
             .state('app.users.add', {
                 url: '/add',
                 templateUrl: modelFile + 'form.html',

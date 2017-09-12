@@ -11,6 +11,8 @@ angular.module('anApp', [
     'jqueryHttp',
     'ui.router',
     'oc.lazyLoad',
+    'angularFileUpload',
+    //'com.module.files',
     'com.module.users'
 
 ]).run(function ($rootScope, $state) {
