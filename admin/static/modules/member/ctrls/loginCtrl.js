@@ -1,7 +1,6 @@
 (function () {
     'use strict';
     var baseUrl = 'http://47.94.15.71/gcow/cont';
-//    baseUrl = 'http://10.75.104.34:8080/gcow/cont';
     angular.module('com.module.users')
             .controller('LoginCtrl', [
                 '$scope', '$interval', '$uibModal', 'userService', '$rootScope', '$state', 'lStore',
@@ -38,15 +37,14 @@
                         res = res || {data: {}};
                         var data = res.data.data;
                         $rootScope.user = data;
+                        delete data.password;
                         var log_user = angular.toJson(data);
                         lStore.setValue('log.user', log_user);
                         $state.go('app.home');
                     }
-
                     //var log_user = angular.toJson($scope.model);
                     //lStore.setValue('log.user', log_user);
                     //$state.go('app.home');
-
                     $scope.login = function () {
                         var data = {
                             account: this.model.nickname,
@@ -59,12 +57,10 @@
                             $ctrl.openComponentModal();
                         });
                     };
-
                     $scope.href = 'http://47.94.15.71/gcow/cont/sys/pictureCheckCode';
                     $scope.loadYzm = function () {
                         $scope.href = 'http://47.94.15.71/gcow/cont/sys/pictureCheckCode';
                     };
-
                     $ctrl.openComponentModal = function () {
                         var modalInstance = $uibModal.open({
                             animation: $ctrl.animationsEnabled,
@@ -86,7 +82,6 @@
                             console.log('modal-component dismissed at: ' + new Date());
                         });
                     };
-
                 }])
 
             .controller('userMainCtrl', [
@@ -98,8 +93,8 @@
 
             // 管理员列表
             .controller('useraListCtrl', [
-                '$rootScope', '$scope', '$state', 'userService', 'editValue',
-                function ($rootScope, $scope, $state, userService, editValue) {
+                '$rootScope', '$scope', '$state', 'userService', 'editValue', 'lStore',
+                function ($rootScope, $scope, $state, userService, editValue, lStore) {
                     $rootScope.pages.title = '管理员列表';
                     $rootScope.pages.tips.push({txt: '管理员列表', link: 'app.users.alist'});
                     $rootScope.menu = 'alist';
@@ -109,7 +104,8 @@
                         $scope.adminlist = res.data.data;
                     });
                     $scope.onChangeEdit = function (item) {
-                        editValue.setter(item);
+                        // editValue.setter(item);
+                        lStore.setValue('edit_user', angular.toJson(item));
                     };
                 }])
 
@@ -136,20 +132,32 @@
                 }])
 
             .controller('userEditCtrl', [
-                '$rootScope', '$scope', '$state', 'userService', 'editValue',
-                function ($rootScope, $scope, $state, userService, editValue) {
-                    $scope.userinfo = editValue.getter();
-                    var keyLength = Object.keys($scope.userinfo).length;
-                    if (keyLength < 1) {
+                '$rootScope', '$scope', '$state', 'userService', 'editValue', 'lStore', 'FileUploader',
+                function ($rootScope, $scope, $state, userService, editValue, lStore, FileUploader) {
+                    //$scope.userinfo = editValue.getter();
+                    $scope.info = {};
+                    var userinfo = lStore.getValue('edit_user');
+                    if (typeof userinfo === 'string' && userinfo) {
+                        $scope.info = angular.fromJson(userinfo);
+                        $scope.info.headPortrait = '//image.tianjimedia.com/uploadImages/2015/067/49/UO0746D87FB1.jpg';
+                    } else {
                         $state.go('^.alist');
                     }
-                    console.log(JSON.stringify($scope.userinfo));
-                    var sendData = {"nickname": "小明女", "account": "3233255144c44355b0c1eb33089d2cf6", "password": "123", "sex": "女"};
+                    console.log($scope.info);
+//                    var keyLength = Object.keys($scope.userinfo).length;
+//                    if (keyLength < 1) {
+//                        $state.go('^.alist');
+//                    }
+                    var sendData = {"nickname": "小明女", "account": "xvmin1", "password": "123", "sex": "女"};
                     $scope.editFrom = function () {
-                        userService.editAlist(JSON.stringify(sendData), function (res) {
+                        userService.editAlist(sendData, function (res) {
                             console.log(res);
                         });
                     };
+                    $scope.uploader = new FileUploader({
+                        url: baseUrl + '/sys/upHeadPortrait',
+                        formData: [{key: 'value'}]
+                    });
 
                 }])
 

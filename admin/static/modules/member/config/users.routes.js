@@ -46,6 +46,7 @@
             .state('app.users.edit', {
                 url: '/edit/:id',
                 templateUrl: modelFile + 'form.html',
+                controllerAs: 'ctrl',
                 controller: 'userEditCtrl'
             })
             .state('app.users.view', {

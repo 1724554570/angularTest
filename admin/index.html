@@ -13,10 +13,10 @@
     <link href="theme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
     <link href="theme/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <!-- Theme style -->
-    <link rel="stylesheet" href="theme/adminLTE2/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+    <!-- AdminLTE style -->
+    <link rel="stylesheet" href="theme/adminLTE2/css/AdminLTE.css">
     <link rel="stylesheet" href="theme/adminLTE2/css/skins/_all-skins.min.css">
+    <!--<link href="theme/css/AdminLTE.css" rel="stylesheet" type="text/css"/>-->
     <link rel="stylesheet" href="http://plugins.krajee.com/assets/a50ab49e/css/fileinput.min.css">
     <!--script Start -->
     <script src="static/plugins/angular/angular.min_1.4.js" type="text/javascript"></script>
@@ -26,6 +26,7 @@
     <script src="static/plugins/angular/angular-jqueryhttp.js" type="text/javascript"></script>
     <script src="static/plugins/angular/angular-ui-router.min.js" type="text/javascript"></script>
     <script src="theme/libs/angular-file-upload/angular-file-upload.js" type="text/javascript"></script>
+    <script src="theme/angular-gettext/angular-gettext.js" type="text/javascript"></script>
     <script src="theme/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <style>
         html,
@@ -46,9 +47,11 @@
     <div ui-view=""></div>
     <!--<div class="wrapper" ui-view=""></div>-->
     <script src="static/app.js" type="text/javascript"></script>
+    <script src="static/modules/core/translations.js" type="text/javascript"></script>
     <script src="static/routers.js" type="text/javascript"></script>
+    <script src="static/modules/core/admin-header.js" type="text/javascript"></script>
     <script src="static/modules/factory.js" type="text/javascript"></script>
-    <script src="static/modules/localStorage.js" type="text/javascript"></script>
+    <script src="static/modules/storages.js" type="text/javascript"></script>
     <script src="static/modules/interface.js" type="text/javascript"></script>
     <script src="static/modules/core/app.js" type="text/javascript"></script>
 

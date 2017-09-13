@@ -2,7 +2,7 @@
     'use strict';
     var baseUrl = 'http://47.94.15.71/gcow/cont';
     var baseUrl2 = 'http://10.75.104.34:8080/gcow/cont';
-    baseUrl = baseUrl2;
+    //baseUrl = baseUrl2;
     var interface_user = {
         login: baseUrl + "/sys/login",
         addUser: baseUrl + '/sys/addUser',
@@ -32,13 +32,13 @@
             };
 
             users.findAList = function (call) {
-                httpService.post({url: baseUrl + '/sys/userList', data: {}}, function (res) {
+                httpService.get({url: baseUrl + '/sys/userList', data: {}}, function (res) {
                     call(res);
                 });
             };
 
             users.editAlist = function (data, call) {
-                httpService.post({url: baseUrl + '/sys/editorUser', data: data}, function (res) {
+                httpService.post({url: interface_user.editorUser, data: data}, function (res) {
                     call(res);
                 });
             };

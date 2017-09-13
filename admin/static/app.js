@@ -12,10 +12,10 @@ angular.module('anApp', [
     'ui.router',
     'oc.lazyLoad',
     'angularFileUpload',
-    //'com.module.files',
+    'gettext',
     'com.module.users'
-
-]).run(function ($rootScope, $state) {
+]).run(function ($rootScope, $state, gettextCatalog) {
+    gettextCatalog.setCurrentLanguage('zh_CN');
     $rootScope.menu = '';
     $rootScope.styles = '';
     $rootScope.goto = function () {

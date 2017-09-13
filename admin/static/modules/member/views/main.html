@@ -1,8 +1,8 @@
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<!--<section class="content-header">
     <h1>
         {{pages.title}}
-        <!-- <small>preview of simple tables</small> -->
+         <small>preview of simple tables</small> 
     </h1>
     <ol class="breadcrumb">
         <li ng-repeat=" tips in pages.tips">
@@ -10,7 +10,8 @@
             <a ui-sref="{{tips.link}}" ng-if="tips.link != '#' "> {{tips.txt}}</a>
         </li>
     </ol>
-</section>
+</section>-->
+<section admin-header class="content-header" title="{{ 'Files' | translate }}" sub-title="{{ 'Manage your files here!' | translate }}"></section>
 
 <!-- Main content -->
 <section class="content" ui-view=""></section>

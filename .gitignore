@@ -45,4 +45,6 @@ Thumbs.db
 nbproject/
 /angdemo/nbproject/
 /angdemo/nbproject/private/
-#admin/
+/admin/static/modules/member/views/form_1.html
+/admin/static/modules/member/views/form_2.html
+
