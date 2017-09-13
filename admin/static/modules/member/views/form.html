@@ -9,20 +9,37 @@
 <div class="col-sm-12">
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label for="firstname" class="col-sm-2 control-label">用户名</label>
+            <label for="firstname" class="col-sm-2 control-label">账户名：</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="firstname" placeholder="请输入名字" ng-model="info.nickname">
+                <input type="text" class="form-control" id="firstname" placeholder="请输入账户名" ng-model="info.account">
             </div>
         </div>
         <div class="form-group">
-            <label for="headPortrait" class="col-sm-2 control-label">头像</label>
+            <label for="firstname" class="col-sm-2 control-label">昵称：</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="firstname" placeholder="请输入昵称" ng-model="info.nickname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label">性别：</label>
+            <div class="col-sm-9">
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="男" ng-model="info.sex" checked> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="女" ng-model="info.sex"> 女
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="headPortrait" class="col-sm-2 control-label">头像：</label>
             <div class="col-sm-9" nv-file-drop uploader="uploader">
-                <div class="headPortrait">img ng-src="{{info.headPortrait}}" alt="" /></div>
+                <div class="headPortrait"><img ng-src="{{info.headPortrait}}" alt="" /></div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div class="file-input btn btn-xs btn-success btn-file">
-                            {{ 'Browse' | translate }}&hellip;
-                            <input nv-file-select type="file" uploader="uploader" />
+                        <div class="file-input btn btn-xs btn-success btn-file" ng-disabled="uploader.queue.length === 1">
+                            {{ 'Browse' | translate }}文件<!--&hellip;-->
+                            <input nv-file-select type="file" uploader="uploader" ng-disabled="uploader.queue.length === 1" />
                         </div>
                     </div>
                     <table class="table table-bordered table-stiped">
@@ -65,6 +82,7 @@
                     </table>
                     <div class="panel-footer">
                         <div class="row">
+                            <!--
                             <div class="col-md-3">
                                 {{ 'Upload queue' | translate }}
                                 <small> {{ uploader.queue.length}} {{ 'in queue' | translate }}</small>
@@ -76,18 +94,17 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
                             <div class="col-md-3 text-nowrap">
-                                <div class="pull-right btn-group text-nowrap">
-                                    <a class="btn btn-success btn-xs" ng-click="uploader.uploadAll()"
-                                       ng-disabled="!uploader.getNotUploadedItems().length">
+                                <!-- <div class="pull-right btn-group text-nowrap"> -->
+                                <div class="btn-group text-nowrap">
+                                    <a class="btn btn-success btn-sm" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
                                         {{ 'Upload' | translate }}
                                     </a>
-                                    <a class="btn btn-warning btn-xs" ng-click="uploader.cancelAll()"
-                                       ng-disabled="!uploader.isUploading">
+                                    <a class="btn btn-warning btn-sm" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
                                         {{ 'Cancel' | translate }}
                                     </a>
-                                    <a class="btn btn-danger btn-xs" ng-click="uploader.clearQueue()"
-                                       ng-disabled="!uploader.queue.length">
+                                    <a class="btn btn-danger btn-sm" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
                                         {{ 'Remove' | translate }}
                                     </a>
                                 </div>
@@ -98,14 +115,17 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">密码</label>
+            <label for="lastname" class="col-sm-2 control-label">密码：</label>
             <div class="col-sm-9">
                 <input type="password" class="form-control" id="lastname" placeholder="请输入密码" ng-model="info.password">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-2">
+            <div class="col-sm-offset-2 col-sm-2" ng-if="menu === 'alist'">
                 <button type="submit" class="btn btn-block btn-primary" ng-click="editFrom();">提交</button>
+            </div>
+            <div class="col-sm-offset-2 col-sm-2" ng-if="menu === 'memberAdd'">
+                <button type="submit" class="btn btn-block btn-primary" ng-click="addFrom();">提交</button>
             </div>
         </div>
     </form>

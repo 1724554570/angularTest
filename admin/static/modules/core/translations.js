@@ -1086,6 +1086,7 @@ angular.module('anApp').run(['gettextCatalog', function (gettextCatalog) {
             "Raw": "原始",
             "Register": "注册",
             "Registered": "已注册",
+            "Remove": "删除",
             "Remove all": "删除所有",
             "Roles": "角色",
             "Save": "保存",

@@ -1,7 +1,10 @@
 (function () {
     'use strict';
-    var baseUrl = 'http://47.94.15.71/gcow/cont';
+    var baseUrl = 'http://www.osanwen.com/gcow/cont';
+    baseUrl = 'http://47.94.15.71/gcow/cont';
+    baseUrl = ("www.osanwen.com" === document.domain) ? ('/gcow/cont') : (baseUrl);
     angular.module('com.module.users')
+            // 登录控制
             .controller('LoginCtrl', [
                 '$scope', '$interval', '$uibModal', 'userService', '$rootScope', '$state', 'lStore',
                 function ($scope, $interval, $uibModal, userService, $rootScope, $state, lStore) {
@@ -46,11 +49,7 @@
                     //lStore.setValue('log.user', log_user);
                     //$state.go('app.home');
                     $scope.login = function () {
-                        var data = {
-                            account: this.model.nickname,
-                            password: this.model.password,
-                            code: this.model.token
-                        };
+                        var data = {account: this.model.nickname, password: this.model.password, code: this.model.token};
                         userService.logIn(data, function (res) {
                             successAction(res);
                         }, function () {
@@ -83,14 +82,13 @@
                         });
                     };
                 }])
-
+            // 管理员中控
             .controller('userMainCtrl', [
                 '$rootScope', '$scope', '$state',
                 function ($rootScope, $scope, $state) {
                     $rootScope.navs = 'settings';
                     $rootScope.pages = {title: '系统管理', tips: [{txt: '系统管理', link: '#'}]};
                 }])
-
             // 管理员列表
             .controller('useraListCtrl', [
                 '$rootScope', '$scope', '$state', 'userService', 'editValue', 'lStore',
@@ -108,59 +106,110 @@
                         lStore.setValue('edit_user', angular.toJson(item));
                     };
                 }])
-
             // 管理员列表
             .controller('userListCtrl', [
                 '$rootScope', '$scope', '$state',
                 function ($rootScope, $scope, $state) {
                     $rootScope.menu = 'memberList';
                 }])
-
+            // 添加管理员
             .controller('userAddCtrl', [
-                '$rootScope', '$scope',
-                function ($rootScope, $scope) {
-                    $rootScope.pages = {
-                        title: '添加用户',
-                        tips: [{txt: '系统管理', link: '#'}, {txt: '添加用户', link: 'app.users.add'}]
-                    };
-
+                '$rootScope', '$scope', 'userService', 'FileUploader',
+                function ($rootScope, $scope, userService, FileUploader) {
+                    $rootScope.pages.title = '添加用户';
+                    $rootScope.pages.tips.push({txt: '添加用户', link: 'app.users.add'});
                     $rootScope.menu = 'memberAdd';
-                    $scope.userinfo = {usernick: '', password: ''};
-                    // $scope.submit = function () {
-
-                    // };
+                    $scope.info = {nickname: '', account: '', password: '', headPortrait: '', sex: ''};
+                    $scope.addFrom = function () {
+                        userService.add($scope.info, function (resp) {
+                            //console.log(resp);
+                            var json = resp.data;
+                            alert(json.message);
+                            if (json.code === 201) {
+                                $scope.info = {nickname: '', account: '', password: '', headPortrait: '', sex: ''};
+                            }
+                        });
+                    };
+                    var loaderFile = $scope.uploader = new FileUploader({url: baseUrl + '/sys/upHeadPortrait'});
+                    loaderFile.filters.push({
+                        name: 'imageFilter',
+                        fn: function (item /*{File|FileLikeObject}*/, options) {
+                            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                            var flag = '|jpg|png|jpeg|bmp|gif|JPG|PNG|'.indexOf(type) !== -1;
+                            //,仅支持jpg,jpg,jpeg,bmp,gif后缀类型!
+                            if (!flag) {
+                                alert('上传图片格式不对');
+                            }
+                            return flag;
+                        }
+                    });
+                    loaderFile.onSuccessItem = function (item, response, status, headers) {
+                        if (response.code === 201) {
+                            var imgPath = response.data[0].fileUrl;
+                            $scope.info.headPortrait = imgPath;
+                        } else {
+                            alert(response.message);
+                        }
+                    };
                 }])
-
+            // 修改管理员
             .controller('userEditCtrl', [
-                '$rootScope', '$scope', '$state', 'userService', 'editValue', 'lStore', 'FileUploader',
-                function ($rootScope, $scope, $state, userService, editValue, lStore, FileUploader) {
+                '$rootScope', '$scope', '$state', 'userService', 'lStore', 'FileUploader',
+                function ($rootScope, $scope, $state, userService, lStore, FileUploader) {
+                    $rootScope.menu = 'alist';
                     //$scope.userinfo = editValue.getter();
                     $scope.info = {};
                     var userinfo = lStore.getValue('edit_user');
                     if (typeof userinfo === 'string' && userinfo) {
                         $scope.info = angular.fromJson(userinfo);
-                        $scope.info.headPortrait = '//image.tianjimedia.com/uploadImages/2015/067/49/UO0746D87FB1.jpg';
+                        $scope.info.password = '';
+                        //$scope.info.headPortrait = '//image.tianjimedia.com/uploadImages/2015/067/49/UO0746D87FB1.jpg';
                     } else {
                         $state.go('^.alist');
                     }
-                    console.log($scope.info);
-//                    var keyLength = Object.keys($scope.userinfo).length;
-//                    if (keyLength < 1) {
-//                        $state.go('^.alist');
-//                    }
-                    var sendData = {"nickname": "小明女", "account": "xvmin1", "password": "123", "sex": "女"};
+                    var keyLength = Object.keys($scope.info).length;
+                    if (keyLength < 1) {
+                        $state.go('^.alist');
+                    }
                     $scope.editFrom = function () {
-                        userService.editAlist(sendData, function (res) {
-                            console.log(res);
+                        var th = $scope.info,
+                                sendData = {nickname: th.nickname, account: th.account, password: th.password, headPortrait: th.headPortrait, sex: th.sex};
+                        if (th.password === '') {
+                            alert('请输入密码');
+                            //delete sendData.password;
+                            return;
+                        }
+                        console.log(sendData);
+                        userService.editAlist(sendData, function (resp) {
+                            console.log(resp);
+                            var json = resp.data;
+                            alert(json.message);
                         });
                     };
-                    $scope.uploader = new FileUploader({
-                        url: baseUrl + '/sys/upHeadPortrait',
-                        formData: [{key: 'value'}]
+                    var loaderFile = $scope.uploader = new FileUploader({url: baseUrl + '/sys/upHeadPortrait'});
+                    loaderFile.filters.push({
+                        name: 'imageFilter',
+                        fn: function (item /*{File|FileLikeObject}*/, options) {
+                            var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                            var flag = '|jpg|png|jpeg|bmp|gif|JPG|PNG|'.indexOf(type) !== -1;
+                            //,仅支持jpg,jpg,jpeg,bmp,gif后缀类型!
+                            if (!flag) {
+                                alert('上传图片格式不对');
+                            }
+                            return flag;
+                        }
                     });
-
+                    loaderFile.onSuccessItem = function (item, response, status, headers) {
+                        console.log(response);
+                        if (response.code === 201) {
+                            var imgPath = response.data[0].fileUrl;
+                            $scope.info.headPortrait = imgPath;
+                        } else {
+                            alert(response.message);
+                        }
+                    };
                 }])
-
+            // 弹出框
             .controller('ModalInstanceCtrl', [
                 '$uibModalInstance', 'items',
                 function ($uibModalInstance, items) {

@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     /**
      * @ngdoc directive
      * @name com.module.core.directive:adminHeader
@@ -10,8 +9,9 @@
      * # adminHeader
      */
     angular.module('anApp').directive('adminHeader', function () {
+        var pathsview = ("www.osanwen.com" === document.domain) ? ('/webpage/static/views/') : ('static/views/');
         return {
-            templateUrl: 'static/views/admin-header.html',
+            templateUrl: pathsview + 'admin-header.html',
             transclude: true,
             scope: {
                 title: '@',

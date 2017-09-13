@@ -1,8 +1,8 @@
 (function () {
     'use strict';
-    var baseUrl = 'http://47.94.15.71/gcow/cont';
-    var baseUrl2 = 'http://10.75.104.34:8080/gcow/cont';
-    //baseUrl = baseUrl2;
+    var baseUrl = 'http://www.osanwen.com/gcow/cont';
+    baseUrl = 'http://47.94.15.71/gcow/cont';
+    baseUrl = ("www.osanwen.com" === document.domain) ? ('/gcow/cont') : (baseUrl);
     var interface_user = {
         login: baseUrl + "/sys/login",
         addUser: baseUrl + '/sys/addUser',
@@ -18,9 +18,10 @@
                     if (res != 'undefined' && res.data.code == 201) {
                         cb(res)
                     } else {
-                        var log_user = angular.toJson(data);
-                        lStore.setValue('log.user', log_user);
-                        $state.go('app.home');
+                        alert(res.data.message);
+                        //var log_user = angular.toJson(data);
+                        //lStore.setValue('log.user', log_user);
+                        //$state.go('app.home');
                     }
                 }, function (res) {
                     err();
@@ -52,8 +53,10 @@
                 });
             };
 
-            users.add = function () {
-
+            users.add = function (data, call) {
+                httpService.post({url: interface_user.addUser, data: data}, function (res) {
+                    call(res);
+                });
             };
 
             return users;
