@@ -23,6 +23,7 @@ dev/public/libs/layui/release/
 dev/public/libs/layui/build/
 
 /quickStart/node_modules/
+/quickStart/package-lock.json
 
 # IDE - VSCode
 .vscode/*
