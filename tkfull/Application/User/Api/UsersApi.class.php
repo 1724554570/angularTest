@@ -43,11 +43,10 @@ class UsersApi extends Api {
     /**
      * 获取用户信息
      * @param  string  $uid         用户ID或用户名
-     * @param  boolean $is_username 是否使用用户名查询
      * @return array                用户信息
      */
-    public function info($uid, $is_username = false) {
-        return $this->model->info($uid, $is_username);
+    public function info($uid) {
+        return $this->model->getInfo($uid);
     }
 
     /**

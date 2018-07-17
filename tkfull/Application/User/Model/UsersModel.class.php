@@ -56,15 +56,13 @@ class UsersModel extends Model {
      * @param  boolean $is_username 是否使用用户名查询
      * @return array                用户信息
      */
-    public function info($uid, $is_username = false) {
+    public function getInfo($uid = '') {
         $map = array();
-        if ($is_username) { //通过用户名获取
-            $map['username'] = $uid;
-        } else {
-            $map['id'] = $uid;
+        if (empty($uid) || !$uid) {
+            return 0;
         }
-
-        $user = $this->where($map)->field('id as uid,username,imgurl,ctime,state')->find();
+        $map['id'] = $uid;
+        $user = $this->where($map)->field('id,username,imgurl,ctime,state')->find();
         if (is_array($user) && $user['state'] = 1) {
             return $user;
         } else {

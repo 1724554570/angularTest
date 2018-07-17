@@ -12,9 +12,7 @@ class LoginController extends AllController {
 
     public function _initialize() {
         unset($this->userApi);
-        //var_dump($this->userApi);
         $this->userApi = new UsersApi();
-        //var_dump($this->userApi);
     }
 
     public function index() {
@@ -23,19 +21,29 @@ class LoginController extends AllController {
         $this->display('err:index');
     }
 
-    public function response($row = '') {
+    public function resp($row = '') {
         if (0 < $row) {
-            $this->ajaxReturn(array('status' => 1, 'message' => "查询成功！", 'users' => $row));
+            $this->ajaxReturn(array('code' => 200, 'message' => "查询成功！", 'data' => $row));
         }
-        $error = ERROR_CODE($row, '');
-        $this->ajaxReturn(array('status' => 0, 'message' => $error, 'users' => $row));
+        $error = getErrorCode($row);
+        $this->ajaxReturn(array('code' => 0, 'message' => $error, 'data' => $row));
     }
-
+    
+    /**
+     * 获取用户登录信息
+     */
+    public function getUserLogin() {
+        $username = I('username');
+        $userpass = I('password');
+        $row = $this->userApi->login($username, $userpass);
+        $this->resp($row);
+    }
+    
     public function ajaxlogin() {
         $username = I('mobile_no');
         $userpass = I('password');
         $row = $this->userApi->login($username, $userpass);
-        $this->response($row);
+        $this->resp($row);
     }
 
     public function register() {
@@ -47,7 +55,7 @@ class LoginController extends AllController {
         $data['ctime'] = time();
         $data['utime'] = $data['ctime'];
         $row = $this->userApi->register($data);
-        $this->response($row);
+        $this->resp($row);
     }
 
     public function ajaxForget() {

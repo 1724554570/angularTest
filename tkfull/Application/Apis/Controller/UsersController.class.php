@@ -21,14 +21,30 @@ class UsersController extends AllController {
         $this->display('err:index');
     }
 
-    public function getArtById() {
+    /**
+     * 查询用户信息
+     * @param type $uid
+     */
+    public function findUserById($uid) {
+        $user = $this->userApi->info($uid);
+        if (!$user) {
+            return $this->ajaxReturn(responseMsg(201, null, $user, '用户ID'));
+        }
+        return $user;
+    }
+
+    /**
+     * 
+     */
+    public function getArticleByUserId() {
         $uid = I('id');
+        $user = $this->findUserById($uid);
         if ($uid) {
-            $rows = $this->userApi->info($uid);
-            $rows2 = $this->articleApi->ualists(1, 10, $uid);
-            //$rows = M('user')->where("id={$id}")->field('id as uid,username,imgurl,ctime')->find();
-            //$rows2 = M('pro')->where("foruser={$id}")->field('id,productname,proctime')->limit(10)->select();
-            $this->ajaxReturn(array('status' => 1, 'users' => $rows, 'article' => $rows2));
+            $article = $this->articleApi->ualists(1, 10, $uid);
+            if (!$article) {
+                $this->ajaxReturn(responseMsg(201, null, $article));
+            }
+            $this->ajaxReturn(responseMsg(200, array('user' => $user, 'article' => $article), 200));
         }
         $this->ajaxReturn(array('status' => 0, 'users' => null, 'article' => null));
     }

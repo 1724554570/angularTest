@@ -98,7 +98,7 @@ class ProductController extends AllController {
         if (0 < $row) {
             $this->ajaxReturn(array('status' => 1, 'message' => "查询成功！", 'article' => $row, 'replys' => $reply));
         }
-        $error = ERROR_CODE($row, '');
+        $error = getErrorCode($row, '');
         $this->ajaxReturn(array('status' => 0, 'message' => $error, 'article' => $row));
     }
 
