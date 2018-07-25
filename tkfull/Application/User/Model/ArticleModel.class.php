@@ -3,7 +3,7 @@
 namespace User\Model;
 
 use Think\Model;
-use User\Model\UsersModel;
+use User\Api\UsersApi;
 
 /**
  * 文章模型
@@ -27,47 +27,68 @@ class ArticleModel extends Model {
     const STATE_FAIL = 3; // 未发布
     const STATE_OVER = 4; // 结束发布
 
-    /**
-     * 查询用户所拥有的文章 
-     * @param type $s
-     * @param type $e
-     */
+    public function callback($data = null, $types = null) {
+        $callback = array();
+        switch ($types) {
+            case 1:
+                $callback = array('message' => '查询失败', 'data' => null, 'status' => 0);
+                break;
+            case 2:
+                $callback = array('message' => '非法请求', 'data' => null, 'status' => -1);
+                break;
+            default :
+                $callback = array('message' => '查询成功', 'data' => $data, 'status' => 200);
+                break;
+        }
+        return $callback;
+    }
 
-    public function getUsersArticle($s, $e, $uid) {
+    /**
+     * 根据用户ID查询文章
+     * @param type $limitStart
+     * @param type $uid
+     * @return type
+     */
+    public function getUsersArticle($limitStart, $uid) {
+        if (!$uid) {
+            return $this->callback(array('total' => null, 'lists' => null), 1);
+        }
         $limit = '0,10';
-        if (!empty($s)) {
-            $limit = (($s - 1) * 10) . ',10';
+        if (!empty($limitStart) && $limitStart) {
+            $limit = (($limitStart - 1) * 10) . ',10';
         }
         $total = $this->where("foruser={$uid}")->count();
         $lists = $this->where("foruser={$uid}")->field('id,productname,proctime')->select();
-        return array('total' => $total, 'lists' => $lists);
+        return $this->callback(array('total' => $total, 'lists' => $lists));
     }
 
     /**
      * 分页数据
-     * @param type $s
-     * @param type $e
+     * @param type $articleName
+     * @param type $articleType
+     * @param type $limitStart
+     * @param type $pageSize
+     * @return type
      */
-    public function lists($key, $type, $s) {
+    public function lists($articleName = null, $articleType = null, $limitStart = null, $pageSize = 10) {
         $map = array();
-        if ($key) {
-            $map['productname'] = $key;
+        if ($articleName) {
+            $map['productname'] = $articleName;
         }
-        if ($type) {
-            $map['prostate'] = $type;
+        if ($articleType) {
+            $map['prostate'] = $articleType;
         }
-        if ($s) {
-            $s = (($s - 1) * 10) . ",10";
-        } else {
-            $s = "0,10";
+        $limit = "0,10";
+        if (!empty($limitStart) && $limitStart) {
+            $limit = (($limitStart - 1) * $pageSize) . ",10";
         }
-        $count = $this->where($map)->count();
-        $lists = $this->where($map)->field('id,productname,proctime,foruser,prostate')->limit($s)->select();
-        $User = new UsersModel();
+        $total = $this->where($map)->count();
+        $lists = $this->where($map)->field('id,productname,proctime,foruser,prostate')->limit($limit)->select();
+        $User = new UsersApi();
         foreach ($lists as $key => $value) {
             $lists[$key]['users'] = $User->info($value['foruser']);
         }
-        return array('total' => $count, 'lists' => $lists);
+        return $this->callback(array('total' => $total, 'lists' => $lists));
     }
 
     /**
