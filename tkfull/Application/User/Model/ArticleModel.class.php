@@ -22,8 +22,8 @@ class ArticleModel extends Model {
      */
     protected $connection = UC_DB_DSN;
 
-    const STATE_SUCC = 1; // 发布
-    const STATE_ERROR = 2; // 删除
+    const STATE_SUCCESS = 1; // 发布
+    const STATE_DELETE = 2; // 删除
     const STATE_FAIL = 3; // 未发布
     const STATE_OVER = 4; // 结束发布
 
@@ -100,10 +100,10 @@ class ArticleModel extends Model {
         $map = array();
         switch ($state) {
             case 1:
-                $map['prostate'] = STATE_SUCC;
+                $map['prostate'] = STATE_SUCCESS;
                 break;
             case 2;
-                $map['prostate'] = STATE_ERROR;
+                $map['prostate'] = STATE_DELETE;
                 break;
             case 3;
                 $map['prostate'] = STATE_FAIL;
