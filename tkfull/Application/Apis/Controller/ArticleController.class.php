@@ -3,6 +3,7 @@
 namespace Apis\Controller;
 
 use User\Api\ArticleApi;
+use User\Api\MarkdownApi;
 
 /**
  * 后台内容控制器
@@ -11,6 +12,7 @@ class ArticleController extends AllController {
 
     public function _initialize() {
         $this->articleApi = new ArticleApi();
+        $this->markdownApi = new MarkdownApi();
     }
 
     /**
@@ -23,6 +25,22 @@ class ArticleController extends AllController {
         $list = $this->articleApi->lists($key, $type, $startpage);
         $list['nhref'] = 'article';
         $this->ajaxReturn($list);
+    }
+
+    /**
+     * 
+     */
+    public function setArticleContent(){
+        // $id = I('id');
+        // if(!$id){
+        //     $id = getCreateUUID();
+        // }
+        $data['id'] = I('id');
+        $data['title'] = I('title');
+        $data['content'] = I('content');
+        $data['state'] = I('state');
+        $data['user_id'] = '1';
+        $res = $this->markdownApi->createOrAdd_Article($data);
     }
 
 }
