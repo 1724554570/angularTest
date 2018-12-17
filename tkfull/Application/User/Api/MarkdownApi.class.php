@@ -7,8 +7,8 @@ use User\Model\MarkdownModel;
 
 class MarkdownApi extends Api {
 
-    public function _initialize() {
-        $this->markdownModel = new MarkdownModel();
+    public function _init() {
+        $this->model = new MarkdownModel();
     }
 
     
@@ -19,8 +19,17 @@ class MarkdownApi extends Api {
      * @param type $id
      * @return type
      */
-    public function createOrAdd_Article($param, $id = false) {
-        return $this->model->createOrAdd_Article($param, $id);
+    public function createOrEdit_Article($param) {
+        return $this->model->createOrEdit_Article($param);
+    }
+
+    /**
+     * 
+     * @param type $id
+     * @return type
+     */
+    public function findById($id=null){
+        return $this->model->findById($id);
     }
 
 }

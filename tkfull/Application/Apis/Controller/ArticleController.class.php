@@ -30,17 +30,31 @@ class ArticleController extends AllController {
     /**
      * 
      */
-    public function setArticleContent(){
+    public function setArticleContent() {
         // $id = I('id');
         // if(!$id){
         //     $id = getCreateUUID();
         // }
-        $data['id'] = I('id');
-        $data['title'] = I('title');
-        $data['content'] = I('content');
-        $data['state'] = I('state');
+        // $_SERVER['HTTP_CONTENT_TOKEN']
+        $request_body = file_get_contents('php://input');
+        $data1 = json_decode($request_body, true);
+        $data['mid'] = $data1['articleId'];
+        $data['title'] = $data1['articleTitle'];
+        $data['content'] = $data1['articleContent'];
+        $data['html_content'] = $data1['articleContentHtml'];
+        $data['state'] = $data1['state'];
         $data['user_id'] = '1';
-        $res = $this->markdownApi->createOrAdd_Article($data);
+        if ($data1['state']) {
+            $data['user_id'] = $data1['user_id'];
+        }
+        $res = $this->markdownApi->createOrEdit_Article($data);
+        $this->ajaxReturn($res);
     }
 
+    public function findById(){
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);
+        $res = $this->markdownApi->findById($data);
+        $this->ajaxReturn($res);
+    }
 }
